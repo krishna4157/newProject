@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  Animated,
 } from 'react-native';
 import SplashScreen from 'react-native-smart-splash-screen'
 
