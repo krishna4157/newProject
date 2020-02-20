@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+// import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 
 import { MonoText } from '../components/StyledText';
@@ -8,7 +8,7 @@ import { MonoText } from '../components/StyledText';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      {/* <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}> */}
         <View style={styles.welcomeContainer}>
           <Image
             source={
@@ -39,7 +39,7 @@ export default function HomeScreen() {
             <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      {/* </ScrollView> */}
 
       <View style={styles.tabBarInfoContainer}>
         <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
