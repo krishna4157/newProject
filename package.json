@@ -10,8 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.8.0",
     "react": "16.9.0",
-    "react-native": "0.61.5"
+    "react-native": "0.61.5",
+    "react-native-smart-splash-screen": "^2.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

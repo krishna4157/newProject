@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,6 +15,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import SplashScreen from 'react-native-smart-splash-screen'
 
 import {
   Header,
@@ -24,9 +25,25 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+class App extends Component {
+
+  async componentDidMount () {
+    // this.unsubscribe();
+    
+    
+    // NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+    console.disableYellowBox = true;
+
+      
+        SplashScreen.close({
+          animationType: SplashScreen.animationType.fade,
+          duration: 1000,
+          delay: 12000,
+       });
+    }
+    render(){
   return (
-    <>
+    <View>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -68,8 +85,9 @@ const App: () => React$Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+    </View>
   );
+}
 };
 
 const styles = StyleSheet.create({
