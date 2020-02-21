@@ -34,7 +34,7 @@ import FriendsPage from './FriendsPage';
 // import UserValidation from '../components/forgotPassword/UserValidation';
 // import ResetPassword from '../components/forgotPassword/ResetPassword';
 // import OtpVerification from '../components/forgotPassword/OtpVerification';
-
+// https://fontawesome.com/v4.7.0/icons/
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
 const mainScreenNavigator = createBottomTabNavigator({
