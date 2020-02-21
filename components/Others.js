@@ -13,7 +13,6 @@ import {
   import {
     Header,
     LearnMoreLinks,
-    Colors,
     DebugInstructions,
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
@@ -22,6 +21,8 @@ import {
 // import styles from '../components/styles/homeStyles';
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
+import Colors from '../constants/Colors';
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 class Others extends Component {
     state={
@@ -43,9 +44,9 @@ class Others extends Component {
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
                   <Text style={styles.sectionTitle}>Others Page</Text>
-                  <Text style={styles.sectionDescription}>
-                    Edit to change this
-                    screen                  </Text>
+                  <View>
+                  <AwesomeButton backgroundColor='blue' textColor='red' >Add to Others</AwesomeButton>
+                  </View>
                 </View>
               </View>
             </ScrollView>
@@ -53,42 +54,46 @@ class Others extends Component {
         );
       }
     }
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: 'grey',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+    const styles = StyleSheet.create({
+        scrollView: {
+          backgroundColor: Colors.lighter,
+        },
+        engine: {
+          position: 'absolute',
+          right: 0,
+        },
+        body: {
+          backgroundColor: Colors.OthersHeader,
+        },
+        sectionContainer: {
+          flexDirection:'row',
+          padding:15,
+          justifyContent:'space-between',
+          alignItems:'center',
+          paddingHorizontal: 24,
+        },
+        sectionTitle: {
+          fontSize: 24,
+          fontWeight: '600',
+          color: Colors.black,
+          textAlign:'center'
+        },
+        sectionDescription: {
+          marginTop: 8,
+          fontSize: 18,
+          fontWeight: '400',
+          color: Colors.dark,
+        },
+        highlight: {
+          fontWeight: '700',
+        },
+        footer: {
+          color: Colors.dark,
+          fontSize: 12,
+          fontWeight: '600',
+          padding: 4,
+          paddingRight: 12,
+          textAlign: 'right',
+        },
+      });
 export default Others;

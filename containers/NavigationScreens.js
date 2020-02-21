@@ -6,10 +6,12 @@ import { createMaterialBottomTabNavigator as createBottomTabNavigator } from 're
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome, Entypo, Feather, Foundation } from '@expo/vector-icons';
 import { Dimensions } from "react-native";
 // import Diary from './diaryPage';
- import Home from './FamilyPage';
+ import FamilyPage from './FamilyPage';
  import TabPage from './FriendsPage';
 import OthersPage from './OthersPage';
 import Family from '../components/Family';
+import { Container, Text,Button, Title, Content, List, ListItem, Icon, Left, Body, Right, Switch, View } from 'native-base';
+
 import FriendsPage from './FriendsPage';
 // import EDiaryForm from './formPage';
 // import SideBar from '../components/SideBar';
@@ -33,14 +35,35 @@ import FriendsPage from './FriendsPage';
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
 const mainScreenNavigator = createBottomTabNavigator({
-    Family: {screen : FamilyPage},
-    Friends : {screen: FriendsPage},
-    Others: {screen : OthersPage},
+    Family: {screen : FamilyPage,
+        navigationOptions:{
+            tabBarLabel :
+            <Text style={{marginBottom:10,color:'white'}}>Family</Text>,
+            tabBarIcon: ( ) => (
+                <FontAwesome name='accusoft' color={'red'} size={12} />
+              )
+        }
+    },
+    Friends : {screen: FriendsPage,
+        navigationOptions:{
+            tabBarLabel :
+            <Text style={{marginBottom:10,color:'white'}}>Friends</Text>
+        }},
+    Others: {screen : OthersPage,
+        navigationOptions:{
+            tabBarLabel :
+            <Text style={{marginBottom:10,color:'white'}}>Others</Text>
+        }},
     // AskQuestions: AskQuestions,
 
 },{
     initialRouteName: 'Family',
     activeColor: '#F44336',
+    inactiveColor:'white',
+    barStyle: {
+        backgroundColor: 'grey',
+        padding:10 
+    },   
   });
 
 

@@ -13,7 +13,6 @@ import {
   import {
     Header,
     LearnMoreLinks,
-    Colors,
     DebugInstructions,
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
@@ -22,6 +21,8 @@ import {
 // import styles from '../components/styles/homeStyles';
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
+import Colors from '../constants/Colors';
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 
 class Friends extends Component {
     state={
@@ -30,65 +31,69 @@ class Friends extends Component {
     render() {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-            <View>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
-              {/* <Header /> */}
-              {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
-              <View style={styles.body}>
-                <View style={styles.sectionContainer}>
-                  <Text style={styles.sectionTitle}>Friends Page</Text>
-                  <Text style={styles.sectionDescription}>
-                    Edit to change this
-                    screen                  </Text>
+          <View>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            {/* <Header /> */}
+            {/* {global.HermesInternal == null ? null : (
+              <View style={styles.engine}>
+                <Text style={styles.footer}>Engine: Hermes</Text>
+              </View>
+            )} */}
+            <View style={styles.body}>
+              <View style={styles.sectionContainer}>
+                <Text style={styles.sectionTitle}>Friends Page</Text>
+                <View>
+                <AwesomeButton backgroundColor='grey' textColor='red' >Add to Friends</AwesomeButton>
                 </View>
               </View>
-            </ScrollView>
-          </View>
+            </View>
+          </ScrollView>
+        </View>
         );
       }
     }
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: 'green',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+    const styles = StyleSheet.create({
+      scrollView: {
+        backgroundColor: Colors.lighter,
+      },
+      engine: {
+        position: 'absolute',
+        right: 0,
+      },
+      body: {
+        backgroundColor: Colors.FriendsHeader,
+      },
+      sectionContainer: {
+        flexDirection:'row',
+        padding:15,
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal: 24,
+      },
+      sectionTitle: {
+        fontSize: 24,
+        fontWeight: '600',
+        color: Colors.black,
+        textAlign:'center'
+      },
+      sectionDescription: {
+        marginTop: 8,
+        fontSize: 18,
+        fontWeight: '400',
+        color: Colors.dark,
+      },
+      highlight: {
+        fontWeight: '700',
+      },
+      footer: {
+        color: Colors.dark,
+        fontSize: 12,
+        fontWeight: '600',
+        padding: 4,
+        paddingRight: 12,
+        textAlign: 'right',
+      },
+    });
 export default Friends;

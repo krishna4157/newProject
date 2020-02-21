@@ -13,7 +13,6 @@ import { View } from 'react-native';
 import AsyncStorage from "@react-native-community/async-storage";
 // import Popup from "../components/Popup";
 var i=0;
-import Home from './FamilyPage';
 
 var dataSubmit=0;
 class AppNavigation extends Component {

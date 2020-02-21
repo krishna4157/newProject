@@ -13,7 +13,6 @@ import {
   import {
     Header,
     LearnMoreLinks,
-    Colors,
     DebugInstructions,
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
@@ -22,7 +21,8 @@ import {
 // import styles from '../components/styles/homeStyles';
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
-
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
+import Colors from '../constants/Colors';
 class Family extends Component {
     state={
     };
@@ -43,9 +43,9 @@ class Family extends Component {
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
                   <Text style={styles.sectionTitle}>Family Page</Text>
-                  <Text style={styles.sectionDescription}>
-                    Edit to change this
-                    screen                  </Text>
+                  <View>
+                  <AwesomeButton backgroundColor='green' textColor='red' >Add to Family</AwesomeButton>
+                  </View>
                 </View>
               </View>
             </ScrollView>
@@ -62,16 +62,20 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: 'red',
+    backgroundColor: Colors.FamilyHeader,
   },
   sectionContainer: {
-    marginTop: 32,
+    flexDirection:'row',
+    padding:15,
+    justifyContent:'space-between',
+    alignItems:'center',
     paddingHorizontal: 24,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
     color: Colors.black,
+    textAlign:'center'
   },
   sectionDescription: {
     marginTop: 8,
