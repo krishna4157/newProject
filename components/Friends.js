@@ -9,7 +9,8 @@ import {
     StatusBar,
     Animated,
   } from 'react-native';
-  
+  import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
+
   import {
     Header,
     LearnMoreLinks,
@@ -32,25 +33,77 @@ class Friends extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
           <View>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            {/* <Header /> */}
-            {/* {global.HermesInternal == null ? null : (
-              <View style={styles.engine}>
-                <Text style={styles.footer}>Engine: Hermes</Text>
-              </View>
-            )} */}
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Friends Page</Text>
-                <View>
-                <AwesomeButton backgroundColor='grey' textColor='red' >Add to Friends</AwesomeButton>
+            <ScrollView
+              contentInsetAdjustmentBehavior="automatic"
+              style={styles.scrollView}>
+              {/* <Header /> */}
+              {/* {global.HermesInternal == null ? null : (
+                <View style={styles.engine}>
+                  <Text style={styles.footer}>Engine: Hermes</Text>
                 </View>
+              )} */}
+              <View style={styles.body}>
+                <View style={styles.sectionContainer}>
+                  <Text style={styles.sectionTitle}>Friends Page</Text>
+                  <View>
+                  <AwesomeButton backgroundColor='grey' textColor='red' >Add to Friends</AwesomeButton>
+                  </View>
+                </View>
+                <View>
+                  <Card style={{borderRadious:30}}>
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
+                    />
+
+                 
+                    </Card>
+                    <Card style={{borderRadious:30}}>
+                  
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
+                    />
+
+                 
+                    </Card>
+                    <Card style={{borderRadious:30}}>
+         <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+   <AwesomeButton backgroundColor='red' textColor='white' >  X  </AwesomeButton>
+   </View>
+                    
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
+                    />
+  <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
+    </View>
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red' >Add to Friends</AwesomeButton>
+    </View>
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
+    </View>
+    </View>
+                    </Card>
+                  </View>
               </View>
-            </View>
-          </ScrollView>
-        </View>
+            </ScrollView>
+          </View>
         );
       }
     }
@@ -63,11 +116,12 @@ class Friends extends Component {
         right: 0,
       },
       body: {
-        backgroundColor: Colors.FriendsHeader,
+        backgroundColor: 'grey',
       },
       sectionContainer: {
         flexDirection:'row',
         padding:15,
+        backgroundColor: Colors.FriendsHeader,
         justifyContent:'space-between',
         alignItems:'center',
         paddingHorizontal: 24,

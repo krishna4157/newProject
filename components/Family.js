@@ -9,7 +9,7 @@ import {
     StatusBar,
     Animated,
   } from 'react-native';
-  
+  import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
   import {
     Header,
     LearnMoreLinks,
@@ -47,6 +47,62 @@ class Family extends Component {
                   <AwesomeButton backgroundColor='green' textColor='red' >Add to Family</AwesomeButton>
                   </View>
                 </View>
+                <View>
+                  <Card style={{borderRadious:30}}>
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
+                    />
+
+                 
+                    </Card>
+                    <Card style={{borderRadious:30}}>
+                  
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
+                    />
+
+                 
+                    </Card>
+                    <Card style={{borderRadious:30}}>
+         <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
+                  <CardTitle 
+    title="This is a title" 
+    subtitle="This is subtitle"
+   />
+   <AwesomeButton backgroundColor='red' textColor='white' >  X  </AwesomeButton>
+   </View>
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
+                    />
+                    
+                    <CardImage  
+                    title="Above all i am here"
+                    source={{uri: 'https://i.ytimg.com/vi/AZ2ZPmEfjvU/maxresdefault.jpg'}} 
+                    />
+  <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
+    </View>
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red' >Add to Friends</AwesomeButton>
+    </View>
+    <View>
+    <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
+    </View>
+    </View>
+                    </Card>
+                  </View>
               </View>
             </ScrollView>
           </View>
@@ -62,10 +118,11 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: Colors.FamilyHeader,
+    backgroundColor: 'grey'
   },
   sectionContainer: {
     flexDirection:'row',
+    backgroundColor: Colors.FamilyHeader,
     padding:15,
     justifyContent:'space-between',
     alignItems:'center',

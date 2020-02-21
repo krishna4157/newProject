@@ -7,9 +7,8 @@ import { MaterialIcons, MaterialCommunityIcons, Entypo, Feather, Foundation } fr
 import { Dimensions } from "react-native";
 // import Diary from './diaryPage';
  import FamilyPage from './FamilyPage';
- import TabPage from './FriendsPage';
 import OthersPage from './OthersPage';
-import Family from '../components/Family';
+// import Family from '../components/Family';
 import { Container, Text,Button, Title, Content, List, ListItem, Left, Body, Right, Switch, View } from 'native-base';
 import { Icon } from 'react-native-elements'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -42,6 +41,15 @@ const mainScreenNavigator = createBottomTabNavigator({
         navigationOptions:{
             tabBarLabel : 
             <Text style={{marginBottom:10,color:'white'}}>Family</Text>,
+            tabBarIcon: 
+<FontAwesomeIcon
+  icon={faCoffee} color='red' />              
+        }
+    },
+    Feed: {screen : FamilyPage,
+        navigationOptions:{
+            tabBarLabel : 
+            <Text style={{marginBottom:10,color:'white'}}>Feeds</Text>,
             tabBarIcon: 
 <FontAwesomeIcon
   icon={faCoffee} color='red' />              
