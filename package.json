@@ -27,6 +27,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "1.5.3",
     "react-native-htmlview": "^0.15.0",
+    "react-native-material-cards": "^1.0.9",
     "react-native-paper": "^3.6.0",
     "react-native-really-awesome-button": "^1.6.0",
     "react-native-safe-area-context": "^0.7.3",
