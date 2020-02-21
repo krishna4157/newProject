@@ -23,7 +23,7 @@ import {
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
 
-class Home extends Component {
+class Family extends Component {
     state={
     };
 
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: 'red',
+    backgroundColor: 'green',
   },
   sectionContainer: {
     marginTop: 32,
@@ -111,4 +111,4 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
-export default Home;
+export default Family;

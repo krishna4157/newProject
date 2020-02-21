@@ -130,7 +130,7 @@ class AppNavigation extends Component {
       {/* {disappear ==false && <OfflineNotice t={screenProps.t} isInternetReachable={isInternetReachable} isConnected={isConnected} />} */}
       {/* <NavigationScreens
       /> */}
-      <Home />
+      <NavigationScreens />
     {/* { appStatus.isDeviceOnline ==false &&<Popup t={screenProps.t} message={errorMessage} visible={visible} closePopup={this.closePopup} color={"#e57373"}  />} */}
       </View>
     );

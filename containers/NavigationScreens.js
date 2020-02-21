@@ -7,6 +7,8 @@ import { MaterialIcons, MaterialCommunityIcons, FontAwesome, Entypo, Feather, Fo
 import { Dimensions } from "react-native";
 // import Diary from './diaryPage';
  import Home from './homePage';
+ import TabPage from './tabPage';
+import OthersPage from './OthersPage';
 // import EDiaryForm from './formPage';
 // import SideBar from '../components/SideBar';
 // import Theme from '../components/Theme';
@@ -28,11 +30,17 @@ import { Dimensions } from "react-native";
 
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
-const HomeStack = createStackNavigator({
-    Home: Home,
+const mainScreenNavigator = createBottomTabNavigator({
+    Family: {screen : Home},
+    Friends : {screen: TabPage},
+    Others: {screen : OthersPage},
     // AskQuestions: AskQuestions,
 
-});
+},{
+    initialRouteName: 'Family',
+    activeColor: '#F44336',
+  });
+
 
 // const DiaryStack = createStackNavigator({
 //     Diary: Diary,
@@ -167,4 +175,4 @@ const HomeStack = createStackNavigator({
     //     initialRouteName: 'RootTabs',
     // });
 
-export default createAppContainer(HomeStack);
+export default createAppContainer(mainScreenNavigator);
