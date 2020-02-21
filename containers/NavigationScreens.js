@@ -3,14 +3,17 @@ import {  createAppContainer, createSwitchNavigator } from 'react-navigation';
 import  {createStackNavigator} from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator as createBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 // import { createMaterialBottomTabNavigator as createBottomTabNavigator  } from '@react-navigation/material-bottom-tabs';
-import { MaterialIcons, MaterialCommunityIcons, FontAwesome, Entypo, Feather, Foundation } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons, Entypo, Feather, Foundation } from '@expo/vector-icons';
 import { Dimensions } from "react-native";
 // import Diary from './diaryPage';
  import FamilyPage from './FamilyPage';
  import TabPage from './FriendsPage';
 import OthersPage from './OthersPage';
 import Family from '../components/Family';
-import { Container, Text,Button, Title, Content, List, ListItem, Icon, Left, Body, Right, Switch, View } from 'native-base';
+import { Container, Text,Button, Title, Content, List, ListItem, Left, Body, Right, Switch, View } from 'native-base';
+import { Icon } from 'react-native-elements'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
 
 import FriendsPage from './FriendsPage';
 // import EDiaryForm from './formPage';
@@ -37,22 +40,29 @@ const tintColor = '#eceff1'
 const mainScreenNavigator = createBottomTabNavigator({
     Family: {screen : FamilyPage,
         navigationOptions:{
-            tabBarLabel :
+            tabBarLabel : 
             <Text style={{marginBottom:10,color:'white'}}>Family</Text>,
-            tabBarIcon: ( ) => (
-                <FontAwesome name='accusoft' color={'red'} size={12} />
-              )
+            tabBarIcon: 
+<FontAwesomeIcon
+  icon={faCoffee} color='red' />              
         }
     },
     Friends : {screen: FriendsPage,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>Friends</Text>
+            <Text style={{marginBottom:10,color:'white'}}>Friends</Text>,
+            tabBarIcon: 
+            <FontAwesomeIcon color='green'
+            icon={faUser} />   
         }},
     Others: {screen : OthersPage,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>Others</Text>
+            <Text style={{marginBottom:10,color:'white'}}>Others</Text>,
+            tabBarIcon:  
+            <FontAwesomeIcon
+            icon={faFax} color='white' />
+            
         }},
     // AskQuestions: AskQuestions,
 
