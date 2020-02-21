@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-import Home from '../components/home';
+import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
-import Family from "../components/Family";
+import Family from "../components/Friends";
 import Others from "../components/Others";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';

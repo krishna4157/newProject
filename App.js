@@ -26,7 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import AppNavigation from './containers/AppNavigation';
-import Home from './components/home';
+import Home from './components/Family';
 class App extends Component {
 
   state = {

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-import Home from '../components/home';
+import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
+import Friends from "../components/Friends";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class HomeScreen extends Component {
+class FriendsPage extends Component {
     state={
         subjectCompliance: {
             dayCompliance: 0,
@@ -76,7 +77,7 @@ class HomeScreen extends Component {
     
     render() {
         return (
-            <Home
+            <Friends
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
@@ -100,5 +101,5 @@ class HomeScreen extends Component {
 //     },
 //     dispatch,
 //   );
-export default HomeScreen
+export default FriendsPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

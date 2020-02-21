@@ -6,9 +6,11 @@ import { createMaterialBottomTabNavigator as createBottomTabNavigator } from 're
 import { MaterialIcons, MaterialCommunityIcons, FontAwesome, Entypo, Feather, Foundation } from '@expo/vector-icons';
 import { Dimensions } from "react-native";
 // import Diary from './diaryPage';
- import Home from './homePage';
- import TabPage from './tabPage';
+ import Home from './FamilyPage';
+ import TabPage from './FriendsPage';
 import OthersPage from './OthersPage';
+import Family from '../components/Family';
+import FriendsPage from './FriendsPage';
 // import EDiaryForm from './formPage';
 // import SideBar from '../components/SideBar';
 // import Theme from '../components/Theme';
@@ -31,8 +33,8 @@ import OthersPage from './OthersPage';
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
 const mainScreenNavigator = createBottomTabNavigator({
-    Family: {screen : Home},
-    Friends : {screen: TabPage},
+    Family: {screen : FamilyPage},
+    Friends : {screen: FriendsPage},
     Others: {screen : OthersPage},
     // AskQuestions: AskQuestions,
 
