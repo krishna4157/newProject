@@ -2,9 +2,18 @@ import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 import Home from '../components/Family';
-import { BackHandler, Alert,View } from 'react-native';
+import { BackHandler, Alert,View,Text } from 'react-native';
 import Friends from "../components/Friends";
-// import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
+import Dialog, { DialogContent, DialogFooter, DialogButton, ScaleAnimation, SlideAnimation, FadeAnimation } from 'react-native-popup-dialog';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+
+import {
+  Menu,
+  MenuProvider,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';// import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
@@ -18,6 +27,29 @@ class FriendsPage extends Component {
         }
     };
 
+    // static navigationOptions = () => {
+    //   return {
+    //     tabBarOnPress() {
+    //       <Menu>
+    //   <MenuTrigger text='Select action' />
+    //   <MenuOptions>
+    //     <MenuOption onSelect={() => alert(`Save`)} text='Save' />
+    //     <MenuOption onSelect={() => alert(`Delete`)} >
+    //       <Text style={{color: 'red'}}>Delete</Text>
+    //     </MenuOption>
+    //     <MenuOption onSelect={() => alert(`Not called`)} disabled={true} text='Disabled' />
+    //   </MenuOptions>
+    // </Menu>
+    // // <View style={{flex:1,backgroundColor:'red',zIndex:20,height:50,width:50}}>
+    // //   <Text>HELO</Text>
+    // //   </View>
+    //       // perform your logic here
+    //       // this is mandatory to perform the actual switch
+    //       // you can omit this if you want to prevent it
+    //       // jumpToIndex(scene.index);
+    //     }
+    //   };
+    // };
    
 
 
@@ -77,6 +109,8 @@ class FriendsPage extends Component {
     
     render() {
         return (
+          <MenuProvider>
+
             <Friends
             // navigation={navigation}
             // loading={loading}
@@ -84,6 +118,7 @@ class FriendsPage extends Component {
             // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
             // screenProps={screenProps}  
             />
+            </MenuProvider>
         );
     }
 }

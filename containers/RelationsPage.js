@@ -3,12 +3,19 @@ import React, { Component } from "react";
 // import { bindActionCreators } from "redux";
 import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
-import { MenuProvider } from "react-native-popup-menu";
+import Relations from "../components/Relations";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class FamilyPage extends Component {
+import {
+    Menu,
+    MenuProvider,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+  } from 'react-native-popup-menu';
+class RelationsPage extends Component {
     state={
         subjectCompliance: {
             dayCompliance: 0,
@@ -77,8 +84,8 @@ class FamilyPage extends Component {
     
     render() {
         return (
-          <MenuProvider>
-            <Home
+           <MenuProvider> 
+            <Relations
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
@@ -103,5 +110,5 @@ class FamilyPage extends Component {
 //     },
 //     dispatch,
 //   );
-export default FamilyPage
+export default RelationsPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

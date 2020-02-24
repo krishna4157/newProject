@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
 
 import FriendsPage from './FriendsPage';
+import RelationsPage from './RelationsPage';
 // import EDiaryForm from './formPage';
 // import SideBar from '../components/SideBar';
 // import Theme from '../components/Theme';
@@ -33,21 +34,23 @@ import FriendsPage from './FriendsPage';
 // import UserValidation from '../components/forgotPassword/UserValidation';
 // import ResetPassword from '../components/forgotPassword/ResetPassword';
 // import OtpVerification from '../components/forgotPassword/OtpVerification';
+
+// import {
+//     Menu,
+//     MenuProvider,
+//     MenuOptions,
+//     MenuOption,
+//     MenuTrigger,
+//   } from 'react-native-popup-menu';
 // https://fontawesome.com/v4.7.0/icons/
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
 const mainScreenNavigator = createBottomTabNavigator({
-    Family: {screen : FamilyPage,
-        navigationOptions:{
-            tabBarLabel : 
-            <Text style={{marginBottom:10,color:'white'}}>Family</Text>,
-            tabBarIcon: 
-<FontAwesomeIcon
-  icon={faCoffee} color='red' />              
-        }
-    },
     Feed: {screen : FamilyPage,
         navigationOptions:{
+            backgroundColor: 'green',
+            activeColor: '#f60c0d',  
+            inactiveColor: '#f65a22',  
             tabBarLabel : 
             <Text style={{marginBottom:10,color:'white'}}>Feeds</Text>,
             tabBarIcon: 
@@ -55,18 +58,33 @@ const mainScreenNavigator = createBottomTabNavigator({
   icon={faCoffee} color='red' />              
         }
     },
+//     Feed: {screen : FamilyPage,
+//         navigationOptions:{
+//             tabBarLabel : 
+//             <Text style={{marginBottom:10,color:'white'}}>Feeds</Text>,
+//             tabBarIcon: 
+// <FontAwesomeIcon
+//   icon={faCoffee} color='red' />              
+//         }
+//     },
     Friends : {screen: FriendsPage,
         navigationOptions:{
-            tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>Friends</Text>,
-            tabBarIcon: 
+            backgroundColor: 'blue',
+            activeColor: '#f60c0d',  
+            inactiveColor: '#f65a22',  
+            
+                
+            tabBarLabel :            
+            <Text style={{marginBottom:10,color:'white'}}>Relations</Text>,            
+            
+            tabBarIcon:     
             <FontAwesomeIcon color='green'
-            icon={faUser} />   
+            icon={faUser} />
         }},
     Others: {screen : OthersPage,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>Others</Text>,
+            <Text style={{marginBottom:10,color:'white'}}>More</Text>,
             tabBarIcon:  
             <FontAwesomeIcon
             icon={faFax} color='white' />
@@ -75,7 +93,7 @@ const mainScreenNavigator = createBottomTabNavigator({
     // AskQuestions: AskQuestions,
 
 },{
-    initialRouteName: 'Family',
+    initialRouteName: 'Feed',
     activeColor: '#F44336',
     inactiveColor:'white',
     barStyle: {

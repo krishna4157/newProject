@@ -23,6 +23,16 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import Colors from '../constants/Colors';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCoffee,faUser,faFax,faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+
+import {
+  Menu,
+  MenuProvider,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 class Family extends Component {
     state={
     };
@@ -44,11 +54,11 @@ class Family extends Component {
                 <View style={styles.sectionContainer}>
                   <Text style={styles.sectionTitle}>Family Page</Text>
                   <View>
-                  <AwesomeButton backgroundColor='green' textColor='red' >Add to Family</AwesomeButton>
+                  <AwesomeButton >Add to Family</AwesomeButton>
                   </View>
                 </View>
                 <View>
-                  <Card style={{borderRadious:30}}>
+                  <Card>
                   <CardTitle 
     title="This is a title" 
     subtitle="This is subtitle"
@@ -79,28 +89,47 @@ class Family extends Component {
     title="This is a title" 
     subtitle="This is subtitle"
    />
-   <AwesomeButton backgroundColor='red' textColor='white' >  X  </AwesomeButton>
+<Menu>
+              <MenuTrigger >
+              <FontAwesomeIcon size={20}  icon={faEllipsisV} color='red' />
+                </MenuTrigger>
+              <MenuOptions >
+                <MenuOption onSelect={() => 
+                alert('hello!!')
+                }  >
+                  <Text style={{fontSize:20}}>Add to Family</Text>
+                  </MenuOption>
+                <MenuOption onSelect={() =>alert(`Not called`) } >
+                  <Text style={{color: 'red',fontSize:20}}>Add to Friends</Text>
+                </MenuOption>
+                <MenuOption onSelect={() => alert(`Not called`)} >
+                <Text style={{fontSize:20}}>Add to Others</Text> 
+                </MenuOption>
+                
+              </MenuOptions>
+            </Menu>
+   {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
    </View>
                     <CardImage  
                     title="Above all i am here"
                     source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
                     />
                     
-                    <CardImage  
+                    {/* <CardImage  
                     title="Above all i am here"
                     source={{uri: 'https://i.ytimg.com/vi/AZ2ZPmEfjvU/maxresdefault.jpg'}} 
-                    />
-  <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
+                    /> */}
+  {/* <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
     <View>
-    <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
-    </View>
-    <View>
-    <AwesomeButton backgroundColor='green' textColor='red' >Add to Friends</AwesomeButton>
+    <AwesomeButton backgroundColor='#0288d1' textColor='red'>Add to Family</AwesomeButton>
     </View>
     <View>
-    <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
+    <AwesomeButton backgroundColor='#0288d1' textColor='red' >Add to Friends</AwesomeButton>
     </View>
+    <View>
+    <AwesomeButton backgroundColor='#0288d1' textColor='red' >Add to Others</AwesomeButton>
     </View>
+    </View> */}
                     </Card>
                   </View>
               </View>

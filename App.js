@@ -17,7 +17,6 @@ import {
   Animated,
 } from 'react-native';
 import SplashScreen from 'react-native-smart-splash-screen'
-
 import {
   Header,
   LearnMoreLinks,
