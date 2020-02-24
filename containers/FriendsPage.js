@@ -16,30 +16,35 @@ import {
 } from 'react-native-popup-menu';// import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
+import DialogPopUp from '../components/DialogPopUp';
 // import {setCurrentScreen} from '../actions/storeAppStatus';
 class FriendsPage extends Component {
-    state={
-        subjectCompliance: {
-            dayCompliance: 0,
-          weekCompliance: 0,
-          monthCompliance: 0,
-          totalCompliance: 0,
-        }
-    };
+  
+   
+    state = {
+      visible: true,
+      showDialog: false,
+    }
 
+  handleHeaderMenuDialoge = (visible) => {
+    console.log("Visible : "+visible);
+    // this.setState({
+    //   visible: false
+    // });
+    if(visible==true){
+    this.setState(prevState => ({
+      ...prevState,
+      visible: !prevState.visible
+    }));
+  }
+  }
+
+  
     // static navigationOptions = () => {
     //   return {
-    //     tabBarOnPress() {
-    //       <Menu>
-    //   <MenuTrigger text='Select action' />
-    //   <MenuOptions>
-    //     <MenuOption onSelect={() => alert(`Save`)} text='Save' />
-    //     <MenuOption onSelect={() => alert(`Delete`)} >
-    //       <Text style={{color: 'red'}}>Delete</Text>
-    //     </MenuOption>
-    //     <MenuOption onSelect={() => alert(`Not called`)} disabled={true} text='Disabled' />
-    //   </MenuOptions>
-    // </Menu>
+    //     // tabBarOnPress() {
+    //       // alert("HELLO");
+    //         // DialogPopUp();
     // // <View style={{flex:1,backgroundColor:'red',zIndex:20,height:50,width:50}}>
     // //   <Text>HELO</Text>
     // //   </View>
@@ -108,9 +113,11 @@ class FriendsPage extends Component {
     }
     
     render() {
+      // const{visible}=this.state;
         return (
+          
           <MenuProvider>
-
+          {this.state.visible == true && <DialogPopUp visible={this.state.visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>}  
             <Friends
             // navigation={navigation}
             // loading={loading}

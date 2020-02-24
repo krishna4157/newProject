@@ -16,24 +16,6 @@ import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
 
 import FriendsPage from './FriendsPage';
 import RelationsPage from './RelationsPage';
-// import EDiaryForm from './formPage';
-// import SideBar from '../components/SideBar';
-// import Theme from '../components/Theme';
-// import EventCalender from './calendarPage';
-// import Messages from './messagesPage';
-// import Faq from '../containers/faqPage';
-// import Contact from './contactPage';
-// import ChangeLanguage from './changeLanguagePage';
-// import Login from '../containers/loginPage';
-// import SubjectTimeZone from '../containers/timeZonePage';
-// import PinChange from '../components/securePIN/PinChange';
-// import PinValidation from '../components/securePIN/PinValidation'
-// import PinSetup from '../components/securePIN/PinSetup';
-// import InitialScreen from '../containers/initialScreen';
-// import AppLock from '../components/AppLock';
-// import UserValidation from '../components/forgotPassword/UserValidation';
-// import ResetPassword from '../components/forgotPassword/ResetPassword';
-// import OtpVerification from '../components/forgotPassword/OtpVerification';
 
 // import {
 //     Menu,
