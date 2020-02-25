@@ -21,10 +21,13 @@ import { NavigationEvents, createAppContainer } from 'react-navigation';
 import FamilyPage from "./FamilyPage";
 import OthersPage from "./OthersPage";
 import { createStackNavigator } from "react-navigation-stack";
-
+import RelationsPage from "./RelationsPage";
+import FriendsPage from "./FriendsPage";
+import FeedPage from "./FeedPage";
+var routeName = '';
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class FriendsPage extends Component {
+class RelationsMenuPage extends Component {
   
   constructor(props) {
     super(props);
@@ -34,21 +37,25 @@ class FriendsPage extends Component {
     }
   }
 
-  handleHeaderMenuDialoge = (visible,navigationPage) => {
-    const {navigation}= this.props;
-    console.log('PROPS :'+JSON.stringify(navigationPage));
-    console.log("Visible : "+visible);
-    // this.setState({
-    //   visible: false
-    // });
+  hideDialog =()=>{
     this.setState({
-      visible: false
-    });
-    navigation.navigate('Others');
-    // navigation.goBack();
+          visible: false
+        });
   }
 
-  onClickOutSide = (visible) =>{
+  handleHeaderMenuDialoge = (visible,navigationPage) => {
+    const {navigation}= this.props;
+    this.setState({
+        visible: false
+      });
+    console.log('PROPS :'+JSON.stringify(navigationPage));
+    console.log("Visible1 : "+visible);
+    routeName = navigationPage;
+    this.props.navigation.navigate(navigationPage);
+    
+  }
+
+  onClickOutSide = () =>{
     const {navigation}= this.props;
     this.setState({
       visible: false
@@ -57,14 +64,14 @@ class FriendsPage extends Component {
 
   }
 
-  // async componentDidMount() {
-  //   // if(i==0){
-  //   this.setState({
-  //     visible:true
-  //   })
-  //   // i++;
-  // // }
-  // }
+  async componentDidMount() {
+      console.log("ComponentdidMount :"+this.state.visible);
+    this.setState({
+      visible:true
+    })
+  
+  }
+
     // static navigationOptions = () => {
     //   return {
     //     // tabBarOnPress() {
@@ -110,74 +117,49 @@ class FriendsPage extends Component {
         // return true;
     }
     
-    // retrieveSubjectCompliance = async() => {
-    //     const { subject } = this.props;
-    //     try {
-    //         subjectCompliance = await retrieveSubjectCompliance(subject);
-    //         this.setState({
-    //             subjectCompliance,
-    //         })
-    //     } catch (error) {
-    //        console.log(error);
-    //     }
-        
-    // }
-    
-    exitApplication = () => {
-        Alert.alert(
-            '',
-            'Exit ezpro?',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => true,
-                style: 'cancel',
-              },
-              {text: 'OK', onPress: () => BackHandler.exitApp()},
-            ],
-            {cancelable: false},
-          );
-    }
-    
     render() {
       const{visible}=this.state;
       console.log("In render : "+visible);
+      console.log("Props"+JSON.stringify(this.props));
         return (
-          
-          <MenuProvider>
-          {/* <NavigationEvents
+            <View style={{flex:1}}>
+            <NavigationEvents
             onWillFocus={() => {
               console.log("error!!!")
+              if(i==0){
               this.setState({
                 visible:true
               })
+            }
+            // i=0;
               }}
-          />                      */}
-            <Friends
-            // navigation={navigation}
-            // loading={loading}
-            // subjectCompliance={subjectCompliance}
-            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
-            // screenProps={screenProps}  
-            />
-            </MenuProvider>
+          /> 
+            <DialogPopUp hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
+            <AppContainer/>
+            </View>
         );
     }
 }
 
+const AppNavigator = createStackNavigator({
+ Feed :{
+     screen: FeedPage 
+},Family: {
+    screen: FamilyPage
+  },
+  Friends: {
+    screen: FriendsPage
+  },
+  Others: {
+      screen: OthersPage
+  }
+},{
+  headerMode:'none',
+  initialRouteName: routeName == '' ? 'Family' : routeName
+});
 
-// const mapStateToProps = state => ({
-//       selectedLanguage: state.changeLanguage.selectedLanguage,
-//       loading: state.loading,
-//       subject: state.subjectStudyMetaData.subject,
-// });
+const AppContainer = createAppContainer(AppNavigator);
 
-// const mapDispatchToProps = dispatch => bindActionCreators(
-//     {
-//     setCurrentScreen,
 
-//     },
-//     dispatch,
-//   );
-export default FriendsPage
-// export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));
+
+export default RelationsMenuPage

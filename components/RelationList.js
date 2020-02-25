@@ -11,24 +11,27 @@ var storedNavigations = [];
 var completed = 0;
 var k = 0;
 var chapters=['Family','Friends','Others ']
-export default ({handleHeaderMenuDialoge}) => {
+export default ({handleHeaderMenuDialoge,visible,hideDialog}) => {
 
     var redirectIcons = [];
+    const navigations = ['Family','Friends','Others'];
     var ListofChapters = chapters;
     var arr = [faCoffee, faUser, faFax];
         ListofChapters.map((chapter) => {
                     redirectIcons.push(chapter);
         
         });
-        return showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge);
+        return showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog);
     }
     
     
-        function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge) {
+        function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog) {
             var chapterTitles = redirectIcons.map((chapter, index) => {
                 return (
                     <ListItem touchableHighlightStyle={{ borderRadius: 20 }} noBorder={index >= redirectIcons.length - 1 ? true : false} 
-                     onPress={() => { handleHeaderMenuDialoge() }} 
+                     onPress={() => { 
+                        hideDialog();
+                         setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),5000}} 
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='red' /> 

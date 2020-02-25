@@ -44,9 +44,7 @@ class Relations extends Component {
             <Menu>
               <MenuTrigger text='Select action' />
               <MenuOptions>
-                <MenuOption onSelect={() => 
-                
-                <FriendsPage/>} text='Save' />
+                <MenuOption text='Save' />
                 <MenuOption onSelect={() =>YourComponent() } >
                   <Text style={{color: 'red'}}>Delete</Text>
                 </MenuOption>

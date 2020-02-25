@@ -16,6 +16,8 @@ import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
 
 import FriendsPage from './FriendsPage';
 import RelationsPage from './RelationsPage';
+import RelationsMenuPage from './RelationsMenuPage';
+import FeedPage from './FeedPage';
 
 // import {
 //     Menu,
@@ -27,8 +29,29 @@ import RelationsPage from './RelationsPage';
 // https://fontawesome.com/v4.7.0/icons/
 export const backgroundColor = 'red'
 const tintColor = '#eceff1'
-const mainScreenNavigator = createBottomTabNavigator({
-    Feed: {screen : FamilyPage,
+const AppNavigator = createStackNavigator({
+    RelationsMenuPage : {
+        screen: RelationsMenuPage
+    },
+    Feed :{
+        screen: FeedPage 
+   },Family: {
+       screen: FamilyPage
+     },
+     Friends: {
+       screen: FriendsPage
+     },
+     Others: {
+         screen: OthersPage
+     }
+   },{
+     initialRouteName: 'RelationsMenuPage',
+     headerMode:'none'
+   });
+
+
+const RootTabs = createBottomTabNavigator({
+    Feed: {screen : FeedPage,
         navigationOptions:{
             backgroundColor: 'green',
             activeColor: '#f60c0d',  
@@ -49,7 +72,7 @@ const mainScreenNavigator = createBottomTabNavigator({
 //   icon={faCoffee} color='red' />              
 //         }
 //     },
-    Friends : {screen: FriendsPage,
+    Relations : {screen: AppNavigator,
         navigationOptions:{
             backgroundColor: 'blue',
             activeColor: '#f60c0d',  
@@ -63,7 +86,7 @@ const mainScreenNavigator = createBottomTabNavigator({
             <FontAwesomeIcon color='green'
             icon={faUser} />
         }},
-    Others: {screen : OthersPage,
+    More: {screen : OthersPage,
         navigationOptions:{
             tabBarLabel :
             <Text style={{marginBottom:10,color:'white'}}>More</Text>,
@@ -75,7 +98,7 @@ const mainScreenNavigator = createBottomTabNavigator({
     // AskQuestions: AskQuestions,
 
 },{
-    initialRouteName: 'Feed',
+    // initialRouteName: 'Feed',
     activeColor: '#F44336',
     inactiveColor:'white',
     barStyle: {
@@ -83,6 +106,7 @@ const mainScreenNavigator = createBottomTabNavigator({
         padding:10 
     },   
   });
+
 
 
 // const DiaryStack = createStackNavigator({
@@ -96,7 +120,7 @@ const mainScreenNavigator = createBottomTabNavigator({
 //             backgroundColor: backgroundColor,
 //             // marginTop: -Constants.statusBarHeight,
 //         },
-//         headerForceInset: { 
+//    mainScreenNavigator    headerForceInset: { 
 //             top:    'never', 
 //             bottom: 'never', 
 //         },
@@ -218,4 +242,18 @@ const mainScreenNavigator = createBottomTabNavigator({
     //     initialRouteName: 'RootTabs',
     // });
 
-export default createAppContainer(mainScreenNavigator);
+
+   
+
+    //    const AppContainer = createAppContainer(AppNavigator);
+
+
+    //    const AppRoutes = createSwitchNavigator({
+    //     AppNavigator: AppNavigator,
+    //     RootTabs: RootTabs,
+    // },
+    //     {   
+    //         initialRouteName: 'RootTabs',
+    //     });
+
+export default createAppContainer(RootTabs);
