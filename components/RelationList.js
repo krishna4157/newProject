@@ -3,35 +3,35 @@ import { View, Text, Image } from 'react-native';
 import { Container, Button, ListItem, List } from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Signt from 'react-native-vector-icons/FontAwesome5';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
+
 var j = 0;
 var storedNavigations = [];
 var completed = 0;
 var k = 0;
-var chapters=['hello','hello2']
-export default (arr) => {
+var chapters=['Family','Friends','Others ']
+export default ({handleHeaderMenuDialoge}) => {
 
     var redirectIcons = [];
     var ListofChapters = chapters;
-    // var arr = ["", "infocirlceo", "videocamera", "filetext1", "question", "solution1"];
+    var arr = [faCoffee, faUser, faFax];
         ListofChapters.map((chapter) => {
                     redirectIcons.push(chapter);
         
         });
-        return showChapterPages(redirectIcons,arr);
+        return showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge);
     }
     
     
-        function showChapterPages(redirectIcons,arr) {
+        function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge) {
             var chapterTitles = redirectIcons.map((chapter, index) => {
                 return (
                     <ListItem touchableHighlightStyle={{ borderRadius: 20 }} noBorder={index >= redirectIcons.length - 1 ? true : false} 
-                    // onPress={() => { handleNavigation(navigation, chapter.ordinal, , noOfchapters, signatureType) }} 
+                     onPress={() => { handleHeaderMenuDialoge() }} 
                     >
-                     <Icon
-                                name={arr[index]}
-                                color={'red'}
-                                size={10}
-                            />
+                    <FontAwesomeIcon
+  icon={arr[index]} color='red' /> 
                         <Text style={{ color: 'blue', fontSize:20, paddingTop: 5, paddingLeft: 20 }}>{chapter}</Text>
                     </ListItem>
                 )

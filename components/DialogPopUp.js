@@ -5,25 +5,20 @@ import RelationList from './RelationList';
 class DialogPopUp extends Component {
     render() {
         const {visible,handleHeaderMenuDialoge}=this.props;
+        console.log("in dialog"+visible);
         return (
             <Dialog
                 onTouchOutside={() => handleHeaderMenuDialoge(visible)}
-                containerStyle={{ justifyContent: 'flex-start' }}
-                dialogStyle={{ marginTop: 10,width:'100%' }}
+                containerStyle={{ justifyContent: 'flex-end' }}
+                dialogStyle={{ width:'100%' }}
                 rounded={true}
                 visible={visible}
                 // visible={showDialog}
-                width={0.5}
-                footer={
-                    <DialogFooter style={{ backgroundColor:'white' }}>
-                        <DialogButton text = 'close'>
-                        </DialogButton>
-                    </DialogFooter>
-                }
+                width={0.2}
             >
                 <DialogContent>
                     
-                    <RelationList
+                    <RelationList handleHeaderMenuDialoge={handleHeaderMenuDialoge}
                     //    isRegistered={isRegistered}
                     //    screenProps={screenProps}
                     //    navigation={navigation} 

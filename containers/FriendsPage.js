@@ -17,29 +17,38 @@ import {
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 import DialogPopUp from '../components/DialogPopUp';
+import { NavigationEvents } from 'react-navigation';
+
+var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
 class FriendsPage extends Component {
   
-   
-    state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       visible: true,
       showDialog: false,
     }
+  }
 
   handleHeaderMenuDialoge = (visible) => {
     console.log("Visible : "+visible);
     // this.setState({
     //   visible: false
     // });
-    if(visible==true){
-    this.setState(prevState => ({
-      ...prevState,
-      visible: !prevState.visible
-    }));
-  }
+    this.setState({
+      visible: false
+    });
   }
 
-  
+  async componentDidMount() {
+    // if(i==0){
+    this.setState({
+      visible:true
+    })
+    // i++;
+  // }
+  }
     // static navigationOptions = () => {
     //   return {
     //     // tabBarOnPress() {
@@ -113,11 +122,21 @@ class FriendsPage extends Component {
     }
     
     render() {
-      // const{visible}=this.state;
+      const{visible}=this.state;
+      console.log("In render : "+visible);
         return (
           
           <MenuProvider>
-          {this.state.visible == true && <DialogPopUp visible={this.state.visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>}  
+          <NavigationEvents
+            onWillFocus={() => {
+              console.log("error!!!")
+              this.setState({
+                visible:true
+              })
+              }}
+          />          
+          <DialogPopUp visible={visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>  
+           
             <Friends
             // navigation={navigation}
             // loading={loading}
