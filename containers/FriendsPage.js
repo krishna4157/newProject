@@ -32,6 +32,8 @@ class FriendsPage extends Component {
   }
 
   handleHeaderMenuDialoge = (visible) => {
+    const {navigation}= this.props;
+    console.log('PROPS :'+JSON.stringify(this.props));
     console.log("Visible : "+visible);
     // this.setState({
     //   visible: false
@@ -39,6 +41,7 @@ class FriendsPage extends Component {
     this.setState({
       visible: false
     });
+    navigation.goBack();
   }
 
   async componentDidMount() {
