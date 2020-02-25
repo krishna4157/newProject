@@ -11,7 +11,7 @@ var storedNavigations = [];
 var completed = 0;
 var k = 0;
 var chapters=['Family','Friends','Others ']
-export default ({handleHeaderMenuDialoge,visible,hideDialog}) => {
+export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => {
 
     var redirectIcons = [];
     const navigations = ['Family','Friends','Others'];
@@ -21,17 +21,17 @@ export default ({handleHeaderMenuDialoge,visible,hideDialog}) => {
                     redirectIcons.push(chapter);
         
         });
-        return showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog);
+        return showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog,navigationPage);
     }
     
     
-        function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog) {
+        function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog,navigationPage) {
             var chapterTitles = redirectIcons.map((chapter, index) => {
                 return (
-                    <ListItem touchableHighlightStyle={{ borderRadius: 20 }} noBorder={index >= redirectIcons.length - 1 ? true : false} 
+                    <ListItem style={{justifyContent:'center'}} noBorder={index >= redirectIcons.length - 1 ? true : false} 
                      onPress={() => { 
                         hideDialog();
-                         setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),5000}} 
+                         setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),1000}} 
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='red' /> 

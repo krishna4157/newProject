@@ -55,12 +55,12 @@ class RelationsMenuPage extends Component {
     
   }
 
-  onClickOutSide = () =>{
+  onClickOutSide = (navigationPage) =>{
     const {navigation}= this.props;
     this.setState({
       visible: false
     });
-    navigation.goBack();
+    navigation.navigate('Family');
 
   }
 
@@ -134,7 +134,7 @@ class RelationsMenuPage extends Component {
             // i=0;
               }}
           /> 
-            <DialogPopUp hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
+            <DialogPopUp navigationPage={this.props.navigation.routeName} hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
             <AppContainer/>
             </View>
         );
