@@ -33,6 +33,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+var cardsList = ['Family1','Family2','Family3'];
 class Family extends Component {
     state={
     };
@@ -44,93 +45,23 @@ class Family extends Component {
             <ScrollView
               contentInsetAdjustmentBehavior="automatic"
               style={styles.scrollView}>
-              {/* <Header /> */}
-              {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
               <View style={styles.body}>
-                <View style={styles.sectionContainer}>
-                  <Text style={styles.sectionTitle}>Family Page</Text>
-                  <View>
-                  <AwesomeButton >Add to Family</AwesomeButton>
-                  </View>
-                </View>
                 <View>
-                  <Card>
-                  <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
-   />
-                    <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
-                    />
-
-                 
-                    </Card>
+                    {cardsList.map((name,index)=>{
+                      return (
                     <Card style={{borderRadious:30}}>
-                  
+                    <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
                   <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
+    title={name}
+    subtitle={index}
    />
-                    <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
-                    />
-
-                 
-                    </Card>
-                    <Card style={{borderRadious:30}}>
-         <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
-                  <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
-   />
-<Menu>
-              <MenuTrigger >
-              <FontAwesomeIcon size={20}  icon={faEllipsisV} color='red' />
-                </MenuTrigger>
-              <MenuOptions >
-                <MenuOption onSelect={() => 
-                alert('hello!!')
-                }  >
-                  <Text style={{fontSize:20}}>Add to Family</Text>
-                  </MenuOption>
-                <MenuOption onSelect={() =>alert(`Not called`) } >
-                  <Text style={{color: 'red',fontSize:20}}>Add to Friends</Text>
-                </MenuOption>
-                <MenuOption onSelect={() => alert(`Not called`)} >
-                <Text style={{fontSize:20}}>Add to Others</Text> 
-                </MenuOption>
-                
-              </MenuOptions>
-            </Menu>
-   {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
+   <AwesomeButton  backgroundColor='red' textColor='white' >  X  </AwesomeButton>
    </View>
                     <CardImage  
                     title="Above all i am here"
                     source={{uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}} 
                     />
-                    
-                    {/* <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://i.ytimg.com/vi/AZ2ZPmEfjvU/maxresdefault.jpg'}} 
-                    /> */}
-  {/* <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
-    <View>
-    <AwesomeButton backgroundColor='#0288d1' textColor='red'>Add to Family</AwesomeButton>
-    </View>
-    <View>
-    <AwesomeButton backgroundColor='#0288d1' textColor='red' >Add to Friends</AwesomeButton>
-    </View>
-    <View>
-    <AwesomeButton backgroundColor='#0288d1' textColor='red' >Add to Others</AwesomeButton>
-    </View>
-    </View> */}
-                    </Card>
+                    </Card>)})}
                   </View>
               </View>
             </ScrollView>

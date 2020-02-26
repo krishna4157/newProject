@@ -23,7 +23,11 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
+import { faCoffee,faUser,faFax,faLanguage,faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
+var arr = [faLanguage,faCoffee, faUser, faFax];
+var MoreItems = ['Language','Settings','Logout'];
 class More extends Component {
     state={
     };
@@ -35,6 +39,14 @@ class More extends Component {
             <ScrollView
               contentInsetAdjustmentBehavior="automatic"
               style={styles.scrollView}>
+                {MoreItems.map((name,index)=>{
+                return (<ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
+                  
+                    >
+                    <FontAwesomeIcon
+  icon={arr[index]} color='black' size={25} /> 
+                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
+                    </ListItem>)})}
             </ScrollView>
           </View>
         );

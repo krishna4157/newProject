@@ -26,6 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import AppNavigation from './containers/AppNavigation';
 import Home from './components/Family';
+import FlashMessage from "react-native-flash-message";
+
 class App extends Component {
 
   state = {
@@ -54,6 +56,7 @@ class App extends Component {
     <View style={{flex:1,backgroundColor:'red'}}>
       <StatusBar barStyle="dark-content" />
       <Root>
+
       <AppNavigation 
             />
             {/* <Home /> */}

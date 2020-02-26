@@ -8,14 +8,13 @@ class DialogPopUp extends Component {
         console.log("in dialog"+visible);
         return (
             <Dialog
-                onTouchOutside={() => onClickOutSide(navigationPage)}
                 containerStyle={{ justifyContent: 'flex-end' }}
-                dialogStyle={{ width:'50%',marginBottom:80 }}
+                dialogStyle={{ width:'35%',marginBottom:80,height:'27%' }}
                 rounded={true}
                 visible={visible}
                 // visible={showDialog}
             >
-                <DialogContent>
+                <DialogContent style={{alignItems:'center',alignSelf:'center',marginLeft:-10}}>
                     
                     <RelationList navigationPage={navigationPage} hideDialog={hideDialog} visible={visible} handleHeaderMenuDialoge={handleHeaderMenuDialoge}
                     //    isRegistered={isRegistered}

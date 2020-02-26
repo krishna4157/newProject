@@ -18,6 +18,7 @@ import FriendsPage from './FriendsPage';
 import RelationsPage from './RelationsPage';
 import RelationsMenuPage from './RelationsMenuPage';
 import FeedPage from './FeedPage';
+import MorePage from './MorePage';
 
 // import {
 //     Menu,
@@ -86,7 +87,7 @@ const RootTabs = createBottomTabNavigator({
             <FontAwesomeIcon color='green'
             icon={faUser} />
         }},
-    More: {screen : OthersPage,
+    More: {screen : MorePage,
         navigationOptions:{
             tabBarLabel :
             <Text style={{marginBottom:10,color:'black'}}>More</Text>,
@@ -98,14 +99,20 @@ const RootTabs = createBottomTabNavigator({
     // AskQuestions: AskQuestions,
 
 },{
-    // initialRouteName: 'Feed',
+     initialRouteName: 'Feed',
     activeColor: '#F44336',
     inactiveColor:'black',
     barStyle: {
         backgroundColor: 'white',
         padding:10,
         color:'black' 
-    },   
+    },
+    navigationOptions: {
+        tabBarOnPress: ( ) => {
+            console.log("New Tab Screen tabBarOnPress working")
+            // defaultHandler();
+          }
+    }   
   });
 
 

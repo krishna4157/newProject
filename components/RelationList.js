@@ -28,14 +28,15 @@ export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => 
         function showChapterPages(redirectIcons,arr,handleHeaderMenuDialoge,visible,navigations,hideDialog,navigationPage) {
             var chapterTitles = redirectIcons.map((chapter, index) => {
                 return (
-                    <ListItem style={{justifyContent:'center'}} noBorder={index >= redirectIcons.length - 1 ? true : false} 
+                    
+                    <ListItem style={{width:'100%',justifyContent:'space-between'}} noBorder={index >= redirectIcons.length - 1 ? true : false} 
                      onPress={() => { 
                         hideDialog();
                          setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),1000}} 
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='red' /> 
-                        <Text style={{ color: 'blue', fontSize:20, paddingTop: 5, paddingLeft: 20 }}>{chapter}</Text>
+                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{chapter}</Text>
                     </ListItem>
                 )
             })

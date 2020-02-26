@@ -24,15 +24,18 @@ import { createStackNavigator } from "react-navigation-stack";
 import RelationsPage from "./RelationsPage";
 import FriendsPage from "./FriendsPage";
 import FeedPage from "./FeedPage";
+import FlashMessage from "react-native-flash-message";
 var routeName = '';
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
+
 class RelationsMenuPage extends Component {
+  
   
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      visible: true,
       showDialog: false,
     }
   }
@@ -60,17 +63,19 @@ class RelationsMenuPage extends Component {
     this.setState({
       visible: false
     });
-    navigation.navigate('Family');
-
+    console.log('props ::'+JSON.stringify(this.props.navigation.state.routeName));
+    navigation.navigate('Feed');
   }
 
   async componentDidMount() {
       console.log("ComponentdidMount :"+this.state.visible);
-    this.setState({
-      visible:true
-    })
-  
-  }
+      const{navigation}=this.props;
+      this.setState({
+        visible:true
+      })
+    }
+
+   
 
     // static navigationOptions = () => {
     //   return {
@@ -124,16 +129,23 @@ class RelationsMenuPage extends Component {
         return (
             <View style={{flex:1}}>
             <NavigationEvents
-            onWillFocus={() => {
-              console.log("error!!!")
-              if(i==0){
+            onDidFocus={()=>{
               this.setState({
                 visible:true
               })
-            }
+              console.log('ondidfocus');
+            }}
+            onWillFocus={() => {
+              console.log("error!!!")
+             
+              this.setState({
+                visible:true
+              })
+          
             // i=0;
               }}
           /> 
+                <FlashMessage position='top'/>
             <DialogPopUp navigationPage={this.props.navigation.routeName} hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
             <AppContainer/>
             </View>
@@ -155,7 +167,7 @@ const AppNavigator = createStackNavigator({
   }
 },{
   headerMode:'none',
-  initialRouteName: routeName == '' ? 'Family' : routeName
+   initialRouteName: 'Family'
 });
 
 const AppContainer = createAppContainer(AppNavigator);

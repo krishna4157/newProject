@@ -24,7 +24,7 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
-
+var friends = ['Friends1','Friends2','Friends3'];
 class Friends extends Component {
     state={
     };
@@ -43,52 +43,26 @@ class Friends extends Component {
                 </View>
               )} */}
               <View style={styles.body}>
-                <View style={styles.sectionContainer}>
-                  <Text style={styles.sectionTitle}>Friends Page</Text>
-                  <View>
-                  <AwesomeButton backgroundColor='grey' textColor='red' >Add to Friends</AwesomeButton>
-                  </View>
-                </View>
                 <View>
-                  <Card style={{borderRadious:30}}>
-                  <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
-   />
-                    <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
-                    />
-
-                 
-                    </Card>
-                    <Card style={{borderRadious:30}}>
                   
-                  <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
-   />
-                    <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
-                    />
-
-                 
-                    </Card>
-                    <Card style={{borderRadious:30}}>
+                   
+                    {friends.map((name,index)=>{
+                     return (<Card style={{borderRadious:30}}>
          <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
                   <CardTitle 
-    title="This is a title" 
-    subtitle="This is subtitle"
+    title={name} 
+    subtitle={index}
    />
-   <AwesomeButton backgroundColor='red' textColor='white' >  X  </AwesomeButton>
+   <AwesomeButton backgroundColor='red' textColor='white' onPress ={()=>{
+     alert('Do you want to delete!!')
+   }} >  X  </AwesomeButton>
    </View>
                     
                     <CardImage  
                     title="Above all i am here"
                     source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
                     />
-  <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
+  {/* <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
     <View>
     <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
     </View>
@@ -98,8 +72,8 @@ class Friends extends Component {
     <View>
     <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
     </View>
-    </View>
-                    </Card>
+    </View> */}
+                    </Card>)})}
                   </View>
               </View>
             </ScrollView>

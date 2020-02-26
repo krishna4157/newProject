@@ -5,6 +5,7 @@ import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
 import Family from "../components/Friends";
 import Others from "../components/Others";
+import More from "../components/More";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
@@ -78,7 +79,7 @@ class MorePage extends Component {
     
     render() {
         return (
-            <Others
+            <More
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
