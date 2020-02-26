@@ -5,6 +5,7 @@
  * @format
  * @flow
  */
+import * as Font from 'expo-font';
 
 import React, { Component } from 'react';
 import { Root } from 'native-base';
@@ -39,7 +40,6 @@ class App extends Component {
 
   async componentDidMount () {
     // this.unsubscribe();
-    
     
     // NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
     console.disableYellowBox = true;
