@@ -4,7 +4,7 @@ import { Container, Button, ListItem, List } from 'native-base';
 import Icon from 'react-native-vector-icons/AntDesign';
 import Signt from 'react-native-vector-icons/FontAwesome5';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faUser,faFax,faUserSecret,faAddressBook } from '@fortawesome/free-solid-svg-icons'
 
 var j = 0;
 var storedNavigations = [];
@@ -16,7 +16,7 @@ export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => 
     var redirectIcons = [];
     const navigations = ['Family','Friends','Others'];
     var ListofChapters = chapters;
-    var arr = [faCoffee, faUser, faFax];
+    var arr = [faCoffee, faAddressBook, faUserSecret];
         ListofChapters.map((chapter) => {
                     redirectIcons.push(chapter);
         
@@ -35,7 +35,7 @@ export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => 
                          setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),1000}} 
                     >
                     <FontAwesomeIcon
-  icon={arr[index]} color='red' /> 
+  icon={arr[index]} color='black' size={20} /> 
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{chapter}</Text>
                     </ListItem>
                 )

@@ -12,7 +12,7 @@ import OthersPage from './OthersPage';
 import { Container, Text,Button, Title, Content, List, ListItem, Left, Body, Right, Switch, View } from 'native-base';
 import { Icon } from 'react-native-elements'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCoffee,faUser,faFax } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee,faUser,faFax,faUsers,faUserSecret } from '@fortawesome/free-solid-svg-icons'
 
 import FriendsPage from './FriendsPage';
 import RelationsPage from './RelationsPage';
@@ -58,10 +58,10 @@ const RootTabs = createBottomTabNavigator({
             activeColor: '#f60c0d',  
             inactiveColor: '#f65a22',  
             tabBarLabel : 
-            <Text style={{marginBottom:10,color:'black'}}>Feeds</Text>,
+            <Text style={{marginBottom:10,color:'black',fontFamily:'Raleway'}}>Feeds</Text>,
             tabBarIcon: 
 <FontAwesomeIcon
-  icon={faCoffee} color='red' />              
+  icon={faCoffee} size={25} color='red' />              
         }
     },
 //     Feed: {screen : FamilyPage,
@@ -84,8 +84,8 @@ const RootTabs = createBottomTabNavigator({
             <Text style={{marginBottom:10,color:'black'}}>Relations</Text>,            
             
             tabBarIcon:     
-            <FontAwesomeIcon color='green'
-            icon={faUser} />
+            <FontAwesomeIcon color='green' size={30}
+            icon={faUsers} />
         }},
     More: {screen : MorePage,
         navigationOptions:{
@@ -93,7 +93,7 @@ const RootTabs = createBottomTabNavigator({
             <Text style={{marginBottom:10,color:'black'}}>More</Text>,
             tabBarIcon:  
             <FontAwesomeIcon
-            icon={faFax} color='black' />
+            icon={faFax} size={20} color='black' />
             
         }},
     // AskQuestions: AskQuestions,

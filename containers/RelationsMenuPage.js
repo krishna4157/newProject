@@ -25,6 +25,7 @@ import RelationsPage from "./RelationsPage";
 import FriendsPage from "./FriendsPage";
 import FeedPage from "./FeedPage";
 import FlashMessage from "react-native-flash-message";
+import UserDetailsPage from "./UserDetailsPage";
 var routeName = '';
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
@@ -112,7 +113,9 @@ class RelationsMenuPage extends Component {
     //     }
 
     // }
-
+    componentDidUpdate= async()=>{
+        const {}= this.props;
+    }
     
 
     handleBackPress = () => {// works best when the goBack is async
@@ -125,11 +128,12 @@ class RelationsMenuPage extends Component {
     render() {
       const{visible}=this.state;
       console.log("In render : "+visible);
-      console.log("Props"+JSON.stringify(this.props));
+      console.log("Props:::"+JSON.stringify(this.props));
         return (
             <View style={{flex:1}}>
             <NavigationEvents
             onDidFocus={()=>{
+              routeName = this.props.navigation.state.routeName
               this.setState({
                 visible:true
               })
@@ -137,7 +141,7 @@ class RelationsMenuPage extends Component {
             }}
             onWillFocus={() => {
               console.log("error!!!")
-             
+             console.log('screen :'+routeName);
               this.setState({
                 visible:true
               })
@@ -147,13 +151,16 @@ class RelationsMenuPage extends Component {
           /> 
                 <FlashMessage position='top'/>
             <DialogPopUp navigationPage={this.props.navigation.routeName} hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
-            <AppContainer/>
+            <AppContainer visible ={visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>
             </View>
         );
     }
 }
 
 const AppNavigator = createStackNavigator({
+  UserDetails :{
+    screen: UserDetailsPage
+  },
  Feed :{
      screen: FeedPage 
 },Family: {
@@ -167,7 +174,7 @@ const AppNavigator = createStackNavigator({
   }
 },{
   headerMode:'none',
-   initialRouteName: 'Family'
+   initialRouteName: routeName
 });
 
 const AppContainer = createAppContainer(AppNavigator);

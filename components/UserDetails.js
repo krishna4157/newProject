@@ -28,7 +28,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 var arr = [faLanguage,faCog, faUser, faFax];
 var MoreItems = ['Language','Settings','Logout'];
-class More extends Component {
+class UserDetails extends Component {
     state={
     };
 
@@ -94,4 +94,4 @@ class More extends Component {
           textAlign: 'right',
         },
       });
-export default More;
+export default UserDetails;

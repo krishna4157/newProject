@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-import Family from '../components/Family';
+import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
+import Feed from "../components/Feed";
+import UserDetails from "../components/UserDetails";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class FamilyPage extends Component {
+class UserDetailsPage extends Component {
     state={
         subjectCompliance: {
             dayCompliance: 0,
@@ -76,10 +78,9 @@ class FamilyPage extends Component {
     }
     
     render() {
-      const {visible}= this.state;
         return (
           <MenuProvider>
-            <Family
+            <UserDetails
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
@@ -104,5 +105,5 @@ class FamilyPage extends Component {
 //     },
 //     dispatch,
 //   );
-export default FamilyPage
+export default UserDetailsPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));
