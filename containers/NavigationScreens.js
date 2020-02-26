@@ -57,7 +57,7 @@ const RootTabs = createBottomTabNavigator({
             activeColor: '#f60c0d',  
             inactiveColor: '#f65a22',  
             tabBarLabel : 
-            <Text style={{marginBottom:10,color:'white'}}>Feeds</Text>,
+            <Text style={{marginBottom:10,color:'black'}}>Feeds</Text>,
             tabBarIcon: 
 <FontAwesomeIcon
   icon={faCoffee} color='red' />              
@@ -80,7 +80,7 @@ const RootTabs = createBottomTabNavigator({
             
                 
             tabBarLabel :            
-            <Text style={{marginBottom:10,color:'white'}}>Relations</Text>,            
+            <Text style={{marginBottom:10,color:'black'}}>Relations</Text>,            
             
             tabBarIcon:     
             <FontAwesomeIcon color='green'
@@ -89,10 +89,10 @@ const RootTabs = createBottomTabNavigator({
     More: {screen : OthersPage,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>More</Text>,
+            <Text style={{marginBottom:10,color:'black'}}>More</Text>,
             tabBarIcon:  
             <FontAwesomeIcon
-            icon={faFax} color='white' />
+            icon={faFax} color='black' />
             
         }},
     // AskQuestions: AskQuestions,
@@ -100,10 +100,11 @@ const RootTabs = createBottomTabNavigator({
 },{
     // initialRouteName: 'Feed',
     activeColor: '#F44336',
-    inactiveColor:'white',
+    inactiveColor:'black',
     barStyle: {
-        backgroundColor: 'grey',
-        padding:10 
+        backgroundColor: 'white',
+        padding:10,
+        color:'black' 
     },   
   });
 

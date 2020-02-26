@@ -11,7 +11,7 @@ export default {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-  FamilyHeader: 'green',
-  FriendsHeader: 'green',
+  FamilyHeader: 'white',
+  FriendsHeader: 'white',
   OthersHeader: 'grey'
 };
