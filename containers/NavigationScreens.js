@@ -55,13 +55,13 @@ const RootTabs = createBottomTabNavigator({
     Feed: {screen : FeedPage,
         navigationOptions:{
             backgroundColor: 'green',
-            activeColor: '#f60c0d',  
-            inactiveColor: '#f65a22',  
+            activeColor: '#1DC7E2',  
+            inactiveColor: 'black',  
             tabBarLabel : 
             <Text style={{marginBottom:10,color:'black',fontFamily:'Raleway'}}>Feeds</Text>,
             tabBarIcon: 
 <FontAwesomeIcon
-  icon={faCoffee} size={25} color='red' />              
+  icon={faCoffee} size={25} color='orange' />              
         }
     },
 //     Feed: {screen : FamilyPage,

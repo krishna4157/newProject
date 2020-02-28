@@ -40,13 +40,16 @@ class More extends Component {
             <SpringScrollView
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
-                return (<ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
+                return (
+                <Button  style={{backgroundColor:'white'}}onPress={()=>{alert('HELLO WORLD!')}}>
+                <ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
                   
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='black' size={25} /> 
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
-                    </ListItem>)})}
+                    </ListItem>
+                    </Button>)})}
             </SpringScrollView>
           </View>
         );

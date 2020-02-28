@@ -10,7 +10,8 @@ import {
   Left,
   Body,
   Right,
-  Switch
+  Switch,
+  Header
 } from "native-base";
 import {
   StyleSheet,
@@ -59,7 +60,7 @@ import {
 var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
-import {Header} from 'react-native-elements';
+// import {Header} from 'react-native-elements';
 class Feed extends Component {
   state = {};
 
@@ -67,16 +68,8 @@ class Feed extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
       <View>
-        <Header
-           centerComponent={{ text: 'FEED', style: { color: '#fff',fontSize:20,fontWeight:'bold' } }}
->
-        <View style={{flexDirection:'column'}}>
-  <View style={{padding:10,marginBottom:10}}>
-                {/* <AwesomeButton>       </AwesomeButton> */}
-                </View>
-                {/* <Text>HELLO</Text> */}
-              </View>
-
+          <Header style={{alignItems:'center',backgroundColor:'#3498DB'}} >
+            <Title>FEED</Title>
           </Header>
         <SpringScrollView
           contentInsetAdjustmentBehavior="automatic"
@@ -119,9 +112,9 @@ class Feed extends Component {
                       <Menu>
                         <MenuTrigger>
                           <FontAwesomeIcon
-                            size={20}
+                            size={25}
                             icon={faEllipsisV}
-                            color="red"
+                            color="#3498DB"
                           />
                         </MenuTrigger>
                         <MenuOptions>
