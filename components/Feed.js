@@ -58,6 +58,7 @@ import {
 } from "react-native-popup-menu";
 var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 class Feed extends Component {
   state = {};
@@ -66,7 +67,7 @@ class Feed extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
       <View>
-        <ScrollView
+        <SpringScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >
@@ -86,7 +87,7 @@ class Feed extends Component {
             <View>
               {Friends.map((name, index) => {
                 return (
-                  <Card style={{ borderRadious: 30 }}>
+                  <View style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
                     <View
                       style={{
                         flexDirection: "row",
@@ -136,12 +137,12 @@ class Feed extends Component {
                           "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg"
                       }}
                     />
-                  </Card>
+                  </View>
                 );
               })}
             </View>
           </View>
-        </ScrollView>
+        </SpringScrollView>
       </View>
     );
   }
@@ -155,7 +156,8 @@ const styles = StyleSheet.create({
     right: 0
   },
   body: {
-    backgroundColor: "grey"
+    backgroundColor: Colors.FamilyHeader,
+    padding:10
   },
   sectionContainer: {
     flexDirection: "row",

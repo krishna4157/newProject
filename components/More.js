@@ -25,6 +25,7 @@ import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { faCog,faUser,faFax,faLanguage,faSignLanguage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 var arr = [faLanguage,faCog, faUser, faFax];
 var MoreItems = ['Language','Settings','Logout'];
@@ -36,8 +37,7 @@ class More extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
+            <SpringScrollView
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
                 return (<ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
@@ -47,7 +47,7 @@ class More extends Component {
   icon={arr[index]} color='black' size={25} /> 
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
                     </ListItem>)})}
-            </ScrollView>
+            </SpringScrollView>
           </View>
         );
       }
@@ -55,6 +55,7 @@ class More extends Component {
     const styles = StyleSheet.create({
         scrollView: {
           backgroundColor: Colors.lighter,
+          height:'100%'
         },
         engine: {
           position: 'absolute',

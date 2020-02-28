@@ -135,7 +135,7 @@ bounces={true}
         right: 0,
       },
       body: {
-        backgroundColor: 'grey',
+        backgroundColor: '#F2F2F2',
       },
       sectionContainer: {
         flexDirection:'row',
