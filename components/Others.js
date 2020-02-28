@@ -24,6 +24,8 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+
 var friends = ['Others1','Others2','Others3'];
 class Others extends Component {
     state={
@@ -33,8 +35,7 @@ class Others extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
           <View>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
+            <SpringScrollView
               style={styles.scrollView}>
               {/* <Header /> */}
               {/* {global.HermesInternal == null ? null : (
@@ -74,7 +75,7 @@ class Others extends Component {
                     </Card>)})}
                   </View>
               </View>
-            </ScrollView>
+            </SpringScrollView>
           </View>
         );
       }

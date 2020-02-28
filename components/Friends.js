@@ -26,7 +26,10 @@ import {
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+
 var friends = ['Friends1','Friends2','Friends3'];
+
 class Friends extends Component {
     state={
     };
@@ -35,9 +38,15 @@ class Friends extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
           <View>
-            <ScrollView bounces={true} bouncesZoom={true} overScrollMode={"always"} alwaysBounceHorizontal alwaysBounceVertical
+            <SpringScrollView
+style={styles.scrollView}
+bounces={true}
+//  initialContentOffset={{ x: 0, y: 550 }}
+
+>
+            {/* <ScrollView bounces={true} bouncesZoom={true} overScrollMode={"always"} alwaysBounceHorizontal alwaysBounceVertical
               contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
+              style={styles.scrollView}> */}
               {/* <Header /> */}
               {/* {global.HermesInternal == null ? null : (
                 <View style={styles.engine}>
@@ -105,7 +114,7 @@ class Friends extends Component {
                     )})}
                   </View>
               </View>
-            </ScrollView>
+            </SpringScrollView>
           </View>
         );
       }
