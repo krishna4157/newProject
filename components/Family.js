@@ -70,7 +70,7 @@ class Family extends Component {
      
       <View>
         <SpringScrollView
-
+            // style={{backgroundColor:'black'}}
            bounces={true}
           //  initialContentOffset={{ x: 0, y: 550 }}
 
@@ -93,7 +93,7 @@ class Family extends Component {
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>
                     </View>
-                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'red',borderRadius:30}}>
+                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
                     <Image
                     style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
