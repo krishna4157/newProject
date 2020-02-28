@@ -9,7 +9,7 @@ class DialogPopUp extends Component {
         return (
             <Dialog
                 containerStyle={{ justifyContent: 'flex-end' }}
-                dialogStyle={{ width:'35%',marginBottom:80,height:'27%' }}
+                dialogStyle={{ width:'35%',marginBottom:'19%' }}
                 rounded={true}
                 visible={visible}
                 // visible={showDialog}

@@ -50,6 +50,7 @@ import {
   faFax,
   faEllipsisV
 } from "@fortawesome/free-solid-svg-icons";
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 import {
   Menu,
@@ -66,13 +67,16 @@ class Family extends Component {
   render() {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
+     
       <View>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}
+        <SpringScrollView
+
+           bounces={true}
+          //  initialContentOffset={{ x: 0, y: 550 }}
+
         >
           <View style={styles.body}>
-            <View style={{backgroundColor:'grey',paddingBottom:10,padding:5}}>
+            <View style={{backgroundColor:'#F2F2F2',paddingBottom:10,padding:5}}>
               {cardsList.map((name, index) => {
                 return (
                   
@@ -100,7 +104,7 @@ class Family extends Component {
               })}
             </View>
           </View>
-        </ScrollView>
+        </SpringScrollView>
       </View>
     );
   }
