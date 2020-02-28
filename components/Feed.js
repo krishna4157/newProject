@@ -18,7 +18,8 @@ import {
   View,
   Text,
   StatusBar,
-  Animated
+  Animated,
+  Image
 } from "react-native";
 import {
   Card,
@@ -130,13 +131,20 @@ class Feed extends Component {
                       </Menu>
                       {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
                     </View>
-                    <CardImage
+                    {/* <CardImage
+                      resizeMode='contain'
                       title="Above all i am here"
                       source={{
                         uri:
                           "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg"
                       }}
+                    /> */}
+                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'red',borderRadius:30}}>
+                    <Image
+                    style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
+                     source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
+                    </View>
                   </View>
                 );
               })}
