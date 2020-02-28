@@ -54,7 +54,7 @@ bounces={true}
                 </View>
               )} */}
               <View style={styles.body}>
-                <View>
+                <View style={{padding:10}}>
                   
                    
                     {friends.map((name,index)=>{
@@ -62,7 +62,14 @@ bounces={true}
                       <TouchableHighlight onPress={()=>{
                         alert("hello!")
                         console.log('HELLO!');
-                      }} style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                      }} style={{ borderWidth: 1,
+                        borderColor: '#ddd',
+                        borderBottomWidth: 0,
+                        shadowColor: '#000',
+                        shadowOffset: { width: 10, height: 20 },
+                        shadowOpacity: 10,
+                        shadowRadius: 2,
+                        elevation: 10,borderRadius:20,backgroundColor:'white',marginTop:10 }}>
                       <View>
                       <View 
                         style={{

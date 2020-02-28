@@ -8,6 +8,7 @@ import {
     Text,
     StatusBar,
     Animated,
+    Image,
   } from 'react-native';
   import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 
@@ -25,6 +26,7 @@ import {
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 var friends = ['Others1','Others2','Others3'];
 class Others extends Component {
@@ -44,35 +46,42 @@ class Others extends Component {
                 </View>
               )} */}
               <View style={styles.body}>
-                <View>
+                <View style={{padding:10}}>
                   
                    
                     {friends.map((name,index)=>{
-                     return (<Card style={{borderRadious:30}}>
-         <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
-                  <CardTitle 
-    title={name} 
-    subtitle={index}
-   />
-   <AwesomeButton backgroundColor='red' textColor='white' >  X  </AwesomeButton>
-   </View>
-                    
-                    <CardImage  
-                    title="Above all i am here"
-                    source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
+                     return ( <TouchableHighlight onPress={()=>{
+                      alert("hello!")
+                      console.log('HELLO!');
+                    }} style={{ borderWidth: 1,
+                      borderColor: '#ddd',
+                      borderBottomWidth: 0,
+                      shadowColor: '#000',
+                      shadowOffset: { width: 10, height: 20 },
+                      shadowOpacity: 10,
+                      shadowRadius: 2,
+                      elevation: 10,borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                    <View>
+                    <View 
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        padding: 10
+                      }}
+                    >
+                      <CardTitle title={name} subtitle={index} />
+                      <AwesomeButton backgroundColor="red" textColor="white">
+                        <Text style={{color:'white'}}>      X      </Text> 
+                      </AwesomeButton>
+                    </View>
+                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'red',borderRadius:30}}>
+                    <Image
+                    style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
+                     source={{ uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}}
                     />
-  {/* <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
-    <View>
-    <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
-    </View>
-    <View>
-    <AwesomeButton backgroundColor='green' textColor='red' >Add to Friends</AwesomeButton>
-    </View>
-    <View>
-    <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
-    </View>
-    </View> */}
-                    </Card>)})}
+                    </View>
+                    </View>
+                  </TouchableHighlight>)})}
                   </View>
               </View>
             </SpringScrollView>

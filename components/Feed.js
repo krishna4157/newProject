@@ -101,7 +101,6 @@ class Feed extends Component {
                 return (
                   <View 
                   style={{  borderWidth: 1,
-                    borderRadius: 20,
                     borderColor: '#ddd',
                     borderBottomWidth: 0,
                     shadowColor: '#000',
@@ -177,6 +176,7 @@ class Feed extends Component {
 }
 const styles = StyleSheet.create({
   scrollView: {
+    height:'100%',
     backgroundColor: Colors.lighter
   },
   engine: {
