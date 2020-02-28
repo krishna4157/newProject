@@ -30,7 +30,6 @@ import {
   CardImage
 } from "react-native-material-cards";
 import {
-  Header,
   LearnMoreLinks,
   DebugInstructions,
   ReloadInstructions
@@ -60,7 +59,7 @@ import {
 var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
-
+import {Header} from 'react-native-elements';
 class Feed extends Component {
   state = {};
 
@@ -68,6 +67,17 @@ class Feed extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
       <View>
+        <Header
+           centerComponent={{ text: 'FEED', style: { color: '#fff',fontSize:20,fontWeight:'bold' } }}
+>
+        <View style={{flexDirection:'column'}}>
+  <View style={{padding:10,marginBottom:10}}>
+                {/* <AwesomeButton>       </AwesomeButton> */}
+                </View>
+                {/* <Text>HELLO</Text> */}
+              </View>
+
+          </Header>
         <SpringScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
@@ -79,16 +89,26 @@ class Feed extends Component {
                 </View>
               )} */}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>
+            
+            {/* <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Feed Page</Text>
               <View>
                 <AwesomeButton>Add to Family</AwesomeButton>
               </View>
-            </View>
+            </View> */}
             <View>
               {Friends.map((name, index) => {
                 return (
-                  <View style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                  <View 
+                  style={{  borderWidth: 1,
+                    borderRadius: 20,
+                    borderColor: '#ddd',
+                    borderBottomWidth: 0,
+                    shadowColor: '#000',
+                    shadowOffset: { width: 10, height: 20 },
+                    shadowOpacity: 10,
+                    shadowRadius: 2,
+                    elevation: 10,borderRadius:20,backgroundColor:'white',marginTop:10 }}>
                     <View
                       style={{
                         flexDirection: "row",
