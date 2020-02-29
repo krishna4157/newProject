@@ -43,7 +43,7 @@ class App extends Component {
     var Relations = [{
       
       'name': 'Product 1',
-      'url' : 'url'
+      'url' : 'url5'
     },{
       'name': 'Product 2',
       'url': 'url2'
@@ -74,7 +74,8 @@ class App extends Component {
     let StringifyData = JSON.stringify(Relations);
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
-    // console.log(JSON.parse(encryptedForms))
+    let formdata = JSON.parse(encryptedForms)
+    console.log("DATATAT:"+encryptedForms)
     // if(encryptedForms==null){
     //     const encryptedForms = await AsyncStorage.setItem("encryptedForms");
     // }
@@ -89,12 +90,13 @@ class App extends Component {
        });
     }
     render(){
+      console.log("DATATAT1:::")
   return (
     <View style={{flex:1,backgroundColor:'red'}}>
       <StatusBar barStyle="dark-content" />
       <Root>
 
-      <AppNavigation 
+      <AppNavigation  
             />
             {/* <Home /> */}
       {/*  */}
