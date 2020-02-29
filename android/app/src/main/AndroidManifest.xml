@@ -5,6 +5,7 @@
 
 
     <application
+        android:logo="@mipmap/ic_launcher"
         android:name=".MainApplication"
         android:usesCleartextTraffic="true"
         android:label="@string/app_name"
