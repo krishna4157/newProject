@@ -151,12 +151,12 @@ class Feed extends Component {
                           "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg"
                       }}
                     /> */}
-                     <View style={{flexWrap: 'wrap',height:200,borderRadius:30}}>
-                    <Button style={{flexWrap:'wrap',backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
+                     <View style={{height:200}}>
+                    <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
                       alert('hello world');
                     }}>
                     <Image
-                    style={{width:'100%',height:'100%',borderRadius:20,marginTop:10}}
+                    style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
                     </Button>
