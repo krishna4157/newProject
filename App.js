@@ -42,35 +42,21 @@ class App extends Component {
 
     var Relations = [{
       
-      'name': 'Product 1',
+      'name': 'Family1',
       'url' : 'url5'
     },{
-      'name': 'Product 2',
+      'name': 'Family2',
+      'url': 'url2'
+    },
+    {
+      'name': 'Friend1',
+      'url': 'url2'
+    },
+    {
+      'name': 'Friend2',
       'url': 'url2'
     }];
-    // this.unsubscribe();
-    // const Relations = [
-    //     {
-    //       name: 'Friend1',
-    //       image : 'url'
-    //     },
-    //     {  
-    //       name: 'Friend2',
-    //       image : 'url2'
-    //     },
-    //       {
-    //         name: 'Family1',
-    //         image : 'url3'
-    //       },
-    //     {
-    //       name: 'Family1',
-    //         image : 'url4'
-    //     },
-    //       {
-    //         name: 'TobeAdded1',
-    //         image : 'url4'
-    //       }
-    //     ]
+    
     let StringifyData = JSON.stringify(Relations);
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
