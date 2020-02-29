@@ -60,28 +60,52 @@ import {
 var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import AsyncStorage from "@react-native-community/async-storage";
 // import {Header} from 'react-native-elements';
-let data
+// let data
 class Feed extends Component {
-  state = {
-    data1 : ''
-  };
+  state={
+    Fromdata: '',
+      }
 
-  async componentDidMount(){
-    let encryptedForms = await AsyncStorage.getItem("Forms");
-    data = JSON.parse(encryptedForms);
-    this.setState({
-        data1: data
-    })
-  }
+
+  // async componentDidMount(){
+  //   let encryptedForms = await AsyncStorage.getItem("Forms");
+  //   const {data}= this.props
+  //   data = JSON.parse(encryptedForms);
+  //   this.setState({
+  //       data1: data
+  //   })
+  // }
+
+  
 
   render() {
-
-    const{data1}=this.state;
-    console.log("DATA::"+data);
-    var products = data
+     const {data1}=this.props;
+    console.log("Y::"+data1);
+    var product =  [{
+      'name': 'Product 1',
+      'url' : 'url'
+    },{
+      'name': 'Product 2',
+      'url': 'url2'
+    }];
+    var products = ''
+    if(data1.length!=0){
+      products = data1;
+      console.log("unknownDATAdata1 :"+data1.length);
+  } else if(data1.length==0) {
+    products =  [{
+      'name': 'Product 1',
+      'url' : 'url'
+    },{
+      'name': 'Product 2',
+      'url': 'url2'
+    }];
+    console.log("unknownDATA :"+JSON.stringify(data1))
+    }
     console.log('products'+products);
-    console.log('data'+data)
+    // console.log('data'+data)
     var productsIds = products.map(function(product) {
       console.log(product);
       return product.id;
@@ -101,7 +125,7 @@ class Feed extends Component {
                 (userdata,index)  => {
                  console.log("userdata :"+JSON.stringify(userdata));
                  console.log("index :"+index);
-                 console.log("Keys :"+data);
+                //  console.log("Keys :"+data);
                 return (
                   <View 
                   style={{  borderWidth: 1,

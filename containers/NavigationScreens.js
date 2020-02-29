@@ -19,6 +19,7 @@ import RelationsPage from './RelationsPage';
 import RelationsMenuPage from './RelationsMenuPage';
 import FeedPage from './FeedPage';
 import MorePage from './MorePage';
+import LoginPage from './LoginPage';
 
 // import {
 //     Menu,
@@ -28,9 +29,7 @@ import MorePage from './MorePage';
 //     MenuTrigger,
 //   } from 'react-native-popup-menu';
 // https://fontawesome.com/v4.7.0/icons/
-export const backgroundColor = 'red'
-const tintColor = '#eceff1'
-const AppNavigator = createStackNavigator({
+const RelationNavigator = createStackNavigator({ 
     RelationsMenuPage : {
         screen: RelationsMenuPage
     },
@@ -50,8 +49,7 @@ const AppNavigator = createStackNavigator({
      headerMode:'none'
    });
 
-
-const RootTabs = createBottomTabNavigator({
+   const RootTabs = createBottomTabNavigator({
     Feed: {screen : FeedPage,
         navigationOptions:{
             backgroundColor: 'green',
@@ -73,7 +71,7 @@ const RootTabs = createBottomTabNavigator({
 //   icon={faCoffee} color='red' />              
 //         }
 //     },
-    Relations : {screen: AppNavigator,
+    Relations : {screen: RelationNavigator,
         navigationOptions:{
             backgroundColor: 'blue',
             activeColor: '#f60c0d',  
@@ -99,7 +97,7 @@ const RootTabs = createBottomTabNavigator({
     // AskQuestions: AskQuestions,
 
 },{
-     initialRouteName: 'More',
+     initialRouteName: 'Feed',
     activeColor: '#F44336',
     inactiveColor:'black',
     barStyle: {
@@ -114,6 +112,64 @@ const RootTabs = createBottomTabNavigator({
           }
     }   
   });
+
+const AppNavigator = createStackNavigator({
+    Login :{
+        screen:LoginPage
+    },
+    RootTabs : {
+        screen: RootTabs
+    }, 
+    RelationsMenuPage : {
+        screen: RelationsMenuPage
+    },
+    Feed :{
+        screen: FeedPage 
+   },Family: {
+       screen: FamilyPage
+     },
+     Friends: {
+       screen: FriendsPage
+     },
+     Others: {
+         screen: OthersPage
+     }
+   },{
+     initialRouteName: 'Login',
+     headerMode:'none'
+   });
+
+
+export const backgroundColor = 'red'
+const tintColor = '#eceff1'
+
+
+const Main = createStackNavigator({
+    Login :{
+        screen:LoginPage
+    }, 
+    RootTabs : {
+        screen : RootTabs
+    }, 
+    RelationsMenuPage : {
+        screen: RelationsMenuPage
+    },
+    Feed :{
+        screen: FeedPage 
+   },Family: {
+       screen: FamilyPage
+     },
+     Friends: {
+       screen: FriendsPage
+     },
+     Others: {
+         screen: OthersPage
+     }
+   },{
+     initialRouteName: 'Login',
+     headerMode:'none'
+   });
+
 
 
 
@@ -264,4 +320,4 @@ const RootTabs = createBottomTabNavigator({
     //         initialRouteName: 'RootTabs',
     //     });
 
-export default createAppContainer(RootTabs);
+export default createAppContainer(AppNavigator);
