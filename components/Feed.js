@@ -49,7 +49,7 @@ import {
   faFax,
   faEllipsisV
 } from "@fortawesome/free-solid-svg-icons";
-
+import  _ from 'lodash'
 import {
   Menu,
   MenuProvider,
@@ -61,11 +61,32 @@ var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 // import {Header} from 'react-native-elements';
+let data
 class Feed extends Component {
-  state = {};
+  state = {
+    data1 : ''
+  };
+
+  async componentDidMount(){
+    let encryptedForms = await AsyncStorage.getItem("Forms");
+    data = JSON.parse(encryptedForms);
+    this.setState({
+        data1: data
+    })
+  }
 
   render() {
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
+
+    const{data1}=this.state;
+    console.log("DATA::"+data);
+    var products = data
+    console.log('products'+products);
+    console.log('data'+data)
+    var productsIds = products.map(function(product) {
+      console.log(product);
+      return product.id;
+    }); 
+    console.log(JSON.stringify(productsIds));
     return (
       <View>
           <Header style={{alignItems:'center',backgroundColor:'#3498DB'}} >
@@ -75,22 +96,12 @@ class Feed extends Component {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >
-          {/* <Header /> */}
-          {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
           <View style={styles.body}>
-            
-            {/* <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Feed Page</Text>
-              <View>
-                <AwesomeButton>Add to Family</AwesomeButton>
-              </View>
-            </View> */}
-            <View>
-              {Friends.map((name, index) => {
+          {products!=null && products.map(
+                (userdata,index)  => {
+                 console.log("userdata :"+JSON.stringify(userdata));
+                 console.log("index :"+index);
+                 console.log("Keys :"+data);
                 return (
                   <View 
                   style={{  borderWidth: 1,
@@ -108,7 +119,7 @@ class Feed extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={name} subtitle={index} />
+                      <CardTitle title={userdata.name} subtitle={userdata.url} />
                       <Menu>
                         <MenuTrigger>
                           <FontAwesomeIcon
@@ -164,6 +175,7 @@ class Feed extends Component {
                   </View>
                 );
               })}
+           <View>
             </View>
           </View>
         </SpringScrollView>

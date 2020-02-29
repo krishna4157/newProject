@@ -28,7 +28,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
-var MoreItems = ['Language','Settings','Logout','Support Us'];
+var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
 class More extends Component {
     state={
     };

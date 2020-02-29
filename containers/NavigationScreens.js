@@ -99,7 +99,7 @@ const RootTabs = createBottomTabNavigator({
     // AskQuestions: AskQuestions,
 
 },{
-     initialRouteName: 'Feed',
+     initialRouteName: 'More',
     activeColor: '#F44336',
     inactiveColor:'black',
     barStyle: {

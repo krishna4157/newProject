@@ -39,33 +39,42 @@ class App extends Component {
   };
 
   async componentDidMount () {
+
+    var Relations = [{
+      
+      'name': 'Product 1',
+      'url' : 'url'
+    },{
+      'name': 'Product 2',
+      'url': 'url2'
+    }];
     // this.unsubscribe();
-    const Relations = {
-        Friend1:{
-          name: 'Friend1',
-          image : 'url'
-        },
-        Friend2:{  
-          name: 'Friend2',
-          image : 'url2'
-        },
-          Family1 :{
-            name: 'Family1',
-            image : 'url3'
-          },
-        Others1 :{
-          name: 'Family1',
-            image : 'url4'
-        },
-          ToBeAdded1 : {
-            name: 'TobeAdded1',
-            image : 'url4'
-          }
-    }
+    // const Relations = [
+    //     {
+    //       name: 'Friend1',
+    //       image : 'url'
+    //     },
+    //     {  
+    //       name: 'Friend2',
+    //       image : 'url2'
+    //     },
+    //       {
+    //         name: 'Family1',
+    //         image : 'url3'
+    //       },
+    //     {
+    //       name: 'Family1',
+    //         image : 'url4'
+    //     },
+    //       {
+    //         name: 'TobeAdded1',
+    //         image : 'url4'
+    //       }
+    //     ]
     let StringifyData = JSON.stringify(Relations);
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
-    console.log(JSON.parse(encryptedForms))
+    // console.log(JSON.parse(encryptedForms))
     // if(encryptedForms==null){
     //     const encryptedForms = await AsyncStorage.setItem("encryptedForms");
     // }

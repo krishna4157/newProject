@@ -5,12 +5,14 @@ import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import Feed from "../components/Feed";
+import AsyncStorage from "@react-native-community/async-storage";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
 class FeedPage extends Component {
     state={
+      data: '',
         subjectCompliance: {
             dayCompliance: 0,
           weekCompliance: 0,
@@ -19,6 +21,7 @@ class FeedPage extends Component {
         }
     };
 
+    
    
 
 
@@ -77,6 +80,8 @@ class FeedPage extends Component {
     }
     
     render() {
+      const{data}= this.state;
+      console.log("DATA: "+data)
         return (
           <MenuProvider>
             <Feed
