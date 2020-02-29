@@ -74,7 +74,7 @@ class Others extends Component {
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>
                     </View>
-                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'red',borderRadius:30}}>
+                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
                     <Image
                     style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
                      source={{ uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}}

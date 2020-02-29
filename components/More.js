@@ -23,12 +23,12 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
-import { faCog,faUser,faFax,faLanguage,faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
-var arr = [faLanguage,faCog, faUser, faFax];
-var MoreItems = ['Language','Settings','Logout'];
+var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
+var MoreItems = ['Language','Settings','Logout','Support Us'];
 class More extends Component {
     state={
     };
@@ -41,15 +41,17 @@ class More extends Component {
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
                 return (
+                  <View>
                 <Button  style={{backgroundColor:'white'}}onPress={()=>{alert('HELLO WORLD!')}}>
                 <ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
                   
                     >
                     <FontAwesomeIcon
-  icon={arr[index]} color='black' size={25} /> 
+  icon={arr[index]} color='black' size={25} style={{padding:10}} /> 
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
                     </ListItem>
-                    </Button>)})}
+                    </Button>
+                    </View>)})}
             </SpringScrollView>
           </View>
         );
@@ -58,7 +60,8 @@ class More extends Component {
     const styles = StyleSheet.create({
         scrollView: {
           backgroundColor: Colors.lighter,
-          height:'100%'
+          height:'100%',
+          padding:5
         },
         engine: {
           position: 'absolute',

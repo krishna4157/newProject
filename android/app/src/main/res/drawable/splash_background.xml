@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:drawable="@mipmap/acslogo"
+        android:drawable="@mipmap/shareandcare"
         android:scaleType="fitCenter"
         android:gravity="center" />
 
