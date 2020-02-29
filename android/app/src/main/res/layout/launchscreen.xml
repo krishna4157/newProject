@@ -4,5 +4,5 @@
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@+id/imageView17" android:layout_width="27dp" android:layout_height="285dp" android:layout_alignParentStart="true" android:layout_alignParentTop="true" android:layout_alignParentEnd="true" android:layout_alignParentBottom="true" android:layout_centerInParent="true" android:layout_marginStart="70dp" android:layout_marginTop="277dp" android:layout_marginEnd="70dp" android:layout_marginBottom="284dp" android:contentDescription="@string/app_name" app:srcCompat="@drawable/acslogo"/>
+<!--    <ImageView android:id="@+id/imageView17" android:layout_width="27dp" android:layout_height="285dp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_alignParentEnd="true" android:layout_alignParentBottom="true" android:layout_centerInParent="true" android:layout_marginStart="70dp" android:layout_marginTop="277dp" android:layout_marginEnd="70dp" android:layout_marginBottom="284dp" android:contentDescription="@string/app_name" app:srcCompat="@drawable/acslogo"/>-->
 </RelativeLayout>
