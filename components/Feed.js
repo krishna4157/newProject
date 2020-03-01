@@ -63,12 +63,71 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
 // import {Header} from 'react-native-elements';
 // let data
+var products = ''
+let data = [];
+
 class Feed extends Component {
   state={
     Fromdata: '',
       }
 
+      setDataTo = async(Relation,userdata,index)=>{
+        
+          if(products!=''){
+            if(Relation=='family'){
+              alert('Family Called!');
+              data = await AsyncStorage.getItem('FamilyData');
+              if(data!=null){
+                
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('FamilyData',stringifyData);
+              } else {
+                data = [];
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('FamilyData',stringifyData);
+              }
+              console.log("Family Data: "+data);
+              
 
+            } else if(Relation=='friends'){
+              alert('Friends Called!');
+              data = await AsyncStorage.getItem('FriendsData');
+              if(data!=null){  
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('FriendsData',stringifyData);
+              } else {
+                data = [];
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('FriendsData',stringifyData);
+              }
+              console.log("Friends Data: "+data);
+              
+            } else if(Relation=='Others'){
+              await AsyncStorage.getItem('OthersData');
+              alert('Others Called!');
+              data = await AsyncStorage.getItem('OthersData');
+              if(data!=null){  
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('OthersData',stringifyData);
+              } else {
+                data = [];
+                data.push(userdata);
+                let stringifyData = JSON.stringify(data);
+                AsyncStorage.setItem('OthersData',stringifyData);
+              }
+              console.log("Friends Data: "+data);
+            }
+          
+          }
+
+
+
+      }
   // async componentDidMount(){
   //   let encryptedForms = await AsyncStorage.getItem("Forms");
   //   const {data}= this.props
@@ -90,7 +149,6 @@ class Feed extends Component {
       'name': 'Product 2',
       'url': 'url2'
     }];
-    var products = ''
     if(data1.length!=0){
       products = data1;
       console.log("unknownDATAdata1 :"+data1.length);
@@ -155,23 +213,31 @@ class Feed extends Component {
                         <MenuOptions>
                           <MenuOption
                             onSelect={() => {
+                              this.setDataTo('family',userdata,index)
                               /* HERE WE GONE SHOW OUR FIRST MESSAGE */
-                              showMessage({
-                                message: "Simple message",
-                                type: "info"
-                              });
+                              // showMessage({
+                              //   message: "Simple message",
+                              //   type: "info"
+                              // });
                             }}
                           >
                             <Text style={{ fontSize: 20 }}>Add to Family</Text>
                           </MenuOption>
                           <MenuOption
-                            onSelect={() => alert(`Added to Friends`)}
+                            onSelect={() => {
+                              this.setDataTo('friends',userdata,index)
+                              // alert(`Added to Friends`)
+                            }}
                           >
                             <Text style={{ color: "red", fontSize: 20 }}>
                               Add to Friends
                             </Text>
                           </MenuOption>
-                          <MenuOption onSelect={() => alert(`Added to Others`)}>
+                          <MenuOption onSelect={() => 
+                            {
+                              this.setDataTo('Others',userdata,index);
+                              alert(`Added to Others`)
+                              }}>
                             <Text style={{ fontSize: 20 }}>Add to Others</Text>
                           </MenuOption>
                         </MenuOptions>

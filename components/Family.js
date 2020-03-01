@@ -61,23 +61,54 @@ import {
 } from "react-native-popup-menu";
 import { TouchableOpacity } from "react-native-gesture-handler";
 var cardsList = ["Family1", "Family2", "Family3"];
+var products1 = ''
 class Family extends Component {
   state = {};
 
   render() {
+    const {data1}=this.props;
+    console.log("Y::"+data1);
+    var product =  [{
+      'name': 'Family1',
+      'url' : 'url'
+    },{
+      'name': 'Product2',
+      'url': 'url2'
+    }];
+    if(data1!=null){
+    if(data1.length!=0 || data1!=null){
+      products1 = data1;
+      console.log("unknownDATAdata1 :"+data1.length);
+  } else if(data1.length==0 && data1==undefined) {
+    products1 =  [{
+      'name': 'Product 1',
+      'url' : 'url'
+    },{
+      'name': 'Product 2',
+      'url': 'url2'
+    }];
+    console.log("unknownDATA :"+JSON.stringify(data1))
+    }
+    }
+    console.log('products'+products1);
+    
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
      
       <View>
         <SpringScrollView
-            // style={{backgroundColor:'black'}}
+           style={{backgroundColor:'black'}}
            bounces={true}
-          //  initialContentOffset={{ x: 0, y: 550 }}
-
         >
           <View style={styles.body}>
+          {products1==null || products1=='' && 
+              <View style={{justifyContent:'center',backgroundColor:'red'}}>
+              <Text style={{textAlign:'center'}}>No data Available</Text>
+              </View>}
             <View style={{backgroundColor:'#F2F2F2',paddingBottom:10,padding:5}}>
-              {cardsList.map((name, index) => {
+              {console.log("products : "+products1)}
+              {products1!=null && products1!='' && products1.map((userdata, index) => {
+                
                 return (
                   
                   <View style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
@@ -88,7 +119,7 @@ class Family extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={name} subtitle={index} />
+                      <CardTitle title={userdata.name} subtitle={userdata.url} />
                       <AwesomeButton backgroundColor="red" textColor="white">
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>

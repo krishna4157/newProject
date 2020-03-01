@@ -5,12 +5,14 @@ import Home from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
 import Family from "../components/Friends";
 import Others from "../components/Others";
+import AsyncStorage from "@react-native-community/async-storage";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
 class OthersPage extends Component {
     state={
+        data1: '',
         subjectCompliance: {
             dayCompliance: 0,
           weekCompliance: 0,
@@ -18,6 +20,18 @@ class OthersPage extends Component {
           totalCompliance: 0,
         }
     };
+
+
+
+
+    componentDidMount = async()=>{
+      let encryptedForms = await AsyncStorage.getItem("OthersData");
+        var data = JSON.parse(encryptedForms);
+        this.setState({
+            data1: data
+        })
+        console.log('OthersData :'+this.state.data1);
+    }
 
    
 
@@ -77,8 +91,10 @@ class OthersPage extends Component {
     }
     
     render() {
+      const {data1}=this.state;
         return (
             <Others
+            data1={data1}
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}

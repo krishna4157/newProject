@@ -42,8 +42,8 @@ class App extends Component {
 
     var Relations = [{
       
-      'name': 'Family1',
-      'url' : 'url5'
+      'name'    : 'Family1',
+      'url'     : 'url5'
     },{
       'name': 'Family2',
       'url': 'url2'
@@ -55,9 +55,19 @@ class App extends Component {
     {
       'name': 'Friend2',
       'url': 'url2'
+    },
+    {
+      'name': 'Other1',
+      'url': 'url2'
+    },{
+      'name': 'Other2',
+      'url': 'url2'
     }];
     
     let StringifyData = JSON.stringify(Relations);
+    await AsyncStorage.setItem('FamilyData','');
+    await AsyncStorage.setItem('FriendsData','');
+    await AsyncStorage.setItem('OthersData','');
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
     let formdata = JSON.parse(encryptedForms)

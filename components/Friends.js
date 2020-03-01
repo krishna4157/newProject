@@ -29,12 +29,38 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 var friends = ['Friends1','Friends2','Friends3'];
+var products2 = ''
 
 class Friends extends Component {
     state={
     };
 
     render() {
+      const {data1}=this.props;
+      console.log("Y::"+data1);
+    var product =  [{
+      'name': 'Family1',
+      'url' : 'url'
+    },{
+      'name': 'Product2',
+      'url': 'url2'
+    }];
+    if(data1!=null){
+      if(data1.length!=0 || data1!=null){
+        products2 = data1;
+        console.log("unknownDATAdata1 :"+data1.length);
+    } else if(data1.length==0 && data1==undefined) {
+      products2 =  [{
+        'name': 'Product 1',
+        'url' : 'url'
+      },{
+        'name': 'Product 2',
+        'url': 'url2'
+      }];
+      console.log("unknownDATA :"+JSON.stringify(data1))
+      }
+      } 
+    // console.log(JSON.stringify(productsIds));
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
           <View>
@@ -54,10 +80,14 @@ bounces={true}
                 </View>
               )} */}
               <View style={styles.body}>
+              {products2==null  || products2=='' &&  
+              <View style={{justifyContent:'center',backgroundColor:'red'}}>
+              <Text style={{textAlign:'center'}}>No data Available</Text>
+              </View>}
                 <View style={{padding:10}}>
                   
                    
-                    {friends.map((name,index)=>{
+                {products2!=null && products2!='' && products2.map((userdata,index)=>{
                      return (
                       <TouchableHighlight onPress={()=>{
                         alert("hello!")
@@ -78,7 +108,7 @@ bounces={true}
                           padding: 10
                         }}
                       >
-                        <CardTitle title={name} subtitle={index} />
+                        <CardTitle title={userdata.name} subtitle={userdata.url} />
                         <AwesomeButton backgroundColor="red" textColor="white">
                           <Text style={{color:'white'}}>      X      </Text> 
                         </AwesomeButton>

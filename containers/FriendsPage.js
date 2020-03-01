@@ -21,6 +21,7 @@ import { NavigationEvents, createAppContainer } from 'react-navigation';
 import FamilyPage from "./FamilyPage";
 import OthersPage from "./OthersPage";
 import { createStackNavigator } from "react-navigation-stack";
+import AsyncStorage from "@react-native-community/async-storage";
 
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
@@ -29,9 +30,19 @@ class FriendsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data1:'',
       visible: false,
       showDialog: false,
     }
+  }
+
+  componentDidMount = async()=>{
+    let encryptedForms = await AsyncStorage.getItem("FriendsData");
+      var data = JSON.parse(encryptedForms);
+      this.setState({
+          data1: data
+      })
+      console.log('Friendsdata :'+this.state.data1);
   }
 
   handleHeaderMenuDialoge = (visible,navigationPage) => {
@@ -140,7 +151,7 @@ class FriendsPage extends Component {
     }
     
     render() {
-      const{visible}=this.state;
+      const{visible,data1}=this.state;
       console.log("In render : "+visible);
         return (
           
@@ -153,7 +164,7 @@ class FriendsPage extends Component {
               })
               }}
           />                      */}
-            <Friends
+            <Friends data1={data1}
             // navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}

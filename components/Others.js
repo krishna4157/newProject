@@ -18,22 +18,45 @@ import {
     DebugInstructions,
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
-  // import stylesss from '../styles';
-// import Compliance from './ProgressBar';
-// import styles from '../components/styles/homeStyles';
-// import { NavigationEvents, SafeAreaView } from 'react-navigation';
-// import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 var friends = ['Others1','Others2','Others3'];
+var products2 = ''
+
 class Others extends Component {
     state={
+
     };
 
     render() {
+      const {data1}=this.props;
+      console.log("Y::"+data1);
+    var product =  [{
+      'name': 'Family1',
+      'url' : 'url'
+    },{
+      'name': 'Product2',
+      'url': 'url2'
+    }];
+    if(data1!=null){
+      if(data1.length!=0 || data1!=null){
+        products2 = data1;
+        console.log("unknownDATAdata1 :"+data1.length);
+    } else if(data1.length==0 && data1==undefined) {
+      products2 =  [{
+        'name': 'Product 1',
+        'url' : 'url'
+      },{
+        'name': 'Product 2',
+        'url': 'url2'
+      }];
+      console.log("unknownDATA :"+JSON.stringify(data1))
+      }
+      }
+    // console.log(JSON.stringify(productsIds));
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
           <View>
@@ -46,21 +69,30 @@ class Others extends Component {
                 </View>
               )} */}
               <View style={styles.body}>
+              {products2==null || products2=='' && 
+              <View style={{justifyContent:'center',backgroundColor:'red'}}>
+              <Text style={{textAlign:'center'}}>No data Available</Text>
+              </View>}
                 <View style={{padding:10}}>
                   
                    
-                    {friends.map((name,index)=>{
+                {products2!=null && products2!='' &&  products2.map((userdata,index)=>{
                      return ( <TouchableHighlight onPress={()=>{
                       alert("hello!")
                       console.log('HELLO!');
-                    }} style={{ borderWidth: 1,
+                    }} style={{ 
+                      borderWidth: 1,
                       borderColor: '#ddd',
                       borderBottomWidth: 0,
                       shadowColor: '#000',
                       shadowOffset: { width: 10, height: 20 },
                       shadowOpacity: 10,
                       shadowRadius: 2,
-                      elevation: 10,borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                      elevation: 10,
+                      borderRadius:20,
+                      backgroundColor:'white',
+                      marginTop:10 
+                      }}>
                     <View>
                     <View 
                       style={{
@@ -69,7 +101,7 @@ class Others extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={name} subtitle={index} />
+                      <CardTitle title={userdata.name} subtitle={userdata.url} />
                       <AwesomeButton backgroundColor="red" textColor="white">
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>
