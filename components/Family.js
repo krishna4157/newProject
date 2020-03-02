@@ -64,6 +64,8 @@ import AsyncStorage from "@react-native-community/async-storage";
 import  _ from 'lodash'
 import { NavigationEvents } from "react-navigation";
 var cardsList = ["Family1", "Family2", "Family3"];
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+
 class Family extends Component {
   state = {
     products1:''
@@ -149,7 +151,8 @@ class Family extends Component {
                     >
                       <CardTitle title={userdata.name} subtitle={userdata.url} />
                       <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                        <Text style={{color:'white'}}>      X      </Text> 
+                      <FontAwesomeIcon style={{padding:25}} icon={faTimes} />
+                      
                       </AwesomeButton>
                     </View>
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>

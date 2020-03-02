@@ -22,7 +22,12 @@ import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 var friends = ['Others1','Others2','Others3'];
+import  _ from 'lodash'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
 
 class Others extends Component {
   state={
@@ -106,7 +111,7 @@ class Others extends Component {
                     >
                       <CardTitle title={userdata.name} subtitle={userdata.url} />
                       <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                        <Text style={{color:'white'}}>      X      </Text> 
+                      <FontAwesomeIcon style={{padding:25}} icon={faTimes} /> 
                       </AwesomeButton>
                     </View>
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>

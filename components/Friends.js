@@ -24,6 +24,8 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import  _ from 'lodash'
+import { faUser,faFax,faUserSecret,faAddressBook,faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 
 var friends = ['Friends1','Friends2','Friends3'];
@@ -111,7 +113,7 @@ bounces={true}
                       >
                         <CardTitle title={userdata.name} subtitle={userdata.url} />
                         <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                          <Text style={{color:'white'}}>      X      </Text> 
+                        <FontAwesomeIcon style={{padding:25}} icon={faTimes} /> 
                         </AwesomeButton>
                       </View>
                       <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
