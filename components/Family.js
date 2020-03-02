@@ -97,7 +97,7 @@ class Family extends Component {
      
       <View>
         <SpringScrollView
-           style={{backgroundColor:'black'}}
+           style={{backgroundColor:'white'}}
            bounces={true}
         >
           <View style={styles.body}>

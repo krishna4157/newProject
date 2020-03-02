@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Title, Content, List, ListItem, Icon, Left, Body, Right, Switch } from 'native-base';
 import {
-    
     StyleSheet,
     ScrollView,
     View,
@@ -18,50 +17,30 @@ import {
     DebugInstructions,
     ReloadInstructions,
   } from 'react-native/Libraries/NewAppScreen';
-  // import stylesss from '../styles';
-// import Compliance from './ProgressBar';
-// import styles from '../components/styles/homeStyles';
-// import { NavigationEvents, SafeAreaView } from 'react-navigation';
-// import { backgroundColor } from '../containers/NavigationScreens';
+
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 var friends = ['Friends1','Friends2','Friends3'];
-var products2 = ''
 
 class Friends extends Component {
     state={
+      products2: '',
+
     };
 
+    async componentDidMount(){
+      const {data1}= this.props
+      this.setState({
+        products2: data1
+      })
+      console.log('datafriends : '+JSON.stringify(data1))
+    }
+
     render() {
-      const {data1}=this.props;
-      console.log("Y::"+data1);
-    var product =  [{
-      'name': 'Family1',
-      'url' : 'url'
-    },{
-      'name': 'Product2',
-      'url': 'url2'
-    }];
-    if(data1!=null){
-      if(data1.length!=0 || data1!=null){
-        products2 = data1;
-        console.log("unknownDATAdata1 :"+data1.length);
-    } else if(data1.length==0 && data1==undefined) {
-      products2 =  [{
-        'name': 'Product 1',
-        'url' : 'url'
-      },{
-        'name': 'Product 2',
-        'url': 'url2'
-      }];
-      console.log("unknownDATA :"+JSON.stringify(data1))
-      }
-      } 
-    // console.log(JSON.stringify(productsIds));
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
+      const {products2}=this.state;
         return (
           <View>
             <SpringScrollView
@@ -70,23 +49,14 @@ bounces={true}
 //  initialContentOffset={{ x: 0, y: 550 }}
 
 >
-            {/* <ScrollView bounces={true} bouncesZoom={true} overScrollMode={"always"} alwaysBounceHorizontal alwaysBounceVertical
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}> */}
-              {/* <Header /> */}
-              {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
               <View style={styles.body}>
-              {products2==null  || products2=='' &&  
+              {products2=='' || products2==null &&  
               <View style={{justifyContent:'center',backgroundColor:'red'}}>
               <Text style={{textAlign:'center'}}>No data Available</Text>
               </View>}
                 <View style={{padding:10}}>
                   
-                   
+                   {console.log("in component :"+JSON.stringify(products2))}
                 {products2!=null && products2!='' && products2.map((userdata,index)=>{
                      return (
                       <TouchableHighlight onPress={()=>{
@@ -113,7 +83,7 @@ bounces={true}
                           <Text style={{color:'white'}}>      X      </Text> 
                         </AwesomeButton>
                       </View>
-                      <View style={{flexWrap: 'wrap',height:210,backgroundColor:'red',borderRadius:30}}>
+                      <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
                       <Image
                       style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
                        source={{ uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}}
@@ -121,33 +91,6 @@ bounces={true}
                       </View>
                       </View>
                     </TouchableHighlight>
-  //                    <Card style={{borderRadious:30}}>
-  //        <View style={{flexDirection:'row',alignItems:'center',padding:10}}>
-  //                 <CardTitle 
-  //   title={name} 
-  //   subtitle={index}
-  //  />
-  //  <AwesomeButton backgroundColor='red' textColor='white' onPress ={()=>{
-  //    alert('Do you want to delete!!')
-  //  }} >  X  </AwesomeButton>
-  //  </View>
-                    
-  //                   <CardImage  
-  //                   title="Above all i am here"
-  //                   source={{uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}} 
-  //                   />
-  // {/* <View  style={{flex:1,flexDirection:'row',alignSelf:'center',justifyContent:'space-between'}}>    
-  //   <View>
-  //   <AwesomeButton backgroundColor='green' textColor='red'>Add to Family</AwesomeButton>
-  //   </View>
-  //   <View>
-  //   <AwesomeButton backgroundColor='green' textColor='red' >Add to Friends</AwesomeButton>
-  //   </View>
-  //   <View>
-  //   <AwesomeButton backgroundColor='green' textColor='red' >Add to Others</AwesomeButton>
-  //   </View>
-  //   </View> */}
-  //                   </Card>
                     )})}
                   </View>
               </View>

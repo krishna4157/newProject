@@ -63,64 +63,75 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
 // import {Header} from 'react-native-elements';
 // let data
-var products = ''
+// var products = ''
 let data = [];
 
 class Feed extends Component {
   state={
-    Fromdata: '',
+    products: '',
+      }
+
+
+      async componentDidMount(){
+        const {data1}= this.props
+        this.setState({
+          products: data1
+        })
       }
 
       setDataTo = async(Relation,userdata,index)=>{
-        
+        alert('Sending Data!!!');
+        const{products}=this.state;
           if(products!=''){
             if(Relation=='family'){
               alert('Family Called!');
               data = await AsyncStorage.getItem('FamilyData');
-              if(data!=null){
-                
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('FamilyData',stringifyData);
-              } else {
-                data = [];
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('FamilyData',stringifyData);
-              }
+              let removedData = _.remove(products,function(n){
+                console.log("N :"+JSON.stringify(n));
+                return userdata.name != n.name;
+              })
+              let temp = [];
+              temp.push(userdata);
+              let stringify = JSON.stringify(temp);
+              AsyncStorage.setItem('FamilyData',stringify);
+              this.setState({
+                products: removedData
+              })
+              console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Family Data: "+data);
-              
-
             } else if(Relation=='friends'){
               alert('Friends Called!');
               data = await AsyncStorage.getItem('FriendsData');
-              if(data!=null){  
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('FriendsData',stringifyData);
-              } else {
-                data = [];
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('FriendsData',stringifyData);
-              }
-              console.log("Friends Data: "+data);
+              let removedData = _.remove(products,function(n){
+                console.log("N :"+JSON.stringify(n));
+                return userdata.name != n.name;
+              })
+              let temp = [];
+              temp.push(userdata);
+              let stringify = JSON.stringify(temp);
+              AsyncStorage.setItem('FriendsData',stringify);
+              this.setState({
+                products: removedData
+              })
+              console.log("Data Removed : "+JSON.stringify(removedData));
+              console.log("Family Data: "+data);
               
             } else if(Relation=='Others'){
-              await AsyncStorage.getItem('OthersData');
               alert('Others Called!');
               data = await AsyncStorage.getItem('OthersData');
-              if(data!=null){  
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('OthersData',stringifyData);
-              } else {
-                data = [];
-                data.push(userdata);
-                let stringifyData = JSON.stringify(data);
-                AsyncStorage.setItem('OthersData',stringifyData);
-              }
-              console.log("Friends Data: "+data);
+              let removedData = _.remove(products,function(n){
+                console.log("N :"+JSON.stringify(n));
+                return userdata.name != n.name;
+              })
+              let temp = [];
+              temp.push(userdata);
+              let stringify = JSON.stringify(temp);              AsyncStorage.setItem('OthersData',stringify);
+              this.setState({
+                products: removedData
+              })
+              console.log("Data Removed : "+JSON.stringify(removedData));
+              console.log("Others Data: "+data);
+              
             }
           
           }
@@ -128,47 +139,14 @@ class Feed extends Component {
 
 
       }
-  // async componentDidMount(){
-  //   let encryptedForms = await AsyncStorage.getItem("Forms");
-  //   const {data}= this.props
-  //   data = JSON.parse(encryptedForms);
-  //   this.setState({
-  //       data1: data
-  //   })
-  // }
+
+  
 
   
 
   render() {
-     const {data1}=this.props;
-    console.log("Y::"+data1);
-    var product =  [{
-      'name': 'Product 1',
-      'url' : 'url'
-    },{
-      'name': 'Product 2',
-      'url': 'url2'
-    }];
-    if(data1.length!=0){
-      products = data1;
-      console.log("unknownDATAdata1 :"+data1.length);
-  } else if(data1.length==0) {
-    products =  [{
-      'name': 'Product 1',
-      'url' : 'url'
-    },{
-      'name': 'Product 2',
-      'url': 'url2'
-    }];
-    console.log("unknownDATA :"+JSON.stringify(data1))
-    }
+     const {products}=this.state;
     console.log('products'+products);
-    // console.log('data'+data)
-    var productsIds = products.map(function(product) {
-      console.log(product);
-      return product.id;
-    }); 
-    console.log(JSON.stringify(productsIds));
     return (
       <View>
           <Header style={{alignItems:'center',backgroundColor:'#3498DB'}} >
@@ -179,7 +157,7 @@ class Feed extends Component {
           style={styles.scrollView}
         >
           <View style={styles.body}>
-          {products!=null && products.map(
+          {products!=null && products!='' && products.map(
                 (userdata,index)  => {
                  console.log("userdata :"+JSON.stringify(userdata));
                  console.log("index :"+index);

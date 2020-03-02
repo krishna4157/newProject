@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
 import Home from '../components/Family';
-import { BackHandler, Alert,View } from 'react-native';
+import { BackHandler, Alert,View, Text } from 'react-native';
 import Family from "../components/Friends";
 import Others from "../components/Others";
 import AsyncStorage from "@react-native-community/async-storage";
-// import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
-// import { retrieveSubjectCompliance } from '../utils/homeUtils';
-// import { withNavigationFocus } from "react-navigation";
-// import {setCurrentScreen} from '../actions/storeAppStatus';
+import {
+  Menu,
+  MenuProvider,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 class OthersPage extends Component {
     state={
         data1: '',
@@ -30,77 +32,24 @@ class OthersPage extends Component {
         this.setState({
             data1: data
         })
-        console.log('OthersData :'+this.state.data1);
-    }
-
-   
-
-
-    //   componentDidMount() {
-    //       const{setCurrentScreen}= this.props;
-    //     // setCurrentScreen("");
-    //     // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //   }    
-
-    //   componentDidUpdate (prevProps) {
-    //     const { selectedLanguage, isFocused, screenProps: { t } } = this.props;
-    //     if ( selectedLanguage !== prevProps.selectedLanguage) {
-    //         this.props.navigation.setParams({ title: t('HomeTitle') });
-    //     } if ( isFocused === true) {
-    //         // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //     } if ( isFocused === false) {
-    //         // BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    //     }
-
-    // }
-
-    handleBackPress = () => {// works best when the goBack is async
-        this.exitApplication();
-        return true;
-        // BackHandler.exitApp();
-        // return true;
+        console.log('this Others data :'+this.state.data1);
     }
     
-    // retrieveSubjectCompliance = async() => {
-    //     const { subject } = this.props;
-    //     try {
-    //         subjectCompliance = await retrieveSubjectCompliance(subject);
-    //         this.setState({
-    //             subjectCompliance,
-    //         })
-    //     } catch (error) {
-    //        console.log(error);
-    //     }
-        
-    // }
-    
-    exitApplication = () => {
-        Alert.alert(
-            '',
-            'Exit ezpro?',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => true,
-                style: 'cancel',
-              },
-              {text: 'OK', onPress: () => BackHandler.exitApp()},
-            ],
-            {cancelable: false},
-          );
-    }
+
     
     render() {
       const {data1}=this.state;
         return (
-            <Others
-            data1={data1}
-            // navigation={navigation}
-            // loading={loading}
-            // subjectCompliance={subjectCompliance}
-            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
-            // screenProps={screenProps}  
-            />
+          <MenuProvider>
+
+          {data1!='' ? 
+          <Others data1={data1}
+             
+          /> : <View>
+            <Text>loading</Text>
+          </View>}
+          </MenuProvider>
+
         );
     }
 }

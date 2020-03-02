@@ -24,52 +24,30 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 var friends = ['Others1','Others2','Others3'];
-var products2 = ''
 
 class Others extends Component {
-    state={
+  state={
+    products2: '',
 
-    };
+  };
+
+  async componentDidMount(){
+    const {data1}= this.props
+    this.setState({
+      products2: data1
+    })
+    console.log('others data : '+JSON.stringify(data1))
+  }
 
     render() {
-      const {data1}=this.props;
-      console.log("Y::"+data1);
-    var product =  [{
-      'name': 'Family1',
-      'url' : 'url'
-    },{
-      'name': 'Product2',
-      'url': 'url2'
-    }];
-    if(data1!=null){
-      if(data1.length!=0 || data1!=null){
-        products2 = data1;
-        console.log("unknownDATAdata1 :"+data1.length);
-    } else if(data1.length==0 && data1==undefined) {
-      products2 =  [{
-        'name': 'Product 1',
-        'url' : 'url'
-      },{
-        'name': 'Product 2',
-        'url': 'url2'
-      }];
-      console.log("unknownDATA :"+JSON.stringify(data1))
-      }
-      }
-    // console.log(JSON.stringify(productsIds));
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
+      const {products2}=this.state;
         return (
           <View>
             <SpringScrollView
               style={styles.scrollView}>
-              {/* <Header /> */}
-              {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
               <View style={styles.body}>
-              {products2==null || products2=='' && 
+                {console.log("others:::"+products2)}
+              {products2==null && 
               <View style={{justifyContent:'center',backgroundColor:'red'}}>
               <Text style={{textAlign:'center'}}>No data Available</Text>
               </View>}

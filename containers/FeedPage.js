@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 import Home from '../components/Family';
-import { BackHandler, Alert,View } from 'react-native';
+import { BackHandler, Alert,View,Text } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import Feed from "../components/Feed";
 import AsyncStorage from "@react-native-community/async-storage";
@@ -61,21 +61,19 @@ class FeedPage extends Component {
     
     render() {
       const{data1}=this.state;
-
-      console.log("DATA: ::::::::::"+data1)
+      
+        console.log("Static Data : "+data1);
         return (
           <MenuProvider>
-            <Feed data1={data1}
-            // navigation={navigation}
-            // loading={loading}
-            // subjectCompliance={subjectCompliance}
-            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
-            // screenProps={screenProps}  
-            />
+            {data1!='' ? <Feed data1={data1}
+             
+            /> : <View>
+              <Text>loading</Text>
+            </View>}
             </MenuProvider>
         );
+      }
     }
-}
 
 // const mapStateToProps = state => ({
 //       selectedLanguage: state.changeLanguage.selectedLanguage,

@@ -42,117 +42,12 @@ class FriendsPage extends Component {
       this.setState({
           data1: data
       })
-      console.log('Friendsdata :'+this.state.data1);
+      console.log('this Friends data :'+this.state.data1);
   }
-
-  handleHeaderMenuDialoge = (visible,navigationPage) => {
-    const {navigation}= this.props;
-    console.log('PROPS :'+JSON.stringify(navigationPage));
-    console.log("Visible : "+visible);
-    // this.setState({
-    //   visible: false
-    // });
-    this.setState({
-      visible: false
-    });
-    navigation.navigate('Others');
-    // navigation.goBack();
-  }
-
-  onClickOutSide = (visible) =>{
-    const {navigation}= this.props;
-    this.setState({
-      visible: false
-    });
-    navigation.goBack();
-
-  }
-
-  // async componentDidMount() {
-  //   // if(i==0){
-  //   this.setState({
-  //     visible:true
-  //   })
-  //   // i++;
-  // // }
-  // }
-    // static navigationOptions = () => {
-    //   return {
-    //     // tabBarOnPress() {
-    //       // alert("HELLO");
-    //         // DialogPopUp();
-    // // <View style={{flex:1,backgroundColor:'red',zIndex:20,height:50,width:50}}>
-    // //   <Text>HELO</Text>
-    // //   </View>
-    //       // perform your logic here
-    //       // this is mandatory to perform the actual switch
-    //       // you can omit this if you want to prevent it
-    //       // jumpToIndex(scene.index);
-    //     }
-    //   };
-    // };
-   
-
-
-    //   componentDidMount() {
-    //       const{setCurrentScreen}= this.props;
-    //     // setCurrentScreen("");
-    //     // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //   }    
-
-    //   componentDidUpdate (prevProps) {
-    //     const { selectedLanguage, isFocused, screenProps: { t } } = this.props;
-    //     if ( selectedLanguage !== prevProps.selectedLanguage) {
-    //         this.props.navigation.setParams({ title: t('HomeTitle') });
-    //     } if ( isFocused === true) {
-    //         // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //     } if ( isFocused === false) {
-    //         // BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    //     }
-
-    // }
-
-    
-
-    handleBackPress = () => {// works best when the goBack is async
-        this.exitApplication();
-        return true;
-        // BackHandler.exitApp();
-        // return true;
-    }
-    
-    // retrieveSubjectCompliance = async() => {
-    //     const { subject } = this.props;
-    //     try {
-    //         subjectCompliance = await retrieveSubjectCompliance(subject);
-    //         this.setState({
-    //             subjectCompliance,
-    //         })
-    //     } catch (error) {
-    //        console.log(error);
-    //     }
-        
-    // }
-    
-    exitApplication = () => {
-        Alert.alert(
-            '',
-            'Exit ezpro?',
-            [
-              {
-                text: 'Cancel',
-                onPress: () => true,
-                style: 'cancel',
-              },
-              {text: 'OK', onPress: () => BackHandler.exitApp()},
-            ],
-            {cancelable: false},
-          );
-    }
     
     render() {
       const{visible,data1}=this.state;
-      console.log("In render : "+visible);
+      console.log("In Friends Page : "+JSON.stringify(data1));
         return (
           
           <MenuProvider>
@@ -164,13 +59,12 @@ class FriendsPage extends Component {
               })
               }}
           />                      */}
-            <Friends data1={data1}
-            // navigation={navigation}
-            // loading={loading}
-            // subjectCompliance={subjectCompliance}
-            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
-            // screenProps={screenProps}  
-            />
+            {console.log("in Container : "+data1)}
+            {data1!='' ? <Friends data1={data1} visible={visible}
+             
+             /> : <View>
+               <Text>loading</Text>
+             </View>}
             </MenuProvider>
         );
     }
