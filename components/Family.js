@@ -60,44 +60,72 @@ import {
   MenuTrigger
 } from "react-native-popup-menu";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-community/async-storage";
+import  _ from 'lodash'
+import { NavigationEvents } from "react-navigation";
 var cardsList = ["Family1", "Family2", "Family3"];
-var products1 = ''
 class Family extends Component {
-  state = {};
+  state = {
+    products1:''
+  };
+
+
+  async componentDidMount(){
+    const {data1}= this.props
+    this.setState({
+      products1: data1
+    })
+  }
+
+  setDataToFeeds = async(userdata,index)=>{
+    alert('Sending Data!!!');
+    let data = await AsyncStorage.getItem('Forms');
+    console.log("FeedForms : "+data);
+    const{products1}=this.state;
+      if(products1!=''){
+          alert('Feeds Called!');
+          
+          
+          let removedData = _.remove(products1,function(n){
+            console.log("N :"+JSON.stringify(n));
+            return userdata.name != n.name;
+          })
+          let temp = JSON.parse(data);
+          temp.push(userdata);
+          let stringify = JSON.stringify(temp);
+          AsyncStorage.setItem('Forms',stringify);
+          AsyncStorage.setItem('FamilyData',JSON.stringify(removedData));
+          this.setState({
+            products1: removedData
+          })
+          console.log("Data Removed : "+JSON.stringify(removedData));
+          console.log("Family Data: "+data);
+      
+      }
+
+
+
+  }
+
 
   render() {
+    const {products1}=this.state;
     const {data1}=this.props;
-    console.log("Y::"+data1);
-    var product =  [{
-      'name': 'Family1',
-      'url' : 'url'
-    },{
-      'name': 'Product2',
-      'url': 'url2'
-    }];
-    if(data1!=null){
-    if(data1.length!=0 || data1!=null){
-      products1 = data1;
-      console.log("unknownDATAdata1 :"+data1.length);
-  } else if(data1.length==0 && data1==undefined) {
-    products1 =  [{
-      'name': 'Product 1',
-      'url' : 'url'
-    },{
-      'name': 'Product 2',
-      'url': 'url2'
-    }];
-    console.log("unknownDATA :"+JSON.stringify(data1))
-    }
-    }
-    console.log('products'+products1);
-    
+    console.log("Family Data : "+products1);
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
      
       <View>
+        <NavigationEvents 
+          onDidFocus={()=>{
+            console.log("Focus Called")
+            this.setState({
+              products1: data1
+            })      
+          }}
+        />
         <SpringScrollView
-           style={{backgroundColor:'white'}}
+           style={{backgroundColor:'white',height:'100%'}}
            bounces={true}
         >
           <View style={styles.body}>
@@ -105,13 +133,13 @@ class Family extends Component {
               <View style={{justifyContent:'center',backgroundColor:'red'}}>
               <Text style={{textAlign:'center'}}>No data Available</Text>
               </View>}
-            <View style={{backgroundColor:'#F2F2F2',paddingBottom:10,padding:5}}>
+            <View style={{paddingBottom:10,padding:5,height:'120%'}}>
               {console.log("products : "+products1)}
               {products1!=null && products1!='' && products1.map((userdata, index) => {
                 
                 return (
                   
-                  <View style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                  <Card style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
                     <View 
                       style={{
                         flexDirection: "row",
@@ -120,7 +148,7 @@ class Family extends Component {
                       }}
                     >
                       <CardTitle title={userdata.name} subtitle={userdata.url} />
-                      <AwesomeButton backgroundColor="red" textColor="white">
+                      <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>
                     </View>
@@ -130,7 +158,7 @@ class Family extends Component {
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
                     </View>
-                  </View>
+                  </Card>
                 );
               })}
             </View>
@@ -149,7 +177,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   body: {
-    backgroundColor: "grey"
+    height:'100%'
   },
   sectionContainer: {
     flexDirection: "row",

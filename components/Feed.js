@@ -97,6 +97,7 @@ class Feed extends Component {
               this.setState({
                 products: removedData
               })
+              AsyncStorage.setItem('Forms',JSON.stringify(removedData));
               console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Family Data: "+data);
             } else if(Relation=='friends'){
@@ -113,6 +114,7 @@ class Feed extends Component {
               this.setState({
                 products: removedData
               })
+              AsyncStorage.setItem('Forms',JSON.stringify(removedData));
               console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Family Data: "+data);
               
@@ -125,10 +127,12 @@ class Feed extends Component {
               })
               let temp = JSON.parse(data);
               temp.push(userdata);
-              let stringify = JSON.stringify(temp);              AsyncStorage.setItem('OthersData',stringify);
+              let stringify = JSON.stringify(temp);              
+              AsyncStorage.setItem('OthersData',stringify);
               this.setState({
                 products: removedData
               })
+              AsyncStorage.setItem('Forms',JSON.stringify(removedData));
               console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Others Data: "+data);
               
@@ -140,12 +144,20 @@ class Feed extends Component {
 
       }
 
-  
+      onRefreshData= async()=>{
+        let encryptedForms = await AsyncStorage.getItem("Forms");
+          var data = JSON.parse(encryptedForms);
+          this.setState({
+              products: data
+          })
+          console.log('this state data :'+this.state.products);
+      }
 
   
 
   render() {
      const {products}=this.state;
+     const {data1}=this.props;
     console.log('products'+products);
     return (
       <View>
@@ -153,6 +165,13 @@ class Feed extends Component {
             <Title>FEED</Title>
           </Header>
         <SpringScrollView
+        ref ={ref => (this._scrollView = ref)} 
+        onRefresh={()=>{
+          setTimeout(() => {
+            this._scrollView.endRefresh();
+            this.onRefreshData();
+          }, 2000);
+        }}
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >

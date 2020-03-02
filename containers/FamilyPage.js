@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 import Family from '../components/Family';
-import { BackHandler, Alert,View } from 'react-native';
+import { BackHandler, Alert,View, Text } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import AsyncStorage from "@react-native-community/async-storage";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
@@ -89,13 +89,11 @@ class FamilyPage extends Component {
       const {data1}= this.state;
         return (
           <MenuProvider>
-            <Family data1 ={data1}
-            // navigation={navigation}
-            // loading={loading}
-            // subjectCompliance={subjectCompliance}
-            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
-            // screenProps={screenProps}  
-            />
+            {data1!='' ? <Family data1={data1}
+             
+             /> : <View>
+               <Text>loading</Text>
+             </View>}
             </MenuProvider>
         );
     }

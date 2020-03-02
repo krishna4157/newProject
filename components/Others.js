@@ -22,7 +22,6 @@ import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import { TouchableHighlight } from 'react-native-gesture-handler';
-
 var friends = ['Others1','Others2','Others3'];
 
 class Others extends Component {
@@ -38,6 +37,32 @@ class Others extends Component {
     })
     console.log('others data : '+JSON.stringify(data1))
   }
+
+
+  setDataToFeeds = async(userdata,index)=>{
+    alert('Sending Data!!!');
+    let data = await AsyncStorage.getItem('Forms');
+    const{products2}=this.state;
+      if(products2!=''){
+          alert('Feeds Called!');
+          
+          let removedData = _.remove(products2,function(n){
+            console.log("N :"+JSON.stringify(n));
+            return userdata.name != n.name;
+          })
+          let temp = JSON.parse(data);
+          temp.push(userdata);
+          let stringify = JSON.stringify(temp);
+          AsyncStorage.setItem('Forms',stringify);
+          AsyncStorage.setItem('OthersData',JSON.stringify(removedData));
+          this.setState({
+            products2: removedData
+          })
+          console.log("Data Removed : "+JSON.stringify(removedData));
+          console.log("Family Data: "+data);
+      
+      }
+    }
 
     render() {
       const {products2}=this.state;
@@ -71,7 +96,7 @@ class Others extends Component {
                       backgroundColor:'white',
                       marginTop:10 
                       }}>
-                    <View>
+                    <Card>
                     <View 
                       style={{
                         flexDirection: "row",
@@ -80,7 +105,7 @@ class Others extends Component {
                       }}
                     >
                       <CardTitle title={userdata.name} subtitle={userdata.url} />
-                      <AwesomeButton backgroundColor="red" textColor="white">
+                      <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
                         <Text style={{color:'white'}}>      X      </Text> 
                       </AwesomeButton>
                     </View>
@@ -90,7 +115,7 @@ class Others extends Component {
                      source={{ uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}}
                     />
                     </View>
-                    </View>
+                    </Card>
                   </TouchableHighlight>)})}
                   </View>
               </View>
@@ -102,6 +127,7 @@ class Others extends Component {
     const styles = StyleSheet.create({
       scrollView: {
         backgroundColor: Colors.lighter,
+        height:'100%'
       },
       engine: {
         position: 'absolute',
