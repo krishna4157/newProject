@@ -90,7 +90,7 @@ class Feed extends Component {
                 console.log("N :"+JSON.stringify(n));
                 return userdata.name != n.name;
               })
-              let temp = [];
+              let temp = JSON.parse(data);
               temp.push(userdata);
               let stringify = JSON.stringify(temp);
               AsyncStorage.setItem('FamilyData',stringify);
@@ -106,7 +106,7 @@ class Feed extends Component {
                 console.log("N :"+JSON.stringify(n));
                 return userdata.name != n.name;
               })
-              let temp = [];
+              let temp = JSON.parse(data);
               temp.push(userdata);
               let stringify = JSON.stringify(temp);
               AsyncStorage.setItem('FriendsData',stringify);
@@ -123,7 +123,7 @@ class Feed extends Component {
                 console.log("N :"+JSON.stringify(n));
                 return userdata.name != n.name;
               })
-              let temp = [];
+              let temp = JSON.parse(data);
               temp.push(userdata);
               let stringify = JSON.stringify(temp);              AsyncStorage.setItem('OthersData',stringify);
               this.setState({

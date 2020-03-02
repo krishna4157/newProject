@@ -63,11 +63,17 @@ class App extends Component {
       'name': 'Other2',
       'url': 'url2'
     }];
-    
+
+    var Family = [];
+    var Friends = [];
+    var Others = [];
+    var stringifyFamily = JSON.stringify(Family);
+    var stringifyFriends = JSON.stringify(Friends);
+    var stringifyOthers = JSON.stringify(Others);
     let StringifyData = JSON.stringify(Relations);
-    await AsyncStorage.setItem('FamilyData','');
-    await AsyncStorage.setItem('FriendsData','');
-    await AsyncStorage.setItem('OthersData','');
+    await AsyncStorage.setItem('FamilyData',stringifyFamily);
+    await AsyncStorage.setItem('FriendsData',stringifyFriends);
+    await AsyncStorage.setItem('OthersData',stringifyOthers);
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
     let formdata = JSON.parse(encryptedForms)
