@@ -1,7 +1,9 @@
 const tintColor = '#2f95dc';
-
-export default {
-  tintColor,
+var theme = 'bright'
+export default Colors = {
+  headerTabColor: 
+  // theme=='dark'?'#3498DB':'red',
+  headerTabColor(theme),
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
   tabBar: '#fefefe',
@@ -15,3 +17,12 @@ export default {
   FriendsHeader: 'white',
   OthersHeader: '#F2F2F2'
 };
+
+function headerTabColor(theme){
+  if(theme=='red'){
+    return 'red'
+  } else {
+      return '#3498DB'
+  }
+
+}

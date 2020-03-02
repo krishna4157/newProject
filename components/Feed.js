@@ -149,7 +149,7 @@ class Feed extends Component {
     console.log('products'+products);
     return (
       <View>
-          <Header style={{alignItems:'center',backgroundColor:'#3498DB'}} >
+          <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
             <Title>FEED</Title>
           </Header>
         <SpringScrollView
