@@ -61,6 +61,7 @@ var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
+import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 // import {Header} from 'react-native-elements';
 // let data
 // var products = ''
@@ -241,6 +242,17 @@ class Feed extends Component {
                       </Menu>
                       {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
                     </View>
+                    <MapView 
+                    style={{flex:1}}
+                    provider={PROVIDER_GOOGLE}
+                    region ={{
+                      latitude: 42.882004,
+                      longitude:74.582748,
+                      latitudeDelta: 0.0922,
+                      longitudeDelta: 0.0421
+                    }}
+                    showsUserLocation
+                    />
                     {/* <CardImage
                       resizeMode='contain'
                       title="Above all i am here"
@@ -258,6 +270,7 @@ class Feed extends Component {
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
                     </Button>
+                   
                     </View>
                   </View>
                 );
