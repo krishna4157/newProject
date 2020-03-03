@@ -253,8 +253,8 @@ class Feed extends Component {
                     /> */}
                      <View style={{height:200}}>
                     <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
-                      // alert('hello world');
-                      navigation.navigate('Maps') 
+                      alert('hello world');
+                     
                     }}>
                     <Image
                     style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
