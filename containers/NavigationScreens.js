@@ -21,6 +21,7 @@ import FeedPage from './FeedPage';
 import MorePage from './MorePage';
 import LoginPage from './LoginPage';
 import LanguagePage from './LanguagePage';
+import MapsPage from './MapsPage';
 
 // import {
 //     Menu,
@@ -36,7 +37,11 @@ const RelationNavigator = createStackNavigator({
     },
     Feed :{
         screen: FeedPage 
-   },Family: {
+   },
+   Maps :{
+        screen: MapsPage
+   },
+   Family: {
        screen: FamilyPage
      },
      Friends: {

@@ -158,7 +158,7 @@ class Feed extends Component {
 
   render() {
      const {products}=this.state;
-     const {data1}=this.props;
+     const {data1,navigation}=this.props;
     console.log('products'+products);
     return (
       <View>
@@ -242,17 +242,7 @@ class Feed extends Component {
                       </Menu>
                       {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
                     </View>
-                    <MapView 
-                    style={{flex:1}}
-                    provider={PROVIDER_GOOGLE}
-                    region ={{
-                      latitude: 42.882004,
-                      longitude:74.582748,
-                      latitudeDelta: 0.0922,
-                      longitudeDelta: 0.0421
-                    }}
-                    showsUserLocation
-                    />
+                   
                     {/* <CardImage
                       resizeMode='contain'
                       title="Above all i am here"
@@ -264,6 +254,7 @@ class Feed extends Component {
                      <View style={{height:200}}>
                     <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
                       // alert('hello world');
+                      navigation.navigate('Maps') 
                     }}>
                     <Image
                     style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
