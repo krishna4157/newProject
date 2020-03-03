@@ -8,6 +8,7 @@ import {
     Text,
     StatusBar,
     Animated,
+    PermissionsAndroid,
   } from 'react-native';
   
   import {
@@ -27,39 +28,56 @@ import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawe
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import MapView,{PROVIDER_GOOGLE} from 'react-native-maps';
+import { Marker } from "react-native-maps";
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
 class Maps extends Component {
-    state={
-    };
+    
+  constructor(props){
+    super(props);
+    this.state= {
+      paddingTop:1,
+    mapMargin:1
+    }
+    }
+
+
+    setMargin = () => {
+      this.setState({mapMargin:0})
+      }
+
+    componentDidMount(){
+      setTimeout(()=>this.setState({flex: 1}),1000);
+}
+
+_onMapReady() {
+  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+    .then(granted => {
+      this.setState({ paddingTop: 0 });
+    });
+}
+
+
 
     render() {
       const{navigation}= this.props;
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-            <View style={{  position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            justifyContent: 'flex-end',
-            alignItems: 'center'}}>
+            <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
              <MapView 
-                    style={{position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,}}
-                    provider={PROVIDER_GOOGLE}
-                    region ={{
-                      latitude: 42.882004,
-                      longitude:74.582748,
-                      latitudeDelta: 0.0922,
-                      longitudeDelta: 0.0421
-                    }}
-                    showsUserLocation
-                    />
+             
+             onMapReady={this._onMapReady} 
+             ref={map => (this.map = map)}
+             style={{marginBottom: this.state.mapMargin,flex:1}}
+             provider='google'
+             showsUserLocation={true}
+             showsMyLocationButton={true}
+             onMapReady={this._onMapReady}
+                    >
+                     
+            
+                      </MapView>
           </View>
         );
       }
