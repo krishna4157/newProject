@@ -112,7 +112,7 @@ class Family extends Component {
 
   render() {
     const {products1}=this.state;
-    const {data1}=this.props;
+    const {data1,navigation}=this.props;
     console.log("Family Data : "+products1);
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
@@ -156,10 +156,15 @@ class Family extends Component {
                       </AwesomeButton>
                     </View>
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
+                    <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
+                      // alert('hello world');
+                      navigation.navigate('Maps') 
+                    }}>
                     <Image
-                    style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
+                   style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
+                    </Button>
                     </View>
                   </Card>
                 );

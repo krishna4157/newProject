@@ -45,18 +45,13 @@ class Maps extends Component {
 
     setMargin = () => {
       this.setState({mapMargin:0})
+      this.setState({paddingTop:0})
       }
 
     componentDidMount(){
       setTimeout(()=>this.setState({flex: 1}),1000);
 }
 
-_onMapReady() {
-  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
-    .then(granted => {
-      this.setState({ paddingTop: 0 });
-    });
-}
 
 
 
@@ -66,14 +61,17 @@ _onMapReady() {
         return (
             <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
              <MapView 
-             
-             onMapReady={this._onMapReady} 
+             showsPointsOfInterest
+             showsScale
+            userLocationAnnotationTitle
+            zoomControlEnabled
+              onMapReady={this.setMargin} 
              ref={map => (this.map = map)}
              style={{marginBottom: this.state.mapMargin,flex:1}}
              provider='google'
              showsUserLocation={true}
              showsMyLocationButton={true}
-             onMapReady={this._onMapReady}
+            //  onMapReady={this._onMapReady}
                     >
                      
             

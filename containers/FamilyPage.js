@@ -85,11 +85,11 @@ class FamilyPage extends Component {
     }
     
     render() {
-
+        const{navigation}=this.props;
       const {data1}= this.state;
         return (
           <MenuProvider>
-            {data1!='' ? <Family data1={data1}
+            {data1!='' ? <Family navigation={navigation} data1={data1}
              
              /> : <View style={{backgroundColor:'red'}}>
                <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
