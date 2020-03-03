@@ -22,10 +22,11 @@ import FamilyPage from "./FamilyPage";
 import OthersPage from "./OthersPage";
 import { createStackNavigator } from "react-navigation-stack";
 import AsyncStorage from "@react-native-community/async-storage";
+import Language from "../components/Language";
 
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class FriendsPage extends Component {
+class LanguagePage extends Component {
   
   constructor(props) {
     super(props);
@@ -36,14 +37,14 @@ class FriendsPage extends Component {
     }
   }
 
-  componentDidMount = async()=>{
-    let encryptedForms = await AsyncStorage.getItem("FriendsData");
-      var data = JSON.parse(encryptedForms);
-      this.setState({
-          data1: data
-      })
-      console.log('this Friends data :'+this.state.data1);
-  }
+//   componentDidMount = async()=>{
+//     let encryptedForms = await AsyncStorage.getItem("FriendsData");
+//       var data = JSON.parse(encryptedForms);
+//       this.setState({
+//           data1: data
+//       })
+//       console.log('this Friends data :'+this.state.data1);
+//   }
     
     render() {
       const{visible,data1}=this.state;
@@ -60,11 +61,8 @@ class FriendsPage extends Component {
               }}
           />                      */}
             {console.log("in Container : "+data1)}
-            {data1!='' ? <Friends data1={data1} visible={visible}
-             
-             /> : <View style={{backgroundColor:'red'}}>
-               <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
-             </View>}
+           <Language
+            />
             </MenuProvider>
         );
     }
@@ -84,5 +82,5 @@ class FriendsPage extends Component {
 //     },
 //     dispatch,
 //   );
-export default FriendsPage
+export default LanguagePage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

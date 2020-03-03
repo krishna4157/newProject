@@ -80,11 +80,11 @@ class Feed extends Component {
       }
 
       setDataTo = async(Relation,userdata,index)=>{
-        alert('Sending Data!!!');
+        // alert('Sending Data!!!');
         const{products}=this.state;
           if(products!=''){
             if(Relation=='family'){
-              alert('Family Called!');
+              // alert('Family Called!');
               data = await AsyncStorage.getItem('FamilyData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -101,7 +101,7 @@ class Feed extends Component {
               console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Family Data: "+data);
             } else if(Relation=='friends'){
-              alert('Friends Called!');
+              // alert('Friends Called!');
               data = await AsyncStorage.getItem('FriendsData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -119,7 +119,7 @@ class Feed extends Component {
               console.log("Family Data: "+data);
               
             } else if(Relation=='Others'){
-              alert('Others Called!');
+              // alert('Others Called!');
               data = await AsyncStorage.getItem('OthersData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -233,7 +233,7 @@ class Feed extends Component {
                           <MenuOption onSelect={() => 
                             {
                               this.setDataTo('Others',userdata,index);
-                              alert(`Added to Others`)
+                              // alert(`Added to Others`)
                               }}>
                             <Text style={{ fontSize: 20 }}>Add to Others</Text>
                           </MenuOption>
@@ -251,7 +251,7 @@ class Feed extends Component {
                     /> */}
                      <View style={{height:200}}>
                     <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
-                      alert('hello world');
+                      // alert('hello world');
                     }}>
                     <Image
                     style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}

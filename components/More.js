@@ -34,6 +34,7 @@ class More extends Component {
     };
 
     render() {
+      const{navigation}= this.props;
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View>
@@ -41,17 +42,20 @@ class More extends Component {
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
                 return (
-                  <View>
-                <Button  style={{backgroundColor:'white'}}onPress={()=>{alert('HELLO WORLD!')}}>
-                <ListItem style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
+                
+                
+                <ListItem onPress={()=>{
+                  // alert('HELLO WORLD!');
+                  navigation.navigate('Language')
+                  }}
+                   style={{width:'100%',zIndex:-1,justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
                   
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='black' size={25} style={{padding:10}} /> 
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
                     </ListItem>
-                    </Button>
-                    </View>)})}
+                    )})}
             </SpringScrollView>
           </View>
         );

@@ -45,8 +45,8 @@ class OthersPage extends Component {
           {data1!='' ? 
           <Others data1={data1}
              
-          /> : <View>
-            <Text>loading</Text>
+          /> : <View style={{backgroundColor:'red'}}>
+               <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
           </View>}
           </MenuProvider>
 

@@ -78,12 +78,12 @@ class Family extends Component {
   }
 
   setDataToFeeds = async(userdata,index)=>{
-    alert('Sending Data!!!');
+    // alert('Sending Data!!!');
     let data = await AsyncStorage.getItem('Forms');
     console.log("FeedForms : "+data);
     const{products1}=this.state;
       if(products1!=''){
-          alert('Feeds Called!');
+          // alert('Feeds Called!');
           
           
           let removedData = _.remove(products1,function(n){

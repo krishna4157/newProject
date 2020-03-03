@@ -44,11 +44,11 @@ class Friends extends Component {
 
 
     setDataToFeeds = async(userdata,index)=>{
-      alert('Sending Data!!!');
+      // alert('Sending Data!!!');
       const{products2}=this.state;
       let data = await AsyncStorage.getItem('Forms');
       if(products2!=''){
-            alert('Feeds Called!');
+            // alert('Feeds Called!');
             
             let removedData = _.remove(products2,function(n){
               console.log("N :"+JSON.stringify(n));
@@ -91,7 +91,7 @@ bounces={true}
                 {products2!=null && products2!='' && products2.map((userdata,index)=>{
                      return (
                       <TouchableHighlight onPress={()=>{
-                        alert("hello!")
+                        // alert("hello!")
                         console.log('HELLO!');
                       }} style={{ borderWidth: 1,
                         borderColor: '#ddd',
