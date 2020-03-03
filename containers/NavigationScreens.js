@@ -20,6 +20,8 @@ import RelationsMenuPage from './RelationsMenuPage';
 import FeedPage from './FeedPage';
 import MorePage from './MorePage';
 import LoginPage from './LoginPage';
+import LanguagePage from './LanguagePage';
+import MapsPage from './MapsPage';
 
 // import {
 //     Menu,
@@ -35,7 +37,11 @@ const RelationNavigator = createStackNavigator({
     },
     Feed :{
         screen: FeedPage 
-   },Family: {
+   },
+   Maps :{
+        screen: MapsPage
+   },
+   Family: {
        screen: FamilyPage
      },
      Friends: {
@@ -48,6 +54,11 @@ const RelationNavigator = createStackNavigator({
      initialRouteName: 'RelationsMenuPage',
      headerMode:'none'
    });
+
+   const MoreTabs =  createStackNavigator({
+    More: MorePage,
+    Language: LanguagePage,
+   })
 
    const RootTabs = createBottomTabNavigator({
     Feed: {screen : FeedPage,
@@ -85,7 +96,7 @@ const RelationNavigator = createStackNavigator({
             <FontAwesomeIcon color='green' size={30}
             icon={faUsers} />
         }},
-    More: {screen : MorePage,
+    More: {screen : MoreTabs,
         navigationOptions:{
             tabBarLabel :
             <Text style={{marginBottom:10,color:'black'}}>More</Text>,

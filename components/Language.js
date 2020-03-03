@@ -23,20 +23,37 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
-import { faCog,faUser,faFax,faLanguage,faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
-var arr = [faLanguage,faCog, faUser, faFax];
-var MoreItems = ['Language','Settings','Logout'];
-class UserDetails extends Component {
+var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
+var MoreItems = ['English','Telugu','Hindi'];
+class Language extends Component {
     state={
     };
 
     render() {
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View>
-           
+            <SpringScrollView
+              style={styles.scrollView}>
+                {MoreItems.map((name,index)=>{
+                return (
+               
+                <ListItem
+                onPress={()=>{
+                    alert('HELLO WORLD!');
+                    // navigation.navigate('Language')
+                    }}
+                 style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
+                  
+                    >
+                    
+                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
+                    </ListItem>
+                    )})}
+            </SpringScrollView>
           </View>
         );
       }
@@ -44,6 +61,8 @@ class UserDetails extends Component {
     const styles = StyleSheet.create({
         scrollView: {
           backgroundColor: Colors.lighter,
+          height:'100%',
+          padding:5
         },
         engine: {
           position: 'absolute',
@@ -83,4 +102,4 @@ class UserDetails extends Component {
           textAlign: 'right',
         },
       });
-export default UserDetails;
+export default Language;

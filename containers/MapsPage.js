@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-import Family from '../components/Family';
-import { BackHandler, Alert,View, Text } from 'react-native';
-import { MenuProvider } from "react-native-popup-menu";
-import AsyncStorage from "@react-native-community/async-storage";
+import Home from '../components/Family';
+import { BackHandler, Alert,View } from 'react-native';
+import Family from "../components/Friends";
+import Others from "../components/Others";
+import More from "../components/More";
+import Maps from "../components/Maps";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class FamilyPage extends Component {
+class MapsPage extends Component {
     state={
-      data1:'',  
-      subjectCompliance: {
+        subjectCompliance: {
             dayCompliance: 0,
           weekCompliance: 0,
           monthCompliance: 0,
@@ -20,14 +21,7 @@ class FamilyPage extends Component {
         }
     };
 
-    componentDidMount = async()=>{
-      let encryptedForms = await AsyncStorage.getItem("FamilyData");
-        var data = JSON.parse(encryptedForms);
-        this.setState({
-            data1: data
-        })
-        console.log('this state data :'+this.state.data1);
-    }
+   
 
 
     //   componentDidMount() {
@@ -85,16 +79,15 @@ class FamilyPage extends Component {
     }
     
     render() {
-
-      const {data1}= this.state;
+      const {navigation}=this.props;
         return (
-          <MenuProvider>
-            {data1!='' ? <Family data1={data1}
-             
-             /> : <View style={{backgroundColor:'red'}}>
-               <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
-             </View>}
-            </MenuProvider>
+            <Maps
+            navigation={navigation}
+            // loading={loading}
+            // subjectCompliance={subjectCompliance}
+            // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
+            // screenProps={screenProps}  
+            />
         );
     }
 }
@@ -112,5 +105,5 @@ class FamilyPage extends Component {
 //     },
 //     dispatch,
 //   );
-export default FamilyPage
+export default MapsPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

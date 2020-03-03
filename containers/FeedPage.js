@@ -61,11 +61,11 @@ class FeedPage extends Component {
     
     render() {
       const{data1}=this.state;
-      
+      const {navigation}= this.props;
         console.log("Static Data : "+data1);
         return (
           <MenuProvider>
-            {data1!='' ? <Feed data1={data1}
+            {data1!='' ? <Feed data1={data1} navigation={navigation}
              
             /> : <View>
               <Text>loading</Text>

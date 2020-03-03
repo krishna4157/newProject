@@ -8,6 +8,7 @@ import {
     Text,
     StatusBar,
     Animated,
+    PermissionsAndroid,
   } from 'react-native';
   
   import {
@@ -23,20 +24,60 @@ import {
 // import { backgroundColor } from '../containers/NavigationScreens';
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
-import { faCog,faUser,faFax,faLanguage,faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import MapView,{PROVIDER_GOOGLE} from 'react-native-maps';
+import { Marker } from "react-native-maps";
 
-var arr = [faLanguage,faCog, faUser, faFax];
-var MoreItems = ['Language','Settings','Logout'];
-class UserDetails extends Component {
-    state={
-    };
+var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
+var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
+class Maps extends Component {
+    
+  constructor(props){
+    super(props);
+    this.state= {
+      paddingTop:1,
+    mapMargin:1
+    }
+    }
+
+
+    setMargin = () => {
+      this.setState({mapMargin:0})
+      }
+
+    componentDidMount(){
+      setTimeout(()=>this.setState({flex: 1}),1000);
+}
+
+_onMapReady() {
+  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+    .then(granted => {
+      this.setState({ paddingTop: 0 });
+    });
+}
+
+
 
     render() {
+      const{navigation}= this.props;
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-            <View>
-           
+            <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
+             <MapView 
+             
+             onMapReady={this._onMapReady} 
+             ref={map => (this.map = map)}
+             style={{marginBottom: this.state.mapMargin,flex:1}}
+             provider='google'
+             showsUserLocation={true}
+             showsMyLocationButton={true}
+             onMapReady={this._onMapReady}
+                    >
+                     
+            
+                      </MapView>
           </View>
         );
       }
@@ -44,6 +85,8 @@ class UserDetails extends Component {
     const styles = StyleSheet.create({
         scrollView: {
           backgroundColor: Colors.lighter,
+          height:'100%',
+          padding:5
         },
         engine: {
           position: 'absolute',
@@ -83,4 +126,4 @@ class UserDetails extends Component {
           textAlign: 'right',
         },
       });
-export default UserDetails;
+export default Maps;

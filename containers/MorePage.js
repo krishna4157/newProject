@@ -78,9 +78,10 @@ class MorePage extends Component {
     }
     
     render() {
+      const {navigation}=this.props;
         return (
             <More
-            // navigation={navigation}
+            navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
             // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  

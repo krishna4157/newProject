@@ -29,6 +29,7 @@
     "react-native-flash-message": "^0.1.15",
     "react-native-gesture-handler": "1.5.3",
     "react-native-htmlview": "^0.15.0",
+    "react-native-maps": "^0.26.1",
     "react-native-material-cards": "^1.0.9",
     "react-native-paper": "^3.6.0",
     "react-native-parallax-scroll-view": "^0.21.3",

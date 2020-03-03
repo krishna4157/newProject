@@ -61,6 +61,7 @@ var Friends = ["Friends1", "Family2", "Others3"];
 import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
+import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 // import {Header} from 'react-native-elements';
 // let data
 // var products = ''
@@ -80,11 +81,11 @@ class Feed extends Component {
       }
 
       setDataTo = async(Relation,userdata,index)=>{
-        alert('Sending Data!!!');
+        // alert('Sending Data!!!');
         const{products}=this.state;
           if(products!=''){
             if(Relation=='family'){
-              alert('Family Called!');
+              // alert('Family Called!');
               data = await AsyncStorage.getItem('FamilyData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -101,7 +102,7 @@ class Feed extends Component {
               console.log("Data Removed : "+JSON.stringify(removedData));
               console.log("Family Data: "+data);
             } else if(Relation=='friends'){
-              alert('Friends Called!');
+              // alert('Friends Called!');
               data = await AsyncStorage.getItem('FriendsData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -119,7 +120,7 @@ class Feed extends Component {
               console.log("Family Data: "+data);
               
             } else if(Relation=='Others'){
-              alert('Others Called!');
+              // alert('Others Called!');
               data = await AsyncStorage.getItem('OthersData');
               let removedData = _.remove(products,function(n){
                 console.log("N :"+JSON.stringify(n));
@@ -157,7 +158,7 @@ class Feed extends Component {
 
   render() {
      const {products}=this.state;
-     const {data1}=this.props;
+     const {data1,navigation}=this.props;
     console.log('products'+products);
     return (
       <View>
@@ -233,7 +234,7 @@ class Feed extends Component {
                           <MenuOption onSelect={() => 
                             {
                               this.setDataTo('Others',userdata,index);
-                              alert(`Added to Others`)
+                              // alert(`Added to Others`)
                               }}>
                             <Text style={{ fontSize: 20 }}>Add to Others</Text>
                           </MenuOption>
@@ -241,6 +242,7 @@ class Feed extends Component {
                       </Menu>
                       {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
                     </View>
+                   
                     {/* <CardImage
                       resizeMode='contain'
                       title="Above all i am here"
@@ -251,13 +253,15 @@ class Feed extends Component {
                     /> */}
                      <View style={{height:200}}>
                     <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
-                      alert('hello world');
+                      // alert('hello world');
+                      navigation.navigate('Maps') 
                     }}>
                     <Image
                     style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
                      source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
                     />
                     </Button>
+                   
                     </View>
                   </View>
                 );
