@@ -38,9 +38,19 @@ class Maps extends Component {
       const{navigation}= this.props;
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-            <View style={{backgroundColor:'white',flex:1}}>
+            <View style={{  position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            justifyContent: 'flex-end',
+            alignItems: 'center'}}>
              <MapView 
-                    style={{width:'100%',height:'100%'}}
+                    style={{position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,}}
                     provider={PROVIDER_GOOGLE}
                     region ={{
                       latitude: 42.882004,
@@ -48,7 +58,7 @@ class Maps extends Component {
                       latitudeDelta: 0.0922,
                       longitudeDelta: 0.0421
                     }}
-                    
+                    showsUserLocation
                     />
           </View>
         );
