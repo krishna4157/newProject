@@ -71,7 +71,6 @@ class Maps extends Component {
              provider='google'
              showsUserLocation={true}
              showsMyLocationButton={true}
-            //  onMapReady={this._onMapReady}
                     >
                      
             
