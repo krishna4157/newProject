@@ -29,6 +29,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import MapView,{PROVIDER_GOOGLE} from 'react-native-maps';
 import { Marker } from "react-native-maps";
+import { NavigationEvents } from 'react-navigation';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
@@ -44,14 +45,19 @@ class Maps extends Component {
 
 
     setMargin = () => {
-      this.setState({mapMargin:0})
-      this.setState({paddingTop:0})
-      }
+      
+    // alert('sfs')  
+    }
 
-    componentDidMount(){
-      setTimeout(()=>this.setState({flex: 1}),1000);
+    
+
+onMapRender=()=> {
+  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
+    .then(granted => {
+      this.setState({ paddingTop: 0 });
+      this.setState({mapMargin:0});
+    });
 }
-
 
 
 
@@ -60,17 +66,27 @@ class Maps extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
+             <NavigationEvents style={{flex:1}} onWillBlur={()=>{
+               setTimeout(()=>{this.setMargin;
+                this.setState({mapMargin:0})
+                this.setState({paddingTop:0})
+              console.log("hello")},3000);
+            }} />
              <MapView 
              showsPointsOfInterest
              showsScale
             userLocationAnnotationTitle
             zoomControlEnabled
-              onMapReady={this.setMargin} 
+            followsUserLocation
+            showsTraffic
              ref={map => (this.map = map)}
              style={{marginBottom: this.state.mapMargin,flex:1}}
              provider='google'
              showsUserLocation={true}
              showsMyLocationButton={true}
+             onMapReady={
+              this.onMapRender
+             }
                     >
                      
             
