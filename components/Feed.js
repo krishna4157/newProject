@@ -62,6 +62,7 @@ import { showMessage, hideMessage } from "react-native-flash-message";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
 import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
+import { NavigationEvents } from "react-navigation";
 // import {Header} from 'react-native-elements';
 // let data
 // var products = ''
@@ -162,6 +163,14 @@ class Feed extends Component {
     console.log('products'+products);
     return (
       <View>
+        <NavigationEvents 
+          onWillFocus={()=>{
+            setTimeout(() => {
+              // this._scrollView.endRefresh();
+              this.onRefreshData();
+            }, 2000);
+          }}
+        />
           <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
             <Title>FEED</Title>
           </Header>
