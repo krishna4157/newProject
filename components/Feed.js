@@ -63,10 +63,16 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
 import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 import { NavigationEvents } from "react-navigation";
+import Translate from 'yandex-translate'
 // import {Header} from 'react-native-elements';
 // let data
 // var products = ''
 let data = [];
+let apikey = 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
+
+var request = require('yandex-translate')(apikey);
+
+// apiKey= 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 
 class Feed extends Component {
   state={
@@ -75,6 +81,10 @@ class Feed extends Component {
 
 
       async componentDidMount(){
+        request.translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'hi' }, function(err, res) {
+          alert(res.text);
+          console.log('HELLO');
+        });
         const {data1}= this.props
         this.setState({
           products: data1

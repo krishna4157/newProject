@@ -30,7 +30,7 @@ import Home from './components/Family';
 import FlashMessage from "react-native-flash-message";
 import AsyncStorage from '@react-native-community/async-storage';
 class App extends Component {
-
+  // ./node_modules/.bin/rn-nodeify --hack --install
   state = {
     Status:'',
     loading: true,

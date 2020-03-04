@@ -205,6 +205,7 @@ android {
 }
 apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 dependencies {
+    implementation project(':react-native-randombytes')
     implementation(project(':react-native-maps'))
 //    implementation 'com.google.android.gms:play-services-base:10.0.1'
 //    implementation 'com.google.android.gms:play-services-maps:10.0.1'
