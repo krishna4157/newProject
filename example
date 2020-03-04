@@ -1,0 +1,146 @@
+// import React, {Component,useEffect} from 'react';
+// import * as Font from 'expo-font';
+// import { View, Platform, 
+//   SafeAreaView,Image,Text 
+// } from 'react-native';
+// import { Root } from 'native-base';
+// import AppNavigation from './AppNavigator';
+// import store from '../store/configStore';
+// import { Provider } from 'react-redux';
+// import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+// import i18n from '../utils/localization/localizationUtils';
+// import { backgroundColor } from '../containers/NavigationScreens';
+// import RNBootSplash from "react-native-bootsplash";
+// import SplashScreen from 'react-native-smart-splash-screen'
+// import { SplashScreen as ExpoSplashScreen } from 'expo';
+// import { AppLoading } from 'expo';
+// import { Asset } from 'expo-asset';
+// import homePage from './homePage';
+// import OfflineNotice from '../components/OfflineNotice';
+// import NetInfo from '@react-native-community/netinfo';
+
+// class App extends Component {
+//     state = {
+//       Status:'',
+//       loading: true,
+//       locale: 'en-US',
+//       isReady: false,
+//     };
+
+//   async componentDidMount () {
+//     // this.unsubscribe();
+    
+    
+//     // NetInfo.addEventListener('connectionChange', this.handleConnectivityChange);
+//     console.disableYellowBox = true;
+
+//       if(Platform.OS !== 'ios'){
+//         SplashScreen.close({
+//           animationType: SplashScreen.animationType.fade,
+//           duration: 1000,
+//           delay: 12000,
+//        })
+//       } 
+      
+//     await Font.loadAsync({
+//       antoutline:require('@ant-design/icons-react-native/fonts/antoutline.ttf'),
+//       Roboto: require ('native-base/Fonts/Roboto.ttf'),
+//       Roboto_medium: require ('native-base/Fonts/Roboto_medium.ttf'),
+//       Montserrat: require('../../assets/Montserrat/Montserrat-Regular.ttf'),
+//       Raleway: require('../../assets/Raleway/Raleway-Medium.ttf') ,
+//       Work_Sans: require('../../assets/Work_Sans/WorkSans-Medium.ttf'),
+//       RalewayItalic: require('../../assets/Raleway/Raleway-Italic.ttf') ,
+//       RalewayBold: require('../../assets/Raleway/Raleway-SemiBold.ttf') ,
+//       RalewayBoldItalic: require('../../assets/Raleway/Raleway-BoldItalic.ttf'),
+//       RalewayExtraLight: require('../../assets/Raleway/Raleway-ExtraLight.ttf'),
+//       WorkSansThin: require('../../assets/Work_Sans/WorkSans-Thin.ttf'),
+      
+//     });
+  
+//     this.setState ({loading: false});
+//   }
+
+//   setLocale = locale => {
+//     this.setState({ locale });
+//   };
+
+//   t = (scope, options) => {
+//     return i18n.t(scope, { locale: this.state.locale, ...options });
+//   };
+
+
+//   render () {
+//     const {loading, locale} = this.state;
+
+    
+//     if (!this.state.isSplashReady && Platform.OS !== 'ios') {
+//       return (
+//         <AppLoading
+//           startAsync={this._cacheSplashResourcesAsync}
+//           onFinish={() => this.setState({ isSplashReady: true })}
+//           onError={console.warn}
+//           autoHideSplash={this.state.isAppReady? true : false}
+//         />
+//       );
+//     }
+
+//     if (!this.state.isAppReady && Platform.OS !== 'ios') {
+//       return (
+//         <View style={{ flex: 1,justifyContent:'center' }}>
+//           <View style={{alignContent:'center',alignItems:'center'}}>
+//           <Image
+//             style={{alignContent:'center',alignSelf:'center',scaleX:wp('0.09%'),scaleY:wp('0.09%')}}
+//             source={require('../assets/images/acslogo.png')}
+//             onLoad={this._cacheResourcesAsync}
+//           />
+//           </View>
+//         </View>
+//       );
+//     }
+//     return (
+//       <Provider  store={store}>
+//       {/* <SafeAreaProvider> */}
+//         <SafeAreaView style={{ flex: 1}}>
+//           <Root>
+//           {/* {disappear ==false && <OfflineNotice isInternetReachable={isInternetReachable} isConnected={this.state.isConnected} />} */}
+//             {!loading ? <AppNavigation 
+//               screenProps={{
+//                 t: this.t,
+//                 locale: locale,
+//                 setLocale: this.setLocale,
+//                 // isConnected: isConnected
+//               }}
+//             /> : <View/>}
+//           </Root>
+
+//         </SafeAreaView>
+//         {/* </SafeAreaProvider> */}
+//       </Provider>
+//     );
+//   }
+//   _cacheSplashResourcesAsync = async () => {
+//     const gif = require('../assets/images/splash.png');
+//     return Asset.fromModule(gif).downloadAsync();
+//   };
+
+//   _cacheResourcesAsync = async () => {
+//     ExpoSplashScreen.hide();
+//     this.setState({ isAppReady: true });
+//     const images = [
+//       require('../assets/images/splash.png'),
+//       require('../assets/images/splash.png'),
+//     ];
+
+//     const cacheImages = images.map(image => {
+//       return Asset.fromModule(image).downloadAsync();
+//     });
+
+//     await Promise.all(cacheImages);
+//     this.setState({ isAppReady: true });
+//   };
+  
+// }
+
+
+
+// export default App;

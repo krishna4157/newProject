@@ -29,6 +29,8 @@ import AppNavigation from './containers/AppNavigation';
 import Home from './components/Family';
 import FlashMessage from "react-native-flash-message";
 import AsyncStorage from '@react-native-community/async-storage';
+let apikey = 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108';
+var request = require('yandex-translate')(apikey);
 class App extends Component {
   // ./node_modules/.bin/rn-nodeify --hack --install
   state = {
@@ -37,6 +39,13 @@ class App extends Component {
     locale: 'en-US',
     isReady: false,
   };
+
+ t=()=>{
+ return  request.translate(Relations[0], { to: 'hi' }, function(err, res) {
+    alert(res.text);
+    return res.text;
+  })
+}
 
   async componentDidMount () {
 
@@ -63,6 +72,8 @@ class App extends Component {
       'name': 'Other2',
       'url': 'url2'
     }];
+
+    
 
     var Family = [];
     var Friends = [];
@@ -98,7 +109,7 @@ class App extends Component {
       <StatusBar barStyle="dark-content" />
       <Root>
 
-      <AppNavigation  
+      <AppNavigation  t={this.t}
             />
             {/* <Home /> */}
       {/*  */}
