@@ -124,12 +124,13 @@ class AppNavigation extends Component {
 // }
   
   render() {
+    const {t}=this.props;
     return (
       <View style={{flex:1,backgroundColor:'red'}}>
       {/* {disappear ==false && <OfflineNotice t={screenProps.t} isInternetReachable={isInternetReachable} isConnected={isConnected} />} */}
       {/* <NavigationScreens
       /> */}
-      <NavigationScreens />
+      <NavigationScreens t={t} />
     {/* { appStatus.isDeviceOnline ==false &&<Popup t={screenProps.t} message={errorMessage} visible={visible} closePopup={this.closePopup} color={"#e57373"}  />} */}
       </View>
     );

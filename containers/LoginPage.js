@@ -77,7 +77,9 @@ class LoginPage extends Component {
     }
     
     render() {
-      const {navigation}= this.props;
+      const {navigation,t}= this.props;
+
+      console.log(JSON.stringify(this.props));
         return (
             <Login
              navigation={navigation}

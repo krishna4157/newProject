@@ -23,12 +23,11 @@ import {
 // import styles from '../components/styles/homeStyles';
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
-import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
-
+import Colors from '../constants/Colors';
 var friends = ['Friends1','Friends2','Friends3'];
 
 class Login extends Component {
@@ -49,7 +48,7 @@ class Login extends Component {
     render() {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-          <View>
+          <View style={{flex:1,backgroundColor:Colors.appBackground,justifyContent:'center',alignItems:'center'}}>
             <SpringScrollView
 style={styles.scrollView}
 bounces={true}
@@ -96,7 +95,7 @@ bounces={true}
         right: 0,
       },
       body: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: Colors.appBackground,
       },
       sectionContainer: {
         flexDirection:'row',

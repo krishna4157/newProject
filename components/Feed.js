@@ -63,6 +63,7 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from "@react-native-community/async-storage";
 import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 import { NavigationEvents } from "react-navigation";
+import t from '../constants/TextTranslate';
 import Translate from 'yandex-translate'
 // import {Header} from 'react-native-elements';
 // let data
@@ -81,28 +82,28 @@ class Feed extends Component {
       }
 
 
-      t=(name)=>{
-        // var s = '';  
+      // t=(name)=>{
+      //   // var s = '';  
         
-        request.translate(name, { to: 'hi' }, function(err, res) {
-            // alert(res.text);
-              s = res.text;
-              console.log(res.text);
-              return res.text;
+      //   request.translate(name, { to: 'hi' }, function(err, res) {
+      //       // alert(res.text);
+      //         s = res.text;
+      //         console.log(res.text);
+      //         return res.text;
             
-          })
-          setTimeout(()=>{
-            alert(s);
-            this.setState({
-              text: s
-            })
-            return s;
-        },2000)
-        }
+      //     })
+      //     setTimeout(()=>{
+      //       alert(s);
+      //       this.setState({
+      //         text: s
+      //       })
+      //       return s;
+      //   },2000)
+      //   }
 
 
       async componentDidMount(){
-        this.t('FEED');
+        // this.t('FEED');
         request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
           alert(res.text);
           console.log('HELLO');
@@ -204,7 +205,7 @@ class Feed extends Component {
           }}
         />
           <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
-            <Title>{s}</Title>
+            <Title>{t('FEED')}</Title>
           </Header>
         <SpringScrollView
         ref ={ref => (this._scrollView = ref)} 
