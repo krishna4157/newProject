@@ -66,7 +66,7 @@ import { NavigationEvents } from "react-navigation";
 import Translate from 'yandex-translate'
 // import {Header} from 'react-native-elements';
 // let data
-// var products = ''
+var s = ''
 let data = [];
 let apikey = 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 
@@ -77,11 +77,33 @@ var request = require('yandex-translate')(apikey);
 class Feed extends Component {
   state={
     products: '',
+    text: 'FEED',
       }
 
 
+      t=(name)=>{
+        // var s = '';  
+        
+        request.translate(name, { to: 'hi' }, function(err, res) {
+            // alert(res.text);
+              s = res.text;
+              console.log(res.text);
+              return res.text;
+            
+          })
+          setTimeout(()=>{
+            alert(s);
+            this.setState({
+              text: s
+            })
+            return s;
+        },2000)
+        }
+
+
       async componentDidMount(){
-        request.translate('You can burn my house, steal my car, drink my liquor from an old fruitjar.', { to: 'hi' }, function(err, res) {
+        this.t('FEED');
+        request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
           alert(res.text);
           console.log('HELLO');
         });
@@ -182,7 +204,7 @@ class Feed extends Component {
           }}
         />
           <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
-            <Title>FEED</Title>
+            <Title>{s}</Title>
           </Header>
         <SpringScrollView
         ref ={ref => (this._scrollView = ref)} 
