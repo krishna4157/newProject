@@ -22,6 +22,7 @@ import MorePage from './MorePage';
 import LoginPage from './LoginPage';
 import LanguagePage from './LanguagePage';
 import MapsPage from './MapsPage';
+import ThemesPage from './ThemesPage';
 
 // import {
 //     Menu,
@@ -58,6 +59,7 @@ const RelationNavigator = createStackNavigator({
    const MoreTabs =  createStackNavigator({
     More: MorePage,
     Language: LanguagePage,
+    Themes : ThemesPage
    })
 
    const RootTabs = createBottomTabNavigator({

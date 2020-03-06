@@ -21,39 +21,44 @@ import {
 // import styles from '../components/styles/homeStyles';
 // import { NavigationEvents, SafeAreaView } from 'react-navigation';
 // import { backgroundColor } from '../containers/NavigationScreens';
-import Colors from '../constants/Colors';
+import Colors from '../constants/Colors1';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import AsyncStorage from '@react-native-community/async-storage';
+import { changeTheme } from '../constants/Colors';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
-var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
-var navigationIndex = ['Language','Settings','Logout','Themes','Support']
-class More extends Component {
+var MoreItems = ['Dark','White'];
+class Themes extends Component {
     state={
     };
 
+    setTheme=(color)=>{
+      alert(color);
+        changeTheme(color);
+        alert('Theme Set');
+        // await AsyncStorage.setItem(color);
+    }
     render() {
-      const{navigation}= this.props;
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View>
             <SpringScrollView
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
                 return (
-                
-                
-                <ListItem onPress={()=>{
-                  // alert('HELLO WORLD!');
-                  navigation.navigate(navigationIndex[index])
-                  }}
-                   style={{width:'100%',zIndex:-1,justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
+               
+                <ListItem
+                onPress={()=>{
+                    this.setTheme(MoreItems[index])
+                    // alert('HELLO WORLD!');
+                    // navigation.navigate('Language')
+                    }}
+                 style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 
                   
                     >
-                    <FontAwesomeIcon
-  icon={arr[index]} color='black' size={25} style={{padding:10}} /> 
+                    
                         <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
                     </ListItem>
                     )})}
@@ -106,4 +111,4 @@ class More extends Component {
           textAlign: 'right',
         },
       });
-export default More;
+export default Themes;

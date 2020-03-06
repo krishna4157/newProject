@@ -65,6 +65,7 @@ import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 import { NavigationEvents } from "react-navigation";
 import t from '../constants/TextTranslate';
 import Translate from 'yandex-translate'
+import { resolve } from "url";
 // import {Header} from 'react-native-elements';
 // let data
 var s = ''
@@ -82,32 +83,88 @@ class Feed extends Component {
       }
 
 
-      // t=(name)=>{
-      //   // var s = '';  
+//       t=(name)=>{
+//         // var s = '';  
+//         var t =new Promise(function(resolve, reject) { 
+//           request.translate(name, { to: 'hi' }, function(err, res) {
+//             // alert(res.text);
+//             if(err){
+//               reject();
+//               s= name;
+//                return s;
+//             } else{                
+//               s = res.text;
+//               console.log(res.text);
+//               resolve();
+//               return res.text;
+//             }
+//           })
+//         })
+//         setTimeout(()=>{
+//         t.then(function (s) { 
+//           alert(s);
+//          this.setState({
+//            text: s
+//          })
+
+//     }). 
+//     catch(function () { 
+//         this.setState({
+//           text:name
+//         })
+//       // console.log('Some error has occured'); 
+//     }
+//     );
+//     return this.state.text;
+//   },1000)
+// }
+
+      t=(name)=>{
+        // var s = '';  
         
-      //   request.translate(name, { to: 'hi' }, function(err, res) {
-      //       // alert(res.text);
-      //         s = res.text;
-      //         console.log(res.text);
-      //         return res.text;
+        request.translate(name, { to: 'hi' }, function(err, res) {
+            // alert(res.text);
+            if(err){
+              s = name;
+            } else {
+              s = res.text;
+              console.log(res.text);
+            }
+              // return res.text;
             
-      //     })
-      //     setTimeout(()=>{
-      //       alert(s);
-      //       this.setState({
-      //         text: s
-      //       })
-      //       return s;
-      //   },2000)
-      //   }
+          })
+          setTimeout(()=>{
+            alert(s);
+            this.setState({
+              text: s
+            })
+            return s;
+        },1000)
+        }
+
+
+        //   setTimeout(()=>{
+        //     // alert(s);
+        //     this.setState({
+        //       text: s
+        //     })
+            
+            
+        //       return s;
+           
+        // }); 
+        
+        // },2000)
+        // }
 
 
       async componentDidMount(){
-        // this.t('FEED');
-        request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
-          alert(res.text);
-          console.log('HELLO');
-        });
+        this.t('FEED');
+        this.onRefreshData();
+        // request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
+        //   alert(res.text);
+        //   console.log('HELLO');
+        // });
         const {data1}= this.props
         this.setState({
           products: data1
@@ -205,7 +262,7 @@ class Feed extends Component {
           }}
         />
           <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
-            <Title>{t('FEED')}</Title>
+            <Title style={{color:'black'}}>{s}</Title>
           </Header>
         <SpringScrollView
         ref ={ref => (this._scrollView = ref)} 
@@ -227,13 +284,15 @@ class Feed extends Component {
                 return (
                   <View 
                   style={{  borderWidth: 1,
-                    borderColor: '#ddd',
+                    borderColor: Colors.cardBackGround,
                     borderBottomWidth: 0,
-                    shadowColor: '#000',
+                    shadowColor: Colors.shadowColor,
                     shadowOffset: { width: 10, height: 20 },
                     shadowOpacity: 10,
                     shadowRadius: 2,
-                    elevation: 10,borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                    elevation: 10,borderRadius:20,
+                    backgroundColor:Colors.cardBackGround,
+                    marginTop:10 }}>
                     <View
                       style={{
                         flexDirection: "row",
@@ -326,7 +385,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   body: {
-    backgroundColor: Colors.FamilyHeader,
+    backgroundColor: Colors.appBackground,
     padding:10
   },
   sectionContainer: {
