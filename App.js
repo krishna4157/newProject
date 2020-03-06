@@ -117,6 +117,7 @@ console.log("S : "+s);
     var stringifyFriends = JSON.stringify(Friends);
     var stringifyOthers = JSON.stringify(Others);
     let StringifyData = JSON.stringify(Relations);
+    await AsyncStorage.setItem('Themes','white');
     await AsyncStorage.setItem('FamilyData',stringifyFamily);
     await AsyncStorage.setItem('FriendsData',stringifyFriends);
     await AsyncStorage.setItem('OthersData',stringifyOthers);
