@@ -48,6 +48,7 @@ class ThemesPage extends Component {
 //   }
     
     render() {
+      // const {changeTheme}=this.props;
       const{visible,data1}=this.state;
       console.log("In Friends Page : "+JSON.stringify(data1));
         return (
@@ -62,7 +63,8 @@ class ThemesPage extends Component {
               }}
           />                      */}
             {console.log("in Container : "+data1)}
-           <Themes
+           <Themes 
+          //  changeTheme={changeTheme}
             />
             </MenuProvider>
         );

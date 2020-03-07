@@ -28,6 +28,7 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import Colors from '../constants/Colors';
+import styles from 'react-native-theme';
 var friends = ['Friends1','Friends2','Friends3'];
 
 class Login extends Component {
@@ -48,7 +49,7 @@ class Login extends Component {
     render() {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-          <View style={{flex:1,backgroundColor:Colors.appBackground,justifyContent:'center',alignItems:'center'}}>
+          <View style={styles.loginBackground}>
             <SpringScrollView
 style={styles.scrollView}
 bounces={true}
@@ -79,54 +80,54 @@ bounces={true}
         );
       }
     }
-    const styles = StyleSheet.create({
-      scrollView: {
-        backgroundColor: Colors.lighter,
-        shadowColor: '#000000',
-        shadowOffset: {
-          width: 0,
-          height: 3
-        },
-        shadowRadius: 5,
-        shadowOpacity: 1.0
-      },
-      engine: {
-        position: 'absolute',
-        right: 0,
-      },
-      body: {
-        backgroundColor: Colors.appBackground,
-      },
-      sectionContainer: {
-        flexDirection:'row',
-        padding:15,
-        backgroundColor: Colors.FriendsHeader,
-        justifyContent:'space-between',
-        alignItems:'center',
-        paddingHorizontal: 24,
-      },
-      sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: Colors.black,
-        textAlign:'center'
-      },
-      sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-        color: Colors.dark,
-      },
-      highlight: {
-        fontWeight: '700',
-      },
-      footer: {
-        color: Colors.dark,
-        fontSize: 12,
-        fontWeight: '600',
-        padding: 4,
-        paddingRight: 12,
-        textAlign: 'right',
-      },
-    });
+    // const styles = StyleSheet.create({
+    //   scrollView: {
+    //     backgroundColor: Colors.lighter,
+    //     shadowColor: '#000000',
+    //     shadowOffset: {
+    //       width: 0,
+    //       height: 3
+    //     },
+    //     shadowRadius: 5,
+    //     shadowOpacity: 1.0
+    //   },
+    //   engine: {
+    //     position: 'absolute',
+    //     right: 0,
+    //   },
+    //   body: {
+    //     backgroundColor: Colors.appBackground,
+    //   },
+    //   sectionContainer: {
+    //     flexDirection:'row',
+    //     padding:15,
+    //     backgroundColor: Colors.FriendsHeader,
+    //     justifyContent:'space-between',
+    //     alignItems:'center',
+    //     paddingHorizontal: 24,
+    //   },
+    //   sectionTitle: {
+    //     fontSize: 24,
+    //     fontWeight: '600',
+    //     color: Colors.black,
+    //     textAlign:'center'
+    //   },
+    //   sectionDescription: {
+    //     marginTop: 8,
+    //     fontSize: 18,
+    //     fontWeight: '400',
+    //     color: Colors.dark,
+    //   },
+    //   highlight: {
+    //     fontWeight: '700',
+    //   },
+    //   footer: {
+    //     color: Colors.dark,
+    //     fontSize: 12,
+    //     fontWeight: '600',
+    //     padding: 4,
+    //     paddingRight: 12,
+    //     textAlign: 'right',
+    //   },
+    // });
 export default Login;

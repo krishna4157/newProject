@@ -1,13 +1,13 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { changeTheme } from "./Colors1";
-
+import theme from 'react-native-theme';
 const tintColor = '#2f95dc';
 var i=0;
-let setTheme ='';
-if(i==0){
-  setTheme = 'white';
-  i++;
-}
+
+
+// if(i==0){
+//   setTheme = 'white';
+//   i++;
+// }
 
 
 // setTimeout(()=>{
@@ -16,12 +16,12 @@ if(i==0){
 // },2000)
 
 
-// console.log("Theme"+themes);
+// alert("Theme"+i);
 export const  DarkTheme = {
   appBackground: 'black',
   headerTabColor: '#ccc',
-  cardBorder: 'black',
-  shadowColor: '#ffffff',
+  cardBorder: 'red',
+  shadowColor: 'red',
   // theme=='dark'?'#3498DB':'red',
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
@@ -33,7 +33,6 @@ export const  DarkTheme = {
   warningText: '#666804',
   noticeBackground: tintColor,
   noticeText: '#fff',
-
   FamilyHeader: '#F2F2F2',
   FriendsHeader: 'white',
   OthersHeader: '#F2F2F2'
@@ -42,8 +41,8 @@ export const  DarkTheme = {
 export const WhiteTheme = {
   appBackground: 'white',
   headerTabColor: 'red',
-  shadowColor: '#000',
-  cardBorder: '#ffffff',
+  shadowColor: 'red',
+  cardBorder: 'reds',
   cardBackGround: 'white',
   // theme=='dark'?'#3498DB':'red',
   tabIconDefault: '#ccc',
@@ -60,10 +59,31 @@ export const WhiteTheme = {
   OthersHeader: '#F2F2F2'
 };
 
-// setTimeout(()=>{
-//   console.log("Themes : "+themes);
-var Colors = changeTheme() == 'Dark' ? DarkTheme : DarkTheme;
-// },2000)
-  export default Colors;
+export const themes = {
+  DarkTheme,
+  WhiteTheme,
+};
+
+theme.add({ // Add default theme
+  container: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+  title: {
+    fontSize: 20,
+  },
+});
+
+
+
+alert("HTEME : "+theme.name);
+var Colors =  DarkTheme;
+
+// export default Colors () {
+//   Colors = theme.name == 'default' ? WhiteTheme : DarkTheme;
+//   return Colors;
+// }
+
+export default Colors;
 
 

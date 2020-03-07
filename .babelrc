@@ -1,0 +1,10 @@
+{
+    "plugins": [
+        ["module-resolver",{
+            "root": ["."],
+            "alias": {
+                "crypto": "react-native-crypto"
+            }
+        }]
+    ]
+}

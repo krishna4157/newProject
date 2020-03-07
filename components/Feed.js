@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {styles} from 'react-native-theme';
 import {
   Container,
   Button,
@@ -64,21 +65,23 @@ import AsyncStorage from "@react-native-community/async-storage";
 import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 import { NavigationEvents } from "react-navigation";
 import t from '../constants/TextTranslate';
-import Translate from 'yandex-translate'
-import { resolve } from "url";
+import theme from 'react-native-theme';
+// import Translate from 'yandex-translate'
+// import { resolve } from "url";
 // import {Header} from 'react-native-elements';
 // let data
 var s = ''
 let data = [];
 let apikey = 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
-
-var request = require('yandex-translate')(apikey);
+var i=0;
+// var request = require('yandex-translate')(apikey);
 
 // apiKey= 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 
 class Feed extends Component {
   state={
     products: '',
+    time: Date.now(),
     text: 'FEED',
       }
 
@@ -122,17 +125,17 @@ class Feed extends Component {
       t=(name)=>{
         // var s = '';  
         
-        request.translate(name, { to: 'hi' }, function(err, res) {
-            // alert(res.text);
-            if(err){
-              s = name;
-            } else {
-              s = res.text;
-              console.log(res.text);
-            }
-              // return res.text;
+        // request.translate(name, { to: 'hi' }, function(err, res) {
+        //     // alert(res.text);
+        //     if(err){
+        //       s = name;
+        //     } else {
+        //       s = res.text;
+        //       console.log(res.text);
+        //     }
+        //       // return res.text;
             
-          })
+        //   })
           setTimeout(()=>{
             alert(s);
             this.setState({
@@ -159,6 +162,13 @@ class Feed extends Component {
 
 
       async componentDidMount(){
+        console.log('commponet Mounted!!');
+        // this.interval = setInterval(()=>{
+        //   this.setState({
+        //     time: Date.now()
+        //   })
+        //   },1000);
+        // if(i==0){
         this.t('FEED');
         this.onRefreshData();
         // request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
@@ -169,7 +179,10 @@ class Feed extends Component {
         this.setState({
           products: data1
         })
-      }
+        i++;
+      // }
+      
+    }
 
       setDataTo = async(Relation,userdata,index)=>{
         // alert('Sending Data!!!');
@@ -261,7 +274,7 @@ class Feed extends Component {
             }, 2000);
           }}
         />
-          <Header style={{alignItems:'center',backgroundColor:Colors.headerTabColor}} >
+          <Header style={styles.HeaderStyle} >
             <Title style={{color:'black'}}>{s}</Title>
           </Header>
         <SpringScrollView
@@ -276,23 +289,15 @@ class Feed extends Component {
           style={styles.scrollView}
         >
           <View style={styles.body}>
+      
           {products!=null && products!='' && products.map(
                 (userdata,index)  => {
                  console.log("userdata :"+JSON.stringify(userdata));
                  console.log("index :"+index);
                 //  console.log("Keys :"+data);
                 return (
-                  <View 
-                  style={{  borderWidth: 1,
-                    borderColor: Colors.cardBackGround,
-                    borderBottomWidth: 0,
-                    shadowColor: Colors.shadowColor,
-                    shadowOffset: { width: 10, height: 20 },
-                    shadowOpacity: 10,
-                    shadowRadius: 2,
-                    elevation: 10,borderRadius:20,
-                    backgroundColor:Colors.cardBackGround,
-                    marginTop:10 }}>
+                  <Card 
+                  style={styles.cardStyle}>
                     <View
                       style={{
                         flexDirection: "row",
@@ -300,7 +305,7 @@ class Feed extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={userdata.name} subtitle={userdata.url} />
+                      <CardTitle subtitleStyle={{color:'red'}} title={userdata.name} subtitle={userdata.url} />
                       <Menu>
                         <MenuTrigger>
                           <FontAwesomeIcon
@@ -364,7 +369,7 @@ class Feed extends Component {
                     </Button>
                    
                     </View>
-                  </View>
+                  </Card>
                 );
               })}
            <View>
@@ -375,49 +380,49 @@ class Feed extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  scrollView: {
-    height:'100%',
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: "absolute",
-    right: 0
-  },
-  body: {
-    backgroundColor: Colors.appBackground,
-    padding:10
-  },
-  sectionContainer: {
-    flexDirection: "row",
-    backgroundColor: Colors.FamilyHeader,
-    padding: 15,
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 24
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: Colors.black,
-    textAlign: "center"
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: "700"
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: "600",
-    padding: 4,
-    paddingRight: 12,
-    textAlign: "right"
-  }
-});
+// const styles = StyleSheet.create({
+//   scrollView: {
+//     height:'100%',
+//     backgroundColor: Colors.lighter
+//   },
+//   engine: {
+//     position: "absolute",
+//     right: 0
+//   },
+//   body: {
+//     backgroundColor: theme.name=='default' ? Colors.appBackground : 'red',
+//     padding:10
+//   },
+//   sectionContainer: {
+//     flexDirection: "row",
+//     backgroundColor: Colors.FamilyHeader,
+//     padding: 15,
+//     justifyContent: "space-between",
+//     alignItems: "center",
+//     paddingHorizontal: 24
+//   },
+//   sectionTitle: {
+//     fontSize: 24,
+//     fontWeight: "600",
+//     color: Colors.black,
+//     textAlign: "center"
+//   },
+//   sectionDescription: {
+//     marginTop: 8,
+//     fontSize: 18,
+//     fontWeight: "400",
+//     color: Colors.dark
+//   },
+//   highlight: {
+//     fontWeight: "700"
+//   },
+//   footer: {
+//     color: Colors.dark,
+//     fontSize: 12,
+//     fontWeight: "600",
+//     padding: 4,
+//     paddingRight: 12,
+//     textAlign: "right"
+//   }
+// });
 export default Feed;

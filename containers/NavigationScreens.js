@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {  createAppContainer, createSwitchNavigator,TabBarBottom } from 'react-navigation';
 import  {createStackNavigator} from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator as createBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 // import { createMaterialBottomTabNavigator as createBottomTabNavigator  } from '@react-navigation/material-bottom-tabs';
@@ -13,7 +13,7 @@ import { Container, Text,Button, Title, Content, List, ListItem, Left, Body, Rig
 import { Icon } from 'react-native-elements'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCoffee,faUser,faFax,faUsers,faUserSecret } from '@fortawesome/free-solid-svg-icons'
-
+import theme from "react-native-theme";
 import FriendsPage from './FriendsPage';
 import RelationsPage from './RelationsPage';
 import RelationsMenuPage from './RelationsMenuPage';
@@ -32,6 +32,7 @@ import ThemesPage from './ThemesPage';
 //     MenuTrigger,
 //   } from 'react-native-popup-menu';
 // https://fontawesome.com/v4.7.0/icons/
+// const {changeTheme}=this.props;
 const RelationNavigator = createStackNavigator({ 
     RelationsMenuPage : {
         screen: RelationsMenuPage
@@ -59,72 +60,78 @@ const RelationNavigator = createStackNavigator({
    const MoreTabs =  createStackNavigator({
     More: MorePage,
     Language: LanguagePage,
-    Themes : ThemesPage
+    Themes : ThemesPage 
    })
 
    const RootTabs = createBottomTabNavigator({
     Feed: {screen : FeedPage,
         navigationOptions:{
-            backgroundColor: 'green',
             activeColor: '#1DC7E2',  
             inactiveColor: 'black',  
             tabBarLabel : 
-            <Text style={{marginBottom:10,color:'black',fontFamily:'Raleway'}}>Feeds</Text>,
-            tabBarIcon: 
-<FontAwesomeIcon
-  icon={faCoffee} size={25} color='orange' />              
+            <Text style={{marginBottom:10,color:'white',fontFamily:'Raleway'}}>Feeds</Text>,
+            barStyle: {backgroundColor:'red'}
         }
     },
-//     Feed: {screen : FamilyPage,
-//         navigationOptions:{
-//             tabBarLabel : 
-//             <Text style={{marginBottom:10,color:'white'}}>Feeds</Text>,
-//             tabBarIcon: 
-// <FontAwesomeIcon
-//   icon={faCoffee} color='red' />              
-//         }
-//     },
+
     Relations : {screen: RelationNavigator,
         navigationOptions:{
             backgroundColor: 'blue',
             activeColor: '#f60c0d',  
             inactiveColor: '#f65a22',  
-            
+            barStyle: {backgroundColor:'green'},
                 
             tabBarLabel :            
-            <Text style={{marginBottom:10,color:'black'}}>Relations</Text>,            
+            <Text style={{marginBottom:10,color:'white'}}>Relations</Text>,            
+                 
             
-            tabBarIcon:     
-            <FontAwesomeIcon color='green' size={30}
-            icon={faUsers} />
         }},
     More: {screen : MoreTabs,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'black'}}>More</Text>,
-            tabBarIcon:  
-            <FontAwesomeIcon
-            icon={faFax} size={20} color='black' />
+            <Text style={{marginBottom:10,color:'white'}}>More</Text>,
+            barStyle: {backgroundColor:'grey'}
             
         }},
     // AskQuestions: AskQuestions,
 
 },{
-     initialRouteName: 'Feed',
-    activeColor: '#F44336',
-    inactiveColor:'black',
-    barStyle: {
-        backgroundColor: 'white',
-        padding:10,
-        color:'black' 
-    },
-    navigationOptions: {
-        tabBarOnPress: ( ) => {
-            console.log("New Tab Screen tabBarOnPress working")
-            // defaultHandler();
-          }
-    }   
-  });
+            lazy: true,
+            swipeEnabled: true,
+            defaultNavigationOptions: ({ navigation }) => ({
+                             
+                tabBarIcon: ({ focused, tintColor }) => {
+                    const { routeName } = navigation.state;
+                    if (routeName === 'More') {
+                        return focused ?
+                        <FontAwesomeIcon
+                        icon={faFax} size={20} color='red' /> : <FontAwesomeIcon color='black' size={20}
+                        icon={faFax} />;
+                    } else if (routeName === 'Relations') {
+                        return focused ? <FontAwesomeIcon color='blue' size={30}
+                        icon={faUsers} /> : <FontAwesomeIcon color='black' size={30}
+                        icon={faUsers} />;
+                    } else if (routeName === 'Feed') {
+                        return focused ? <FontAwesomeIcon
+                        icon={faCoffee} size={25} color='orange' /> : <FontAwesomeIcon
+                        icon={faCoffee} size={25} color='black' />              ;
+                    }
+                },
+            }),
+            // shifting: true,
+            order: ['Feed', 'Relations', 'More'],
+            initialRouteName: 'Feed',
+            sceneAnimationEnabled: true,
+            shifting:true,
+            swipeEnabled: true,
+            // tabBarComponent: TabBarBottom,
+            tabBarPosition: 'bottom',
+            activeTintColor: backgroundColor,
+            inactiveTintColor: '#90a4ae',
+            // barStyle: { backgroundColor : theme.name=='default'?'white':'black'}
+        });
+     
+  
 
 const AppNavigator = createStackNavigator({
     Login :{
@@ -149,7 +156,7 @@ const AppNavigator = createStackNavigator({
      }
    },{
      initialRouteName: 'Login',
-     headerMode:'none'
+     headerMode:'none',
    });
 
 
@@ -332,5 +339,11 @@ const Main = createStackNavigator({
     //     {   
     //         initialRouteName: 'RootTabs',
     //     });
-
+// class NavigationScreens extends Component {
+//     render(){
+//         const {changeTheme,navigation}=this.props;
+// return (
+//     <AppNavigator changeTheme={changeTheme} navigation={navigation}/>)
+// }
+// }
 export default createAppContainer(AppNavigator);

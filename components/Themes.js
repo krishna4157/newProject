@@ -28,17 +28,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import { changeTheme } from '../constants/Colors';
+import theme from 'react-native-theme';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['Dark','White'];
-class Themes extends Component {
-    state={
-    };
 
-    setTheme=(color)=>{
-      alert(color);
-        changeTheme(color);
-        alert('Theme Set');
+class Themes extends Component {
+  constructor(){
+    super();
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+  };
+
+  forceUpdateHandler(){
+    // this.forceUpdate();
+    // alert()
+  };
+    
+
+    setTheme=(MoreItems,index)=>{
+      if(MoreItems[index]=='Dark'){
+        var s = ['Dark','default'];
+      theme.active(MoreItems[index]);
+      // changeTheme();
+      alert(MoreItems[index])
+      } else {
+        theme.active('default');
+        // changeTheme();
+      }
+      alert('Theme Set :'+theme.name);
         // await AsyncStorage.setItem(color);
     }
     render() {
@@ -51,7 +68,10 @@ class Themes extends Component {
                
                 <ListItem
                 onPress={()=>{
-                    this.setTheme(MoreItems[index])
+                  this.setTheme(MoreItems,index);
+                  setTimeout(()=>{
+                    this.forceUpdateHandler;
+                  },2000)
                     // alert('HELLO WORLD!');
                     // navigation.navigate('Language')
                     }}
