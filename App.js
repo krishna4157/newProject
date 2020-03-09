@@ -99,6 +99,13 @@ componentWillUpdate(){
 
   async componentDidMount () {
     theme.add({
+      fontStyle:{
+          color: 'black',
+          fontSize:30,
+      },
+      subtitleStyle: {
+        color: 'black',
+      },
       loginBackground:{
         flex:1,
         backgroundColor: 'white',
@@ -107,6 +114,7 @@ componentWillUpdate(){
         },
       cardStyle:{
         borderWidth: 1,
+        borderRadius:30,
         borderColor: 'white',
         borderBottomWidth: 0,
         shadowColor: 'black',
@@ -167,6 +175,13 @@ componentWillUpdate(){
     },);
 
     theme.add({
+      fontStyle:{
+        color: 'white',
+        fontSize:30,
+    },
+    subtitleStyle: {
+      color: 'white',
+    },
       loginBackground:{
       flex:1,
       backgroundColor: 'black',
@@ -174,6 +189,7 @@ componentWillUpdate(){
       alignItems:'center',
       },
       cardStyle:{
+        borderRadius:30,
         borderWidth: 1,
         borderColor: 'white',
         borderBottomWidth: 0,
