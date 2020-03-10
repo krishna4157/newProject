@@ -22,7 +22,7 @@ import FamilyPage from "./FamilyPage";
 import OthersPage from "./OthersPage";
 import { createStackNavigator } from "react-navigation-stack";
 import AsyncStorage from "@react-native-community/async-storage";
-
+import theme from 'react-native-theme';
 var i=0;
 // import {setCurrentScreen} from '../actions/storeAppStatus';
 class FriendsPage extends Component {
@@ -62,8 +62,14 @@ class FriendsPage extends Component {
             {console.log("in Container : "+data1)}
             {data1!='' ? <Friends data1={data1} visible={visible}
              
-             /> : <View style={{backgroundColor:'red'}}>
+             /> :
+             <View style={{ flex:1,
+              width:'100%',
+              height:'100%',
+              backgroundColor:theme.name=='default'? 'white':'black'}}> 
+             <View style={{backgroundColor:'red'}}>
                <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
+             </View>
              </View>}
             </MenuProvider>
         );

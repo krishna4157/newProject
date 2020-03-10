@@ -26,12 +26,32 @@ import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import AsyncStorage from '@react-native-community/async-storage';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['English','Telugu','Hindi'];
+var LanguageItems = ['en','te','hi'];
+var s= '';
 class Language extends Component {
     state={
     };
+
+
+
+    setLanguage=async(index)=>{
+      const {navigation}=this.props;
+      var language;
+    
+        language = LanguageItems[index];
+      // alert(s);
+
+    
+        await AsyncStorage.setItem('Locale',language);
+      s = await AsyncStorage.getItem('Locale')
+        // alert("Set Language and Navigating to Login Page : "+s);
+        navigation.navigate('Login')
+       
+    }
 
     render() {
         return (
@@ -43,7 +63,8 @@ class Language extends Component {
                
                 <ListItem
                 onPress={()=>{
-                    alert('HELLO WORLD!');
+                  this.setLanguage(index);
+                    // alert('HELLO WORLD!');
                     // navigation.navigate('Language')
                     }}
                  style={{width:'100%',justifyContent:'flex-start'}} noBorder={index >= MoreItems.length - 1 ? true : false} 

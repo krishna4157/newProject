@@ -26,10 +26,6 @@ import {
 import {
   Card,
   CardTitle,
-  CardContent,
-  CardAction,
-  CardButton,
-  CardImage
 } from "react-native-material-cards";
 import {
   LearnMoreLinks,
@@ -74,15 +70,20 @@ var s = ''
 let data = [];
 let apikey = 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 var i=0;
-// var request = require('yandex-translate')(apikey);
+var request = require('yandex-translate')(apikey);
 
-// apiKey= 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
+apiKey= 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 
 class Feed extends Component {
   state={
     products: '',
     time: Date.now(),
     text: 'FEED',
+      }
+
+
+      async componentDidUpdate(prevProps){
+        // alert(JSON.stringify(prevProps));
       }
 
 
@@ -123,21 +124,23 @@ class Feed extends Component {
 // }
 
       t=(name)=>{
-        // var s = '';  
+        const {locale}=this.props;
         
-        // request.translate(name, { to: 'hi' }, function(err, res) {
-        //     // alert(res.text);
-        //     if(err){
-        //       s = name;
-        //     } else {
-        //       s = res.text;
-        //       console.log(res.text);
-        //     }
-        //       // return res.text;
+ 
+          request.translate(name, { to: locale }, function(err, res) {
+            // alert(res.text);
+            if(err){
+              s = name;
+            } else {
+              s = res.text;
+              console.log(res.text);
+            }
+              return res.text;
             
-        //   })
+          })
+ 
           setTimeout(()=>{
-            alert(s);
+            // alert(s);
             this.setState({
               text: s
             })
@@ -179,7 +182,7 @@ class Feed extends Component {
         this.setState({
           products: data1
         })
-        i++;
+        // i++;
       // }
       
     }
@@ -251,6 +254,7 @@ class Feed extends Component {
 
       onRefreshData= async()=>{
         let encryptedForms = await AsyncStorage.getItem("Forms");
+        // alert(this.props.locale);
           var data = JSON.parse(encryptedForms);
           this.setState({
               products: data
@@ -275,7 +279,7 @@ class Feed extends Component {
           }}
         />
           <Header style={styles.HeaderStyle} >
-            <Title style={{color:'black'}}>{s}</Title>
+            <Title style={styles.fontColor}>{s}</Title>
           </Header>
         <SpringScrollView
         ref ={ref => (this._scrollView = ref)} 
@@ -296,7 +300,7 @@ class Feed extends Component {
                  console.log("index :"+index);
                 //  console.log("Keys :"+data);
                 return (
-                  <Card 
+                  <Card  
                   style={styles.cardStyle}>
                     <View
                       style={{
@@ -305,7 +309,10 @@ class Feed extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle subtitleStyle={{color:'red'}} title={userdata.name} subtitle={userdata.url} />
+                      <View style={{width:'90%'}}>
+                      <Text style={styles.fontStyle} >{userdata.name}</Text>
+                    <Text style={styles.subtitleStyle}>{userdata.name}</Text>
+                      </View>
                       <Menu>
                         <MenuTrigger>
                           <FontAwesomeIcon
@@ -364,7 +371,7 @@ class Feed extends Component {
                     }}>
                     <Image
                     style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
-                     source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
+                     source={{ uri: userdata.url}}
                     />
                     </Button>
                    

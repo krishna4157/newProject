@@ -88,19 +88,7 @@ class Others extends Component {
                      return ( <TouchableHighlight onPress={()=>{
                       // alert("hello!")
                       console.log('HELLO!');
-                    }} style={{ 
-                      borderWidth: 1,
-                      borderColor: '#ddd',
-                      borderBottomWidth: 0,
-                      shadowColor: '#000',
-                      shadowOffset: { width: 10, height: 20 },
-                      shadowOpacity: 10,
-                      shadowRadius: 2,
-                      elevation: 10,
-                      borderRadius:20,
-                      backgroundColor:'white',
-                      marginTop:10 
-                      }}>
+                    }} >
                     <Card>
                     <View 
                       style={{
@@ -109,16 +97,23 @@ class Others extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={userdata.name} subtitle={userdata.url} />
-                      <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                      <FontAwesomeIcon style={{padding:25}} icon={faTimes} /> 
+                      <CardTitle title={userdata.name} subtitle={userdata.subtitle} />
+                      <AwesomeButton  onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
+                      <View style={{width:50,alignItems:'center'}}>
+                      <FontAwesomeIcon color={'white'} size={30} icon={faTimes}  />
+                      </View>
                       </AwesomeButton>
                     </View>
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
+                    <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
+                      // alert('hello world');
+                      // navigation.navigate('Maps') 
+                    }}>
                     <Image
-                    style={{width:'100%',height:'100%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
-                     source={{ uri: 'https://cdn.aarp.net/content/dam/aarp/money/scams_fraud/2019/12/1140-puppy-sad.jpg'}}
+                   style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
+                     source={{ uri: userdata.url}}
                     />
+                    </Button>
                     </View>
                     </Card>
                   </TouchableHighlight>)})}

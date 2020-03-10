@@ -29,29 +29,59 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import { changeTheme } from '../constants/Colors';
 import theme from 'react-native-theme';
+import styles from 'react-native-theme';
 
+var s = ['Dark','default'];
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
-var MoreItems = ['Dark','White'];
+var MoreItems = ['Dark','default'];
 
 class Themes extends Component {
   constructor(){
     super();
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-  };
+        this.state ={
+            color:'white'
+        }
+        // this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+  }
 
-  forceUpdateHandler(){
-    // this.forceUpdate();
-    // alert()
-  };
+    async componentDidMount(){
+      if(theme.name=='default'){
+        this.setState({
+          color:'black'
+        })
+      }
+    }
+
+
+  changeColor=(themeName,name)=>{
+    if(themeName==name){
+      this.setState({
+        color: 'red'
+      })
+        return 'blue'
+    } else {
+      this.setState({
+        color: 'black'
+      })
+      return 'black'
+    } 
+  }
+  
     
 
     setTheme=(MoreItems,index)=>{
+
       if(MoreItems[index]=='Dark'){
-        var s = ['Dark','default'];
+        this.setState({
+          color : 'white'
+        })
       theme.active(MoreItems[index]);
       // changeTheme();
-      alert(MoreItems[index])
+      // alert(MoreItems[index])
       } else {
+        this.setState({
+          color : 'black'
+        })
         theme.active('default');
         // changeTheme();
       }
@@ -60,7 +90,7 @@ class Themes extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={{flex:1,backgroundColor:theme.name=='default'? 'white': 'black'}}>
             <SpringScrollView
               style={styles.scrollView}>
                 {MoreItems.map((name,index)=>{
@@ -68,6 +98,7 @@ class Themes extends Component {
                
                 <ListItem
                 onPress={()=>{
+                  this.changeColor(theme.name,name)
                   this.setTheme(MoreItems,index);
                   setTimeout(()=>{
                     this.forceUpdateHandler;
@@ -79,7 +110,7 @@ class Themes extends Component {
                   
                     >
                     
-                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
+                        <Text style={{ paddingLeft:15,color: this.state.color, fontSize:20 }}>{name}</Text>
                     </ListItem>
                     )})}
             </SpringScrollView>
@@ -87,48 +118,48 @@ class Themes extends Component {
         );
       }
     }
-    const styles = StyleSheet.create({
-        scrollView: {
-          backgroundColor: Colors.lighter,
-          height:'100%',
-          padding:5
-        },
-        engine: {
-          position: 'absolute',
-          right: 0,
-        },
-        body: {
-          backgroundColor: Colors.OthersHeader,
-        },
-        sectionContainer: {
-          flexDirection:'row',
-          padding:15,
-          justifyContent:'space-between',
-          alignItems:'center',
-          paddingHorizontal: 24,
-        },
-        sectionTitle: {
-          fontSize: 24,
-          fontWeight: '600',
-          color: Colors.black,
-          textAlign:'center'
-        },
-        sectionDescription: {
-          marginTop: 8,
-          fontSize: 18,
-          fontWeight: '400',
-          color: Colors.dark,
-        },
-        highlight: {
-          fontWeight: '700',
-        },
-        footer: {
-          color: Colors.dark,
-          fontSize: 12,
-          fontWeight: '600',
-          padding: 4,
-          paddingRight: 12,
-          textAlign: 'right',
-        },
-      });
+    // const styles = StyleSheet.create({
+    //     scrollView: {
+    //       backgroundColor: Colors.lighter,
+    //       height:'100%',
+    //       padding:5
+    //     },
+    //     engine: {
+    //       position: 'absolute',
+    //       right: 0,
+    //     },
+    //     body: {
+    //       backgroundColor: Colors.OthersHeader,
+    //     },
+    //     sectionContainer: {
+    //       flexDirection:'row',
+    //       padding:15,
+    //       justifyContent:'space-between',
+    //       alignItems:'center',
+    //       paddingHorizontal: 24,
+    //     },
+    //     sectionTitle: {
+    //       fontSize: 24,
+    //       fontWeight: '600',
+    //       color: Colors.black,
+    //       textAlign:'center'
+    //     },
+    //     sectionDescription: {
+    //       marginTop: 8,
+    //       fontSize: 18,
+    //       fontWeight: '400',
+    //       color: Colors.dark,
+    //     },
+    //     highlight: {
+    //       fontWeight: '700',
+    //     },
+    //     footer: {
+    //       color: Colors.dark,
+    //       fontSize: 12,
+    //       fontWeight: '600',
+    //       padding: 4,
+    //       paddingRight: 12,
+    //       textAlign: 'right',
+    //     },
+    //   });
 export default Themes;

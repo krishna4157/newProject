@@ -65,6 +65,7 @@ import  _ from 'lodash'
 import { NavigationEvents } from "react-navigation";
 var cardsList = ["Family1", "Family2", "Family3"];
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import styles from 'react-native-theme';
 
 class Family extends Component {
   state = {
@@ -117,7 +118,7 @@ class Family extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
      
-      <View>
+      <View style={styles.loginBackground}>
         <NavigationEvents 
           onDidFocus={()=>{
             console.log("Focus Called")
@@ -149,10 +150,11 @@ class Family extends Component {
                         padding: 10
                       }}
                     >
-                      <CardTitle title={userdata.name} subtitle={userdata.url} />
-                      <AwesomeButton onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                      <FontAwesomeIcon style={{padding:25}} icon={faTimes} />
-                      
+                      <CardTitle title={userdata.name} subtitle={userdata.subtitle} />
+                      <AwesomeButton  onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
+                      <View style={{width:50,alignItems:'center'}}>
+                      <FontAwesomeIcon color={'white'} size={30} icon={faTimes}  />
+                      </View>
                       </AwesomeButton>
                     </View>
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
@@ -162,7 +164,7 @@ class Family extends Component {
                     }}>
                     <Image
                    style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
-                     source={{ uri: 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'}}
+                     source={{ uri: userdata.url}}
                     />
                     </Button>
                     </View>
@@ -176,47 +178,5 @@ class Family extends Component {
     );
   }
 }
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  engine: {
-    position: "absolute",
-    right: 0
-  },
-  body: {
-    height:'100%'
-  },
-  sectionContainer: {
-    flexDirection: "row",
-    backgroundColor: Colors.FamilyHeader,
-    padding: 15,
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 24
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: Colors.black,
-    textAlign: "center"
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: "700"
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: "600",
-    padding: 4,
-    paddingRight: 12,
-    textAlign: "right"
-  }
-});
+
 export default Family;

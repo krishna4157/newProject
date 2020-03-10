@@ -12,6 +12,7 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import theme from 'react-native-theme';
 class OthersPage extends Component {
     state={
         data1: '',
@@ -45,8 +46,14 @@ class OthersPage extends Component {
           {data1!='' ? 
           <Others data1={data1}
              
-          /> : <View style={{backgroundColor:'red'}}>
+          /> : 
+          <View style={{ flex:1,
+            width:'100%',
+            height:'100%',
+            backgroundColor:theme.name=='default'? 'white':'black'}}>
+          <View style={{backgroundColor:'red'}}>
                <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
+          </View>
           </View>}
           </MenuProvider>
 

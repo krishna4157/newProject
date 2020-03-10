@@ -76,7 +76,7 @@ theme.add({ // Add default theme
 
 
 
-alert("HTEME : "+theme.name);
+alert("THEME : "+theme.name);
 var Colors =  DarkTheme;
 
 // export default Colors () {

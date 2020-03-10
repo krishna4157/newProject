@@ -33,6 +33,7 @@ import ThemesPage from './ThemesPage';
 //   } from 'react-native-popup-menu';
 // https://fontawesome.com/v4.7.0/icons/
 // const {changeTheme}=this.props;
+
 const RelationNavigator = createStackNavigator({ 
     RelationsMenuPage : {
         screen: RelationsMenuPage
@@ -70,7 +71,7 @@ const RelationNavigator = createStackNavigator({
             inactiveColor: 'black',  
             tabBarLabel : 
             <Text style={{marginBottom:10,color:'white',fontFamily:'Raleway'}}>Feeds</Text>,
-            barStyle: {backgroundColor:'red'}
+            barStyle: {backgroundColor:'#95AAC0'}
         }
     },
 
@@ -132,7 +133,7 @@ const RelationNavigator = createStackNavigator({
         });
      
   
-
+// const {locale}=this.props;
 const AppNavigator = createStackNavigator({
     Login :{
         screen:LoginPage
@@ -144,7 +145,7 @@ const AppNavigator = createStackNavigator({
         screen: RelationsMenuPage
     },
     Feed :{
-        screen: FeedPage 
+        screen: FeedPage  
    },Family: {
        screen: FamilyPage
      },
@@ -189,6 +190,9 @@ const Main = createStackNavigator({
      initialRouteName: 'Login',
      headerMode:'none'
    });
+
+
+// ------------------------------------
 
 
 
@@ -346,4 +350,6 @@ const Main = createStackNavigator({
 //     <AppNavigator changeTheme={changeTheme} navigation={navigation}/>)
 // }
 // }
+// alert(JSON.stringify(this.props))
 export default createAppContainer(AppNavigator);
+// screen: FeedPage 

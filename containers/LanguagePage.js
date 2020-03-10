@@ -48,6 +48,7 @@ class LanguagePage extends Component {
     
     render() {
       const{visible,data1}=this.state;
+      const {navigation }=this.props;
       console.log("In Friends Page : "+JSON.stringify(data1));
         return (
           
@@ -61,7 +62,7 @@ class LanguagePage extends Component {
               }}
           />                      */}
             {console.log("in Container : "+data1)}
-           <Language
+           <Language navigation={navigation}
             />
             </MenuProvider>
         );

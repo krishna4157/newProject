@@ -10,9 +10,12 @@ import AsyncStorage from "@react-native-community/async-storage";
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
+var i=0;
 class FeedPage extends Component {
     state={
+      date : '',
       data1: '',
+      locale: 'en',
         subjectCompliance: {
             dayCompliance: 0,
           weekCompliance: 0,
@@ -20,10 +23,45 @@ class FeedPage extends Component {
           totalCompliance: 0,
         }
     };
+    // async componentDidUpdate(prevProps){
+    //   let locale = await AsyncStorage.getItem("Locale");
+    //   alert(locale)
+    //   setTimeout(()=>{
+    //   if(this.state.locale!=locale){
+    //   this.setState({
+    //     locale: locale
+    //   })
+    //   }
+    // },3000)
 
+    // }
+
+    async componentDidUpdate(prevProps){
+      // setInterval(()=>{
+      //   this.setState({
+      //     date : 'number'
+      //   })
+      // },2000)
+      // alert(JSON.stringify(prevProps));
+      let locale = await AsyncStorage.getItem("Locale");
+      // alert(JSON.stringify(locale));
+      if(i<=1){
+        this.setState({
+          locale: locale
+        })
+        i++;
+      }
+    }
     
     componentDidMount = async()=>{
       let encryptedForms = await AsyncStorage.getItem("Forms");
+      let locale = await AsyncStorage.getItem("Locale");
+      // alert(locale);
+      if(this.state.locale!=locale){
+        this.setState({
+          locale: locale
+        })
+      }
         var data = JSON.parse(encryptedForms);
         this.setState({
             data1: data
@@ -60,12 +98,13 @@ class FeedPage extends Component {
     
     
     render() {
-      const{data1}=this.state;
+    
+      const{data1,locale}=this.state;
       const {navigation}= this.props;
         console.log("Static Data : "+data1);
         return (
           <MenuProvider>
-            {data1!='' ? <Feed data1={data1} navigation={navigation}
+            {data1!='' ? <Feed locale={locale} data1={data1} navigation={navigation}
              
             /> : <View>
               <Text>loading</Text>

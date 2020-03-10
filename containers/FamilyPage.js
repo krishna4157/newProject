@@ -5,6 +5,8 @@ import Family from '../components/Family';
 import { BackHandler, Alert,View, Text } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import AsyncStorage from "@react-native-community/async-storage";
+import theme from 'react-native-theme';
+
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
@@ -91,8 +93,14 @@ class FamilyPage extends Component {
           <MenuProvider>
             {data1!='' ? <Family navigation={navigation} data1={data1}
              
-             /> : <View style={{backgroundColor:'red'}}>
+             /> : 
+             <View style={{ flex:1,
+              width:'100%',
+              height:'100%',
+              backgroundColor:theme.name=='default'? 'white':'black'}}>
+             <View style={{backgroundColor:'red'}}>
                <Text style={{color:'white',textAlign:'center'}}>No Data Available</Text>
+             </View>
              </View>}
             </MenuProvider>
         );

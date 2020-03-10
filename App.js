@@ -44,9 +44,16 @@ class App extends Component {
     Status:'',
     theme:'white',
     loading: true,
-    locale: 'en-US',
+    locale: 'en',
     isReady: false,
   };
+
+
+  setLocale=(Language)=>{
+    this.setState({
+      locale:Language
+    });
+  }
 
   t=(name)=>{
     var s ='';
@@ -99,6 +106,16 @@ componentWillUpdate(){
 
   async componentDidMount () {
     theme.add({
+      fontColor:{
+        color: 'white',
+        alignSelf:'center'
+      },
+      emptyView: {
+        flex:1,
+        width:'100%',
+        height:'100%',
+        backgroundColor:'white'
+      },
       fontStyle:{
           color: 'black',
           fontSize:30,
@@ -175,6 +192,17 @@ componentWillUpdate(){
     },);
 
     theme.add({
+      fontColor:{
+        color: 'white',
+        justifyContent:'center',
+        alignSelf:'center'
+      },
+      emptyView: {
+        flex:1,
+        width:'100%',
+        height:'100%',
+        backgroundColor:'black'
+      },
       fontStyle:{
         color: 'white',
         fontSize:30,
@@ -254,25 +282,30 @@ componentWillUpdate(){
     var Relations = [{
       
       'name'    : 'Family1',
-      'url'     : 'url5'
+      'subtitle': 'Family',
+      'url'     : 'https://en.bcdn.biz/Images/2016/11/15/a9b9a282-948d-4073-ae1a-853ec3c41614.jpg'
     },{
       'name': 'Family2',
-      'url': 'url2'
+      'url': 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'
     },
     {
       'name': 'Friend1',
-      'url': 'url2'
+      'subtitle': 'Friend',
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/776342f0-86f5-4522-84c9-a02d6b11c766.jpg'
     },
     {
       'name': 'Friend2',
-      'url': 'url2'
+      'subtitle': 'Friend',
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/365d6610-08ca-40d7-a599-4b352cbd894e.jpg'
     },
     {
       'name': 'Other1',
-      'url': 'url2'
+      'subtitle': 'Other',
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/1268e0a8-b737-444d-a64d-977ee30db531.jpg'
     },{
       'name': 'Other2',
-      'url': 'url2'
+      'subtitle': 'Other',
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/3bb528e4-b1d3-4d04-a2c4-302d632e096b.jpg'
     }];
     await AsyncStorage.setItem('selectLanguage',this.state.locale);
 
@@ -287,6 +320,7 @@ console.log("S : "+s);
     var stringifyFriends = JSON.stringify(Friends);
     var stringifyOthers = JSON.stringify(Others);
     let StringifyData = JSON.stringify(Relations);
+    await AsyncStorage.setItem('Locale',this.state.locale);
     await AsyncStorage.setItem('Themes','white');
     await AsyncStorage.setItem('FamilyData',stringifyFamily);
     await AsyncStorage.setItem('FriendsData',stringifyFriends);
@@ -317,7 +351,7 @@ console.log("S : "+s);
       <StatusBar barStyle="dark-content" />
       <Root>
 
-      <AppNavigation  t={this.t} changeTheme={this.changeTheme}
+      <AppNavigation locale={this.state.locale} setLocale={this.setLocale}  t={this.t} changeTheme={this.changeTheme}
             />
             {/* <Home /> */}
       {/*  */}
