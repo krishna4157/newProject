@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-import Home from '../components/Family';
+import Family from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
-import Family from "../components/Friends";
-import Others from "../components/Others";
-import More from "../components/More";
-import Maps from "../components/Maps";
+import { MenuProvider } from "react-native-popup-menu";
+import Login from "../components/Login";
+import Swiper from "../components/Swiper";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class MapsPage extends Component {
+class SwiperPage extends Component {
     state={
         subjectCompliance: {
             dayCompliance: 0,
@@ -79,10 +78,12 @@ class MapsPage extends Component {
     }
     
     render() {
-      const {navigation,userdata}=this.props;
+      const {navigation,t}= this.props;
+
+      console.log(JSON.stringify(this.props));
         return (
-            <Maps
-            navigation={navigation} userdata={userdata}
+            <Swiper
+             navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}
             // retrieveSubjectCompliance={this.retrieveSubjectCompliance}  
@@ -105,5 +106,5 @@ class MapsPage extends Component {
 //     },
 //     dispatch,
 //   );
-export default MapsPage
+export default SwiperPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

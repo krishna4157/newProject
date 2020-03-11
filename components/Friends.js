@@ -20,13 +20,13 @@ import {
 
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
-import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import  _ from 'lodash'
 import { faUser,faFax,faUserSecret,faAddressBook,faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
+import theme from 'react-native-theme';
 
 var friends = ['Friends1','Friends2','Friends3'];
 
@@ -92,7 +92,7 @@ bounces={true}
                    {console.log("in component :"+JSON.stringify(products2))}
                 {products2!=null && products2!='' && products2.map((userdata,index)=>{
                      return (
-                      <TouchableHighlight onPress={()=>{
+                      <TouchableWithoutFeedback onPress={()=>{
                         // alert("hello!")
                         console.log('HELLO!');
                       }} style={{ borderWidth: 1,
@@ -130,7 +130,7 @@ bounces={true}
                     </Button>
                     </View>
                       </Card>
-                    </TouchableHighlight>
+                    </TouchableWithoutFeedback>
                     )})}
                   </View>
               </View>
@@ -141,7 +141,7 @@ bounces={true}
     }
     const styles = StyleSheet.create({
       scrollView: {
-        backgroundColor: Colors.lighter,
+        backgroundColor: theme.name=='default'? 'white':'black',
         shadowColor: '#000000',
         shadowOffset: {
           width: 0,
@@ -156,7 +156,7 @@ bounces={true}
         right: 0,
       },
       body: {
-        backgroundColor: '#F2F2F2',
+        // backgroundColor: '#F2F2F2',
       },
       sectionContainer: {
         flexDirection:'row',

@@ -43,18 +43,19 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 class Maps extends Component {
     
   constructor(props){
+    // this.mapRef = null;
     super(props);
     this.state = {
 paddingTop:1,
       mapMargin:1,
       coordinates: [
         {
-          latitude: 37.3317876,
-          longitude: -122.0054812,
+          'latitude': 37.3317876,
+          'longitude': -122.0054812,
         },
         {
-          latitude: 37.771707,
-          longitude: -122.4053769,
+          'latitude': 37.771707,
+          'longitude': -122.4053769,
         },
       ],
     };
@@ -72,6 +73,12 @@ paddingTop:1,
       });
     }
 
+
+    componentDidMount() {
+      let location =this.props.navigation.state.params.userdata.location;
+
+      // this.mapView.fitToCoordinates(location, { edgePadding: { top: 10, right: 10, bottom: 10, left: 10 }, animated: false })
+    }
 
     setMargin = () => {
       
@@ -94,8 +101,10 @@ onMapRender=()=> {
       const origin = {latitude: 37.3318456, longitude: -122.0296002};
 const destination = {latitude: 37.771707, longitude: -122.4053769};
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC5dUTX1m25NeILTFp5BTS4mpy8tDylbnc';
-      const{navigation}= this.props;
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
+let location =this.props.navigation.state.params.userdata.location;
+      const{navigation,userdata}= this.props;
+      // alert(JSON.stringify(this.props.navigation.state.params.userdata.location));
+      //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
              <NavigationEvents style={{flex:1}} onWillBlur={()=>{
@@ -105,18 +114,18 @@ const GOOGLE_MAPS_APIKEY = 'AIzaSyC5dUTX1m25NeILTFp5BTS4mpy8tDylbnc';
               console.log("hello")},3000);
             }} />
              <MapView 
-             initialRegion={{
-              latitude: LATITUDE,
-              longitude: LONGITUDE,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
-            }}
+            //  initialRegion={{
+              // latitude: location.latitude,
+              // longitude: location.longitude,
+              // latitudeDelta: LATITUDE_DELTA,
+              // longitudeDelta: LONGITUDE_DELTA,
+            // }}
              showsPointsOfInterest
              showsScale
             userLocationAnnotationTitle
             zoomControlEnabled
             followsUserLocation
-            onPress={this.onMapPress}
+            // onPress={this.onMapPress}
             // showsTraffic
              ref={map => (this.map = map)}
              style={{marginBottom: this.state.mapMargin,flex:1}}
@@ -127,7 +136,7 @@ const GOOGLE_MAPS_APIKEY = 'AIzaSyC5dUTX1m25NeILTFp5BTS4mpy8tDylbnc';
               this.onMapRender
              }
                     >
-                      {this.state.coordinates.map((coordinate, index) =>
+                      {location.map((coordinate, index) =>
           <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
         )}
         {(this.state.coordinates.length >= 2) && (

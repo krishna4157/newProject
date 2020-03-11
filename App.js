@@ -106,6 +106,13 @@ componentWillUpdate(){
 
   async componentDidMount () {
     theme.add({
+      loginComponent:{
+        flex:1,
+        backgroundColor: 'white' 
+      },
+      labelColor: {
+        color: 'black'
+      },
       fontColor:{
         color: 'white',
         alignSelf:'center'
@@ -125,7 +132,7 @@ componentWillUpdate(){
       },
       loginBackground:{
         flex:1,
-        backgroundColor: 'white',
+        backgroundColor: '#7475C5',
         justifyContent:'center',
         alignItems:'center',
         },
@@ -192,6 +199,13 @@ componentWillUpdate(){
     },);
 
     theme.add({
+      loginComponent:{
+        flex:1,
+        backgroundColor: 'black' 
+      },
+      labelColor: {
+        color: 'white'
+      },
       fontColor:{
         color: 'white',
         justifyContent:'center',
@@ -283,29 +297,53 @@ componentWillUpdate(){
       
       'name'    : 'Family1',
       'subtitle': 'Family',
-      'url'     : 'https://en.bcdn.biz/Images/2016/11/15/a9b9a282-948d-4073-ae1a-853ec3c41614.jpg'
+      'url'     : 'https://en.bcdn.biz/Images/2016/11/15/a9b9a282-948d-4073-ae1a-853ec3c41614.jpg',
+      'location' :  [{
+        latitude: 37.3317876,
+        longitude: -122.0054812,
+      }]
     },{
       'name': 'Family2',
-      'url': 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg'
+      'url': 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg',
+      'location' : [{
+        latitude: 37.771707,
+        longitude: -122.4053769,
+      }]
     },
     {
       'name': 'Friend1',
       'subtitle': 'Friend',
-      'url': 'https://en.bcdn.biz/Images/2016/11/15/776342f0-86f5-4522-84c9-a02d6b11c766.jpg'
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/776342f0-86f5-4522-84c9-a02d6b11c766.jpg',
+      'location' :  [{
+        latitude: 37.3317876,
+        longitude: -122.0054812,
+      }]
     },
     {
       'name': 'Friend2',
       'subtitle': 'Friend',
-      'url': 'https://en.bcdn.biz/Images/2016/11/15/365d6610-08ca-40d7-a599-4b352cbd894e.jpg'
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/365d6610-08ca-40d7-a599-4b352cbd894e.jpg',
+      'location' :  [{
+        latitude: 37.3317876,
+        longitude: -122.0054812,
+      }]
     },
     {
       'name': 'Other1',
       'subtitle': 'Other',
-      'url': 'https://en.bcdn.biz/Images/2016/11/15/1268e0a8-b737-444d-a64d-977ee30db531.jpg'
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/1268e0a8-b737-444d-a64d-977ee30db531.jpg',
+      'location' :  [{
+        latitude: 37.3317876,
+        longitude: -122.0054812,
+      }]
     },{
       'name': 'Other2',
       'subtitle': 'Other',
-      'url': 'https://en.bcdn.biz/Images/2016/11/15/3bb528e4-b1d3-4d04-a2c4-302d632e096b.jpg'
+      'url': 'https://en.bcdn.biz/Images/2016/11/15/3bb528e4-b1d3-4d04-a2c4-302d632e096b.jpg',
+      'location' :  [{
+        latitude: 37.3317876,
+        longitude: -122.0054812,
+      }]
     }];
     await AsyncStorage.setItem('selectLanguage',this.state.locale);
 

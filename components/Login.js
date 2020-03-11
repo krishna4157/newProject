@@ -29,11 +29,22 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import Colors from '../constants/Colors';
 import styles from 'react-native-theme';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { faCoffee,faUser,faPencilAlt,faUsers,faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { MaterialIcons,Entypo, MaterialCommunityIcons,Feather, FontAwesome ,FontAwesome5,AntDesign,Fontisto} from '@expo/vector-icons';
+import { Fumi, Sae } from 'react-native-textinput-effects';
+import theme from 'react-native-theme';
 var friends = ['Friends1','Friends2','Friends3'];
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+
+import * as Animatable from 'react-native-animatable';
 
 class Login extends Component {
     state={
     };
+
+
+  
 
 
     setDataAndNavigate= async ()=>{
@@ -49,85 +60,59 @@ class Login extends Component {
     render() {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-          <View style={styles.loginBackground}>
+          <View style={styles.loginComponent}>
             <SpringScrollView
 style={styles.scrollView}
 bounces={true}
 //  initialContentOffset={{ x: 0, y: 550 }}
 
 >
-            {/* <ScrollView bounces={true} bouncesZoom={true} overScrollMode={"always"} alwaysBounceHorizontal alwaysBounceVertical
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}> */}
-              {/* <Header /> */}
-              {/* {global.HermesInternal == null ? null : (
-                <View style={styles.engine}>
-                  <Text style={styles.footer}>Engine: Hermes</Text>
-                </View>
-              )} */}
-              <View style={styles.body}>
-                <View style={{padding:10}}>
-                  
+            
+                <View style={{padding:10,justifyContent:'space-between'}}>
+                <View style={{borderRadius:20,padding:5}}>
+                <Sae
+    label={' Username'}
+    iconClass={MaterialCommunityIcons}
+    iconName={'grease-pencil'}
+    iconColor={'#3498DB'}
+    labelStyle={styles.labelColor}
+    iconSize={20}
+    iconWidth={40}
+    inputStyle={{ color:theme.name=='default' ? 'black': 'white' }}
+    inputPadding={16}
+    
+  />
+  </View>
+  <View style={{padding:10,borderRadius:20,padding:5}}>
+  <Sae
+    label={'Password'}
+    iconClass={FontAwesome}
+    iconName={'fa-pencil'}
+    iconColor={'#f95a25'}
+    labelStyle={styles.labelColor}
+    iconSize={20}
+    iconWidth={40}
+    inputStyle={{ color: theme.name=='default' ? 'black': 'white' }}
+    inputPadding={16}
+  />
+  </View>
                    
-                   
+                   <View style={{alignItems:'center',paddingTop:'30%',flexDirection:"column-reverse"}}>
+                   <GoogleSigninButton
+    style={{ width: 192, height: 48 }}
+    size={GoogleSigninButton.Size.Wide}
+    color={GoogleSigninButton.Color.Dark}
+    onPress={this.setDataAndNavigate}
+    disabled={this.state.isSigninInProgress} />
                        <AwesomeButton onPress={()=>{this.setDataAndNavigate()}}>
                         <Text style={{color:'white'}}>      LOGIN      </Text> 
                       </AwesomeButton>
                   </View>
-              </View>
+                  </View>
             </SpringScrollView>
           </View>
         );
       }
     }
-    // const styles = StyleSheet.create({
-    //   scrollView: {
-    //     backgroundColor: Colors.lighter,
-    //     shadowColor: '#000000',
-    //     shadowOffset: {
-    //       width: 0,
-    //       height: 3
-    //     },
-    //     shadowRadius: 5,
-    //     shadowOpacity: 1.0
-    //   },
-    //   engine: {
-    //     position: 'absolute',
-    //     right: 0,
-    //   },
-    //   body: {
-    //     backgroundColor: Colors.appBackground,
-    //   },
-    //   sectionContainer: {
-    //     flexDirection:'row',
-    //     padding:15,
-    //     backgroundColor: Colors.FriendsHeader,
-    //     justifyContent:'space-between',
-    //     alignItems:'center',
-    //     paddingHorizontal: 24,
-    //   },
-    //   sectionTitle: {
-    //     fontSize: 24,
-    //     fontWeight: '600',
-    //     color: Colors.black,
-    //     textAlign:'center'
-    //   },
-    //   sectionDescription: {
-    //     marginTop: 8,
-    //     fontSize: 18,
-    //     fontWeight: '400',
-    //     color: Colors.dark,
-    //   },
-    //   highlight: {
-    //     fontWeight: '700',
-    //   },
-    //   footer: {
-    //     color: Colors.dark,
-    //     fontSize: 12,
-    //     fontWeight: '600',
-    //     padding: 4,
-    //     paddingRight: 12,
-    //     textAlign: 'right',
-    //   },
-    // });
+    
 export default Login;

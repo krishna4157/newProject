@@ -23,6 +23,7 @@ import LoginPage from './LoginPage';
 import LanguagePage from './LanguagePage';
 import MapsPage from './MapsPage';
 import ThemesPage from './ThemesPage';
+import DetailsPage from './DetailsPage';
 
 // import {
 //     Menu,
@@ -135,6 +136,9 @@ const RelationNavigator = createStackNavigator({
   
 // const {locale}=this.props;
 const AppNavigator = createStackNavigator({
+    Details :{
+        screen: DetailsPage
+    },
     Login :{
         screen:LoginPage
     },

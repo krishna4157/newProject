@@ -29,7 +29,7 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
-var navigationIndex = ['Language','Settings','Logout','Themes','Support']
+var navigationIndex = ['Language','Settings','Login','Themes','Support']
 class More extends Component {
     state={
     };

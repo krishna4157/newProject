@@ -66,6 +66,7 @@ import { NavigationEvents } from "react-navigation";
 var cardsList = ["Family1", "Family2", "Family3"];
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from 'react-native-theme';
+import theme from "react-native-really-awesome-button/src/themes/rick";
 
 class Family extends Component {
   state = {
@@ -128,7 +129,7 @@ class Family extends Component {
           }}
         />
         <SpringScrollView
-           style={{backgroundColor:'white',height:'100%'}}
+           style={{backgroundColor:theme.name=='default'? 'white':'black',height:'100%'}}
            bounces={true}
         >
           <View style={styles.body}>
@@ -160,7 +161,7 @@ class Family extends Component {
                     <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
                     <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
                       // alert('hello world');
-                      navigation.navigate('Maps') 
+                      navigation.navigate('Maps',{'userdata': userdata}) 
                     }}>
                     <Image
                    style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}

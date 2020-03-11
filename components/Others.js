@@ -21,13 +21,13 @@ import {
 import Colors from '../constants/Colors';
 import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableHighlight, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
 var friends = ['Others1','Others2','Others3'];
 import  _ from 'lodash'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
+import theme from 'react-native-theme';
 
 class Others extends Component {
   state={
@@ -85,7 +85,7 @@ class Others extends Component {
                   
                    
                 {products2!=null && products2!='' &&  products2.map((userdata,index)=>{
-                     return ( <TouchableHighlight onPress={()=>{
+                     return ( <TouchableWithoutFeedback onPress={()=>{
                       // alert("hello!")
                       console.log('HELLO!');
                     }} >
@@ -116,7 +116,7 @@ class Others extends Component {
                     </Button>
                     </View>
                     </Card>
-                  </TouchableHighlight>)})}
+                  </TouchableWithoutFeedback>)})}
                   </View>
               </View>
             </SpringScrollView>
@@ -126,7 +126,7 @@ class Others extends Component {
     }
     const styles = StyleSheet.create({
       scrollView: {
-        backgroundColor: Colors.lighter,
+        backgroundColor: theme.name=='default'? 'white':'black',
         height:'100%'
       },
       engine: {
@@ -134,7 +134,7 @@ class Others extends Component {
         right: 0,
       },
       body: {
-        backgroundColor: '#F2F2F2',
+        // backgroundColor: '#F2F2F2',
       },
       sectionContainer: {
         flexDirection:'row',

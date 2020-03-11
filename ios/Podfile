@@ -40,6 +40,8 @@ target 'newProject' do
 
   pod 'react-native-randombytes', :path => '../node_modules/react-native-randombytes'
 
+  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+
   target 'newProjectTests' do
     inherit! :search_paths
     # Pods for testing
