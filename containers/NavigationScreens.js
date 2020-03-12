@@ -24,6 +24,7 @@ import LanguagePage from './LanguagePage';
 import MapsPage from './MapsPage';
 import ThemesPage from './ThemesPage';
 import DetailsPage from './DetailsPage';
+import SwiperPage from './SwiperPage';
 
 // import {
 //     Menu,
@@ -136,6 +137,9 @@ const RelationNavigator = createStackNavigator({
   
 // const {locale}=this.props;
 const AppNavigator = createStackNavigator({
+    Swiper:{
+        screen:SwiperPage
+    },
     Details :{
         screen: DetailsPage
     },
@@ -160,7 +164,7 @@ const AppNavigator = createStackNavigator({
          screen: OthersPage
      }
    },{
-     initialRouteName: 'Login',
+     initialRouteName: 'Swiper',
      headerMode:'none',
    });
 
