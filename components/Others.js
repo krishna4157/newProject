@@ -28,6 +28,7 @@ import  _ from 'lodash'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import theme from 'react-native-theme';
+import { NavigationEvents } from 'react-navigation';
 
 class Others extends Component {
   state={
@@ -43,6 +44,15 @@ class Others extends Component {
     console.log('others data : '+JSON.stringify(data1))
   }
 
+  onRefreshData= async()=>{
+    let encryptedForms = await AsyncStorage.getItem("OthersData");
+    // alert(this.props.locale);
+      var data = JSON.parse(encryptedForms);
+      this.setState({
+          products2: data
+      })
+      console.log('this state data :'+this.state.products2);
+  }
 
   setDataToFeeds = async(userdata,index)=>{
     // alert('Sending Data!!!');
@@ -72,52 +82,66 @@ class Others extends Component {
     render() {
       const {products2}=this.state;
         return (
-          <View>
+          <View style={{
+            flex:1,backgroundColor:theme.name=='default'?'white':'black'}}>
+            <NavigationEvents 
+              onDidFocus={()=>{
+               
+                this.onRefreshData();      
+              }}
+            />
             <SpringScrollView
-              style={styles.scrollView}>
+               ref ={ref => (this._scrollView = ref)} 
+               onRefresh={()=>{
+                 setTimeout(() => {
+                   this._scrollView.endRefresh();
+                   this.onRefreshData();
+                 }, 2000);
+               }}
+              //  style={styles}
+               bounces={true}
+            >
               <View style={styles.body}>
-                {console.log("others:::"+products2)}
-              {products2==null && 
-              <View style={{justifyContent:'center',backgroundColor:'red'}}>
-              <Text style={{textAlign:'center'}}>No data Available</Text>
-              </View>}
-                <View style={{padding:10}}>
-                  
-                   
-                {products2!=null && products2!='' &&  products2.map((userdata,index)=>{
-                     return ( <TouchableWithoutFeedback onPress={()=>{
-                      // alert("hello!")
-                      console.log('HELLO!');
-                    }} >
-                    <Card>
-                    <View 
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        padding: 10
-                      }}
-                    >
-                      <CardTitle title={userdata.name} subtitle={userdata.subtitle} />
-                      <AwesomeButton  onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
-                      <View style={{width:50,alignItems:'center'}}>
-                      <FontAwesomeIcon color={'white'} size={30} icon={faTimes}  />
-                      </View>
-                      </AwesomeButton>
-                    </View>
-                    <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
-                    <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
-                      // alert('hello world');
-                      // navigation.navigate('Maps') 
-                    }}>
-                    <Image
-                   style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
-                     source={{ uri: userdata.url}}
-                    />
-                    </Button>
-                    </View>
-                    </Card>
-                  </TouchableWithoutFeedback>)})}
-                  </View>
+              {products2==null || products2=='' && 
+                  <View style={{justifyContent:'center'}}>
+                  <Text style={{textAlign:'center'}}>No data Available</Text>
+                  </View>}
+                <View style={{paddingBottom:10,padding:5,height:'120%'}}>
+                  {console.log("products : "+products2)}
+                  {products2!=null && products2!='' && products2.map((userdata, index) => {
+                    
+                    return (
+                      
+                      <Card style={{ borderRadius:20,backgroundColor:theme.name=='default'?'white':'grey',marginTop:10 ,height:190}}>
+                        <View 
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            padding: 10
+                          }}
+                        >
+                          <CardTitle title={userdata.name} subtitle={userdata.subtitle} />
+                          <AwesomeButton  onPress={()=>{this.setDataToFeeds(userdata)}} backgroundColor="red" textColor="white">
+                          <View style={{width:50,alignItems:'center'}}>
+                          <FontAwesomeIcon color={'white'} size={30} icon={faTimes}  />
+                          </View>
+                          </AwesomeButton>
+                        </View>
+                        <View style={{flexWrap: 'wrap',height:210,backgroundColor:'white',borderRadius:30}}>
+                        <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
+                          // alert('hello world');
+                          navigation.navigate('Maps',{'userdata': userdata}) 
+                        }}>
+                        <Image
+                       style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
+                         source={{ uri: userdata.url}}
+                        />
+                        </Button>
+                        </View>
+                      </Card>
+                    );
+                  })}
+                </View>
               </View>
             </SpringScrollView>
           </View>

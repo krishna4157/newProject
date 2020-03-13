@@ -5,12 +5,15 @@ import Family from '../components/Family';
 import { BackHandler, Alert,View } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import Login from "../components/Login";
+import t from "../constants/TextTranslate";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
+var translatedText= '';
 class LoginPage extends Component {
     state={
+      text: '',
         subjectCompliance: {
             dayCompliance: 0,
           weekCompliance: 0,
@@ -22,11 +25,18 @@ class LoginPage extends Component {
    
 
 
-    //   componentDidMount() {
-    //       const{setCurrentScreen}= this.props;
+      componentDidMount() {
+        translatedText = t('Login');
+        // setTimeout(()=>{
+        //   this.setState({
+        //     text: translatedText._55
+        //   })
+        // },3000)
+        
+        // const{setCurrentScreen}= this.props;
     //     // setCurrentScreen("");
     //     // BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //   }    
+      }    
 
     //   componentDidUpdate (prevProps) {
     //     const { selectedLanguage, isFocused, screenProps: { t } } = this.props;
@@ -78,10 +88,11 @@ class LoginPage extends Component {
     
     render() {
       const {navigation,t}= this.props;
-
+      const {text}=this.state;
       console.log(JSON.stringify(this.props));
         return (
             <Login
+            text={text}
              navigation={navigation}
             // loading={loading}
             // subjectCompliance={subjectCompliance}

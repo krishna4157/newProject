@@ -125,7 +125,7 @@ class AppNavigation extends Component {
   
   render() {
     const {t,changeTheme,locale,setLocale}=this.props;
-    // alert(locale);
+    // alert(JSON.stringify(locale));
     return (
       <View style={{flex:1,backgroundColor:'red'}}>
       {/* {disappear ==false && <OfflineNotice t={screenProps.t} isInternetReachable={isInternetReachable} isConnected={isConnected} />} */}

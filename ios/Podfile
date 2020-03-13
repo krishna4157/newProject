@@ -42,6 +42,8 @@ target 'newProject' do
 
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'newProjectTests' do
     inherit! :search_paths
     # Pods for testing

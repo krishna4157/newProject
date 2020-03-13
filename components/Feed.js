@@ -279,7 +279,7 @@ class Feed extends Component {
           }}
         />
           <Header style={styles.HeaderStyle} >
-            <Title style={styles.fontColor}>{s}</Title>
+            <Title style={styles.fontColor}>{t('FEED')}</Title>
           </Header>
         <SpringScrollView
         ref ={ref => (this._scrollView = ref)} 

@@ -27,6 +27,7 @@ import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawe
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
+import { setLanguage } from '../constants/TextTranslate';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['English','Telugu','Hindi'];
@@ -41,7 +42,7 @@ class Language extends Component {
     setLanguage=async(index)=>{
       const {navigation}=this.props;
       var language;
-    
+        setLanguage(LanguageItems[index]);
         language = LanguageItems[index];
       // alert(s);
 
@@ -49,7 +50,7 @@ class Language extends Component {
         await AsyncStorage.setItem('Locale',language);
       s = await AsyncStorage.getItem('Locale')
         // alert("Set Language and Navigating to Login Page : "+s);
-        navigation.navigate('Login')
+        navigation.navigate('Swiper')
        
     }
 

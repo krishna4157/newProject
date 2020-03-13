@@ -7,8 +7,7 @@ import {
     View,
     Text,
     StatusBar,
-    Animated,
-    Image,
+    Image,Easing
   } from 'react-native';
   import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 
@@ -29,22 +28,42 @@ import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
 import AsyncStorage from '@react-native-community/async-storage';
 import Colors from '../constants/Colors';
 import styles from 'react-native-theme';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+// import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { faCoffee,faUser,faPencilAlt,faUsers,faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { MaterialIcons,Entypo, MaterialCommunityIcons,Feather, FontAwesome ,FontAwesome5,AntDesign,Fontisto} from '@expo/vector-icons';
 import { Fumi, Sae } from 'react-native-textinput-effects';
 import theme from 'react-native-theme';
 var friends = ['Friends1','Friends2','Friends3'];
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
-
+import t from '../constants/TextTranslate';
 import * as Animatable from 'react-native-animatable';
+import { NavigationEvents } from 'react-navigation';
+import { AnimatedBackgroundColorView } from 'react-native-animated-background-color-view';
+import Animated from 'react-native-reanimated';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
 
 class Login extends Component {
-    state={
-    };
+  constructor () {
+  	super()
+    this.animatedValue = new Animated.Value(0),
+    this.state ={
+      time:1,
+    }
+  }
 
 
-  
+    animate (easing) {
+      this.animatedValue.setValue(0)
+        Animated.timing(
+          this.animatedValue,
+          {
+            toValue: 1,
+            duration: 100,
+            easing
+          }
+      ).start()
+    }
 
 
     setDataAndNavigate= async ()=>{
@@ -57,23 +76,38 @@ class Login extends Component {
         
     }
 
-    render() {
-    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
-        return (
-          <View style={styles.loginComponent}>
-            <SpringScrollView
-style={styles.scrollView}
-bounces={true}
-//  initialContentOffset={{ x: 0, y: 550 }}
+    translateText = async () => {
+      console.log("Translation: ",await t('LOGIN'));
+    }
 
->
-            
-                <View style={{padding:10,justifyContent:'space-between'}}>
-                <View style={{borderRadius:20,padding:5}}>
-                <Sae
-    label={' Username'}
-    iconClass={MaterialCommunityIcons}
-    iconName={'grease-pencil'}
+    render() {
+      const{text}=this.props;
+      this.translateText();
+        return (
+          <SpringScrollView bounces={true} style={{flex:3,backgroundColor:'#3498DB'}}>
+          <NavigationEvents onDidFocus={()=>{
+            // alert('refreshed')s
+            this.setState({
+              time: 2
+            })
+          }}/>
+          <AnimatedBackgroundColorView  style={{flex:3,height:'100%'}} initialColor='black' easing={Easing.bounce} color='black' >
+          <AnimatedBackgroundColorView   style={{height:400,borderBottomLeftRadius:160,justifyContent:'center'}} initialColor='orange' easing={Easing.ease} color='#3498DB' >            
+          <Animatable.View>
+          {/* <TouchableOpacity onPress={() => this.setState({fontSize: (this.state.fontSize || 10) + 5 })}>
+  <Animatable.Text transition="fontSize" style={{fontSize: this.state.fontSize || 10}}>Size me up, Scotty</Animatable.Text>
+</TouchableOpacity> */}
+          <Animatable.Text iterationDelay={2000} style={{textAlign:'center',fontSize:35,color:'white',fontWeight:'bold'}} animation="fadeIn" iterationCount={1} direction="alternate">Welcome To                    Share And Care</Animatable.Text>
+          </Animatable.View>
+          </AnimatedBackgroundColorView>
+          </AnimatedBackgroundColorView>
+            {/* </SpringScrollView> */}
+            <View style={{flex:3,backgroundColor:'black',height:400,borderBottomEndRadius:30,borderBottomStartRadius:30}}>
+            <View style={{justifyContent:'space-evenly',height:180}}>
+            <Sae
+    label={t('Username')}
+    iconClass={FontAwesomeIcon}
+    iconName={'pencil'}
     iconColor={'#3498DB'}
     labelStyle={styles.labelColor}
     iconSize={20}
@@ -82,12 +116,10 @@ bounces={true}
     inputPadding={16}
     
   />
-  </View>
-  <View style={{padding:10,borderRadius:20,padding:5}}>
-  <Sae
-    label={'Password'}
-    iconClass={FontAwesome}
-    iconName={'fa-pencil'}
+              <Sae
+    label={t('Password')}
+    iconClass={FontAwesomeIcon}
+    iconName={'pencil'}
     iconColor={'#f95a25'}
     labelStyle={styles.labelColor}
     iconSize={20}
@@ -95,22 +127,25 @@ bounces={true}
     inputStyle={{ color: theme.name=='default' ? 'black': 'white' }}
     inputPadding={16}
   />
+            {/* <Animatable.View style={{flex:1,backgroundColor:'#3498DB'}}>
+
+<Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center' }}>❤️</Animatable.Text>
+</Animatable.View> */}
   </View>
-                   
-                   <View style={{alignItems:'center',paddingTop:'30%',flexDirection:"column-reverse"}}>
-                   <GoogleSigninButton
-    style={{ width: 192, height: 48 }}
-    size={GoogleSigninButton.Size.Wide}
-    color={GoogleSigninButton.Color.Dark}
-    onPress={this.setDataAndNavigate}
-    disabled={this.state.isSigninInProgress} />
+  <View style={{height:150,justifyContent:'space-between',alignItems:'center'}}>
+            
                        <AwesomeButton onPress={()=>{this.setDataAndNavigate()}}>
-                        <Text style={{color:'white'}}>      LOGIN      </Text> 
+                        <View style={{width:'40%'}}>
+                        <Text style={{color:'white',textAlign:'center'}}>
+                           {t('LOGIN')}
+                           </Text> 
+                        </View>
                       </AwesomeButton>
-                  </View>
-                  </View>
+                      <Text style={{color:'white',fontSize:15}}>--------------------------------or--------------------------------</Text>
+                      <GoogleSigninButton onPress={()=>{this.setDataAndNavigate()}}/>
+                      </View>
+                      </View>
             </SpringScrollView>
-          </View>
         );
       }
     }

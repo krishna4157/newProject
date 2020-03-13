@@ -106,6 +106,9 @@ componentWillUpdate(){
 
   async componentDidMount () {
     theme.add({
+      friendStyle:{
+        backgroundColor:'white'  
+      },
       loginComponent:{
         flex:1,
         backgroundColor: 'white' 
@@ -199,6 +202,9 @@ componentWillUpdate(){
     },);
 
     theme.add({
+      friendStyle:{
+        backgroundColor:'grey'  
+      },
       loginComponent:{
         flex:1,
         backgroundColor: 'black' 
@@ -291,7 +297,7 @@ componentWillUpdate(){
       }
     }, 'Dark');
 
-    alert('HELLO')  
+    // alert('HELLO')  
     theme.active(this.state.theme);
     var Relations = [{
       
@@ -299,8 +305,10 @@ componentWillUpdate(){
       'subtitle': 'Family',
       'url'     : 'https://en.bcdn.biz/Images/2016/11/15/a9b9a282-948d-4073-ae1a-853ec3c41614.jpg',
       'location' :  [{
-        latitude: 37.3317876,
-        longitude: -122.0054812,
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121,
       }]
     },{
       'name': 'Family2',
@@ -308,6 +316,8 @@ componentWillUpdate(){
       'location' : [{
         latitude: 37.771707,
         longitude: -122.4053769,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121
       }]
     },
     {
@@ -317,6 +327,8 @@ componentWillUpdate(){
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121
       }]
     },
     {
@@ -326,6 +338,8 @@ componentWillUpdate(){
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121
       }]
     },
     {
@@ -335,6 +349,8 @@ componentWillUpdate(){
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121
       }]
     },{
       'name': 'Other2',
@@ -343,14 +359,16 @@ componentWillUpdate(){
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121
       }]
     }];
     await AsyncStorage.setItem('selectLanguage',this.state.locale);
 
     
-var s = t('HELLO');
-console.log("S : "+s);
-    console.log("IMP :"+JSON.stringify(Relations));
+// var s = t('HELLO');
+// console.log("S : "+s);
+    // console.log("IMP :"+JSON.stringify(Relations));
     var Family = [];
     var Friends = [];
     var Others = [];
@@ -366,7 +384,7 @@ console.log("S : "+s);
     await AsyncStorage.setItem("Forms",StringifyData);
     let encryptedForms = await AsyncStorage.getItem("Forms");
     let formdata = JSON.parse(encryptedForms)
-    console.log("DATATAT:"+encryptedForms)
+    // console.log("DATATAT:"+encryptedForms)
     // if(encryptedForms==null){
     //     const encryptedForms = await AsyncStorage.setItem("encryptedForms");
     // }

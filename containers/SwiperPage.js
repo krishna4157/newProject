@@ -79,7 +79,7 @@ class SwiperPage extends Component {
     
     render() {
       const {navigation,t}= this.props;
-
+// alert("props "+JSON.stringify(this.props));
       console.log(JSON.stringify(this.props));
         return (
             <Swiper

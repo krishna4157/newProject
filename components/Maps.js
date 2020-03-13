@@ -28,7 +28,7 @@ import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
-import MapView,{PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { Marker } from "react-native-maps";
 import { NavigationEvents } from 'react-navigation';
 import MapViewDirections from 'react-native-maps-directions'
@@ -101,11 +101,12 @@ onMapRender=()=> {
       const origin = {latitude: 37.3318456, longitude: -122.0296002};
 const destination = {latitude: 37.771707, longitude: -122.4053769};
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC5dUTX1m25NeILTFp5BTS4mpy8tDylbnc';
-let location =this.props.navigation.state.params.userdata.location;
-      const{navigation,userdata}= this.props;
-      // alert(JSON.stringify(this.props.navigation.state.params.userdata.location));
+let userdata =this.props.navigation.getParam('userdata') || '';
+const location = userdata.location;      
+const{navigation}= this.props;
       //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
-        return (
+      
+      return (
             <View style={{  width: "100%", height: "100%", paddingTop: this.state.paddingTop}}>
              <NavigationEvents style={{flex:1}} onWillBlur={()=>{
                setTimeout(()=>{this.setMargin;
@@ -114,12 +115,12 @@ let location =this.props.navigation.state.params.userdata.location;
               console.log("hello")},3000);
             }} />
              <MapView 
-            //  initialRegion={{
-              // latitude: location.latitude,
-              // longitude: location.longitude,
-              // latitudeDelta: LATITUDE_DELTA,
-              // longitudeDelta: LONGITUDE_DELTA,
-            // }}
+             initialRegion={{
+              latitude: location[0].latitude,
+              longitude: location[0].longitude,
+              latitudeDelta: location[0].latitudeDelta,
+              longitudeDelta: location[0].longitudeDelta
+            }}
              showsPointsOfInterest
              showsScale
             userLocationAnnotationTitle
@@ -136,39 +137,10 @@ let location =this.props.navigation.state.params.userdata.location;
               this.onMapRender
              }
                     >
-                      {location.map((coordinate, index) =>
-          <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
+                      {location &&location.map((coordinate, index) =>
+          <MapView.Marker draggable key={`coordinate_${index}`} coordinate={coordinate} />
         )}
-        {(this.state.coordinates.length >= 2) && (
-          <MapViewDirections
-            origin={this.state.coordinates[0]}
-            waypoints={ (this.state.coordinates.length > 2) ? this.state.coordinates.slice(1, -1): null}
-            destination={this.state.coordinates[this.state.coordinates.length-1]}
-            apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={3}
-            strokeColor="hotpink"
-            optimizeWaypoints={true}
-            onStart={(params) => {
-              console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
-            }}
-            onReady={result => {
-              console.log('Distance: ${result.distance} km')
-              console.log('Duration: ${result.duration} min.')
-              
-              // this.mapView.fitToCoordinates(result.coordinates, {
-              //   edgePadding: {
-              //     right: (100 / 20),
-              //     bottom: (100 / 20),
-              //     left: (100 / 20),
-              //     top: (100 / 20),
-              //   }
-              // });
-            }}
-            onError={(errorMessage) => {
-              // console.log('GOT AN ERROR');
-            }}
-          />
-        )}
+        
                      
             
                       </MapView>

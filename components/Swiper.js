@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { AppRegistry, StyleSheet, Text, View } from 'react-native'
+import { AppRegistry, StyleSheet, Text, View, Easing } from 'react-native'
+import { AnimatedBackgroundColorView } from 'react-native-animated-background-color-view';
 
 import Swiper from 'react-native-swiper'
 import { Button } from 'react-native-paper'
+import Animated from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
   wrapper: {},
@@ -32,12 +34,22 @@ const styles = StyleSheet.create({
   }
 })
 
+
+
 class SwiperComp extends Component {
+
+    
+  constructor () {
+  	super()
+    this.animatedValue = new Animated.Value(0)
+  }
+ 
+
   render() {
       const {navigation}=this.props;
     return (
       <Swiper style={styles.wrapper} showsButtons={true} loop={false}>
-        <View style={styles.slide1}>
+      <View style={styles.slide1}>
           <Text style={styles.text}>Hello Swiper</Text>
         </View>
         <View style={styles.slide2}>

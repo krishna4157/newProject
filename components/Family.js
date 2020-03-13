@@ -66,7 +66,7 @@ import { NavigationEvents } from "react-navigation";
 var cardsList = ["Family1", "Family2", "Family3"];
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from 'react-native-theme';
-import theme from "react-native-really-awesome-button/src/themes/rick";
+import theme from "react-native-theme";
 
 class Family extends Component {
   state = {
@@ -112,6 +112,18 @@ class Family extends Component {
   }
 
 
+
+  onRefreshData= async()=>{
+    let encryptedForms = await AsyncStorage.getItem("FamilyData");
+    // alert(this.props.locale);
+      var data = JSON.parse(encryptedForms);
+      this.setState({
+          products1: data
+      })
+      console.log('this state data :'+this.state.products);
+  }
+
+
   render() {
     const {products1}=this.state;
     const {data1,navigation}=this.props;
@@ -119,22 +131,28 @@ class Family extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
     return (
      
-      <View style={styles.loginBackground}>
+      <View style={{
+        flex:1,backgroundColor:theme.name=='default'?'white':'black'}}>
         <NavigationEvents 
           onDidFocus={()=>{
-            console.log("Focus Called")
-            this.setState({
-              products1: data1
-            })      
+           
+            this.onRefreshData();      
           }}
         />
         <SpringScrollView
-           style={{backgroundColor:theme.name=='default'? 'white':'black',height:'100%'}}
+           ref ={ref => (this._scrollView = ref)} 
+           onRefresh={()=>{
+             setTimeout(() => {
+               this._scrollView.endRefresh();
+               this.onRefreshData();
+             }, 2000);
+           }}
+          //  style={styles}
            bounces={true}
         >
           <View style={styles.body}>
           {products1==null || products1=='' && 
-              <View style={{justifyContent:'center',backgroundColor:'red'}}>
+              <View style={{justifyContent:'center'}}>
               <Text style={{textAlign:'center'}}>No data Available</Text>
               </View>}
             <View style={{paddingBottom:10,padding:5,height:'120%'}}>
@@ -143,7 +161,7 @@ class Family extends Component {
                 
                 return (
                   
-                  <Card style={{ borderRadius:20,backgroundColor:'white',marginTop:10 }}>
+                  <Card style={{ borderRadius:20,backgroundColor:theme.name=='default'?'white':'grey',marginTop:10 }}>
                     <View 
                       style={{
                         flexDirection: "row",
