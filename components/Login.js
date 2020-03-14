@@ -7,7 +7,8 @@ import {
     View,
     Text,
     StatusBar,
-    Image,Easing
+    Image,Easing,
+    Animated as NewAnimated
   } from 'react-native';
   import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-material-cards'
 
@@ -41,17 +42,68 @@ import { NavigationEvents } from 'react-navigation';
 import { AnimatedBackgroundColorView } from 'react-native-animated-background-color-view';
 import Animated from 'react-native-reanimated';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
+import {SafeAreaView,Platform} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 class Login extends Component {
   constructor () {
   	super()
     this.animatedValue = new Animated.Value(0),
+    this.moveAnimation = new NewAnimated.ValueXY({ x: -180, y: 0 })
+    this.textAnimation = new NewAnimated.ValueXY({ x: 20, y: 0 })
+
     this.state ={
       time:1,
+      passwordColor:'#3498DB'
     }
   }
 
+  wrongPassword=()=>{
+    // NewAnimated.spring(this.moveAnimation, {
+    //   toValue: {x: -180, y: 0},
+    // }).start();
+    this.setState({
+      passwordColor: 'red'
+    })
+    setTimeout(()=>{
+      this.setState({
+        passwordColor:'#3498DB'
+      });
+      NewAnimated.spring(this.moveAnimation, {
+        toValue: {x: -180, y: 0},
+      }).start();
+      NewAnimated.spring(this.textAnimation, {
+        toValue: {x: 20, y: 0},
+      }).start();
+    },5000)
+  }
+
+  rightPassword=()=>{
+    this.setState({
+      passwordColor: 'green'
+    })
+    this.setDataAndNavigate()
+
+  }
+
+  loginValidate = () => {
+    NewAnimated.spring(this.moveAnimation, {
+      toValue: {x: 0, y: 0},
+    }).start();
+    NewAnimated.spring(this.textAnimation, {
+      toValue: {x: -150, y: 0},
+    }).start();
+    // this.wrongPassword();
+    this.rightPassword();
+    // this.setDataAndNavigate()
+
+  }
+
+  moveRight = () => {
+    NewAnimated.spring(this.moveAnimation, {
+      toValue: {x: -215, y: 0},
+    }).start()
+  }
 
     animate (easing) {
       this.animatedValue.setValue(0)
@@ -84,27 +136,49 @@ class Login extends Component {
       const{text}=this.props;
       this.translateText();
         return (
-          <SpringScrollView bounces={true} style={{flex:3,backgroundColor:'#3498DB'}}>
+          <KeyboardAwareScrollView
+          behavior="padding"           style={{flex:1 }}
+      >        
+                        <SafeAreaView style={{flex:1}}>
+ 
+          <SpringScrollView bounces={true} style={{flex:3,backgroundColor:this.state.passwordColor}}>
+          
           <NavigationEvents onDidFocus={()=>{
             // alert('refreshed')s
             this.setState({
-              time: 2
+              passwordColor:'#3498DB'
             })
+
+            NewAnimated.spring(this.moveAnimation, {
+              toValue: {x: -180, y: 0},
+            }).start();
+            NewAnimated.spring(this.textAnimation, {
+              toValue: {x: 20, y: 0},
+            }).start();
+            
           }}/>
-          <AnimatedBackgroundColorView  style={{flex:3,height:'100%'}} initialColor='black' easing={Easing.bounce} color='black' >
-          <AnimatedBackgroundColorView   style={{height:400,borderBottomLeftRadius:160,justifyContent:'center'}} initialColor='orange' easing={Easing.ease} color='#3498DB' >            
+          <View style={{backgroundColor:theme.name=='default'?'white':'black'}}>
+          <NewAnimated.View style={[{height:300,width:"150%",backgroundColor:'green',zIndex:1,borderBottomEndRadius:200,borderBottomStartRadius:200}, this.moveAnimation.getLayout()]}>
+          <AnimatedBackgroundColorView  style={{height:'90%'}} initialColor='black' color={theme.name=='default'?'white':'black'} >
+          <AnimatedBackgroundColorView   style={{height:300,justifyContent:'center',borderBottomEndRadius:130,borderBottomStartRadius:130}} initialColor='orange' easing={Easing.ease} color={this.state.passwordColor} >            
           <Animatable.View>
-          {/* <TouchableOpacity onPress={() => this.setState({fontSize: (this.state.fontSize || 10) + 5 })}>
-  <Animatable.Text transition="fontSize" style={{fontSize: this.state.fontSize || 10}}>Size me up, Scotty</Animatable.Text>
-</TouchableOpacity> */}
-          <Animatable.Text iterationDelay={2000} style={{textAlign:'center',fontSize:35,color:'white',fontWeight:'bold'}} animation="fadeIn" iterationCount={1} direction="alternate">Welcome To                    Share And Care</Animatable.Text>
+        
+          <Animatable.Text iterationDelay={2000} style={[{textAlign:'center',fontSize:35,color:'white',fontWeight:'bold',marginLeft:'3%'},this.textAnimation.getLayout()]} animation="fadeIn" iterationCount={1} direction="alternate">{t('Welcome to')}</Animatable.Text>
+          <Animatable.Text iterationDelay={2000} style={[{textAlign:'center',fontSize:40,color:'white',fontWeight:'bold',marginLeft:'20%'},this.textAnimation.getLayout()]} animation="fadeIn" iterationCount={1} direction="alternate">Share And Care</Animatable.Text>
+
           </Animatable.View>
           </AnimatedBackgroundColorView>
           </AnimatedBackgroundColorView>
+          </NewAnimated.View>
+          </View>
             {/* </SpringScrollView> */}
-            <View style={{flex:3,backgroundColor:'black',height:400,borderBottomEndRadius:30,borderBottomStartRadius:30}}>
-            <View style={{justifyContent:'space-evenly',height:180}}>
+            <View style={{flex:3,backgroundColor:theme.name=='default'?'white':'black',height:400,borderBottomEndRadius:30,borderBottomStartRadius:30}}>
+            
+            <View style={{justifyContent:'space-evenly',height:180}} >
+              {/* <TouchableOpacity style={{height:40}}> */}
+           
             <Sae
+            
     label={t('Username')}
     iconClass={FontAwesomeIcon}
     iconName={'pencil'}
@@ -112,7 +186,7 @@ class Login extends Component {
     labelStyle={styles.labelColor}
     iconSize={20}
     iconWidth={40}
-    inputStyle={{ color:theme.name=='default' ? 'black': 'white' }}
+    inputStyle={{ color:theme.name=='default' ? 'white': 'white' }}
     inputPadding={16}
     
   />
@@ -124,7 +198,7 @@ class Login extends Component {
     labelStyle={styles.labelColor}
     iconSize={20}
     iconWidth={40}
-    inputStyle={{ color: theme.name=='default' ? 'black': 'white' }}
+    inputStyle={{ color: theme.name=='default' ? 'white': 'white' }}
     inputPadding={16}
   />
             {/* <Animatable.View style={{flex:1,backgroundColor:'#3498DB'}}>
@@ -134,7 +208,10 @@ class Login extends Component {
   </View>
   <View style={{height:150,justifyContent:'space-between',alignItems:'center'}}>
             
-                       <AwesomeButton onPress={()=>{this.setDataAndNavigate()}}>
+                       <AwesomeButton onPress={()=>{
+                        this.loginValidate()
+                        //  this.setDataAndNavigate()
+                         }}>
                         <View style={{width:'40%'}}>
                         <Text style={{color:'white',textAlign:'center'}}>
                            {t('LOGIN')}
@@ -146,6 +223,8 @@ class Login extends Component {
                       </View>
                       </View>
             </SpringScrollView>
+            </SafeAreaView>
+            </KeyboardAwareScrollView>
         );
       }
     }

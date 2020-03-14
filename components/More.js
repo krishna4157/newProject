@@ -54,7 +54,7 @@ class More extends Component {
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='black' size={25} style={{padding:10}} /> 
-                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{name}</Text>
+                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{t(name)}</Text>
                     </ListItem>
                     )})}
             </SpringScrollView>

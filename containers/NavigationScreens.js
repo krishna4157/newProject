@@ -25,6 +25,7 @@ import MapsPage from './MapsPage';
 import ThemesPage from './ThemesPage';
 import DetailsPage from './DetailsPage';
 import SwiperPage from './SwiperPage';
+import t from '../constants/TextTranslate';
 
 // import {
 //     Menu,
@@ -72,7 +73,7 @@ const RelationNavigator = createStackNavigator({
             activeColor: '#1DC7E2',  
             inactiveColor: 'black',  
             tabBarLabel : 
-            <Text style={{marginBottom:10,color:'white',fontFamily:'Raleway'}}>Feeds</Text>,
+            <Text style={{marginBottom:10,color:'white',fontFamily:'Raleway'}}>{t('Feeds')}</Text>,
             barStyle: {backgroundColor:'#95AAC0'}
         }
     },
@@ -85,14 +86,14 @@ const RelationNavigator = createStackNavigator({
             barStyle: {backgroundColor:'green'},
                 
             tabBarLabel :            
-            <Text style={{marginBottom:10,color:'white'}}>Relations</Text>,            
+            <Text style={{marginBottom:10,color:'white'}}>{t('Relations')}</Text>,            
                  
             
         }},
     More: {screen : MoreTabs,
         navigationOptions:{
             tabBarLabel :
-            <Text style={{marginBottom:10,color:'white'}}>More</Text>,
+            <Text style={{marginBottom:10,color:'white'}}>{t('More')}</Text>,
             barStyle: {backgroundColor:'grey'}
             
         }},
@@ -127,6 +128,14 @@ const RelationNavigator = createStackNavigator({
             sceneAnimationEnabled: true,
             shifting:true,
             swipeEnabled: true,
+            tabBarComponent: TabBarBottom /* or TabBarTop /,
+tabBarPosition: 'bottom' / or 'top' */,
+navigationOptions: ({ navigation }) => ({
+tabBarOnPress: (scene, jumpToIndex) => {
+console.log('onPress:', scene.route);
+jumpToIndex(scene.index);
+},
+}),
             // tabBarComponent: TabBarBottom,
             tabBarPosition: 'bottom',
             activeTintColor: backgroundColor,

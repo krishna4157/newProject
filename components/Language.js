@@ -39,6 +39,9 @@ class Language extends Component {
 
 
 
+    
+
+
     setLanguage=async(index)=>{
       const {navigation}=this.props;
       var language;
