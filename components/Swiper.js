@@ -48,27 +48,28 @@ class SwiperComp extends Component {
   render() {
       const {navigation}=this.props;
     return (
-      <Swiper style={styles.wrapper} showsButtons={true} loop={false}>
-      <View style={styles.slide1}>
+      <View>
+      {/* // <Swiper style={styles.wrapper} showsButtons={true} loop={false}> */}
+      {/* <View style={styles.slide1}>
           <Text style={styles.text}>Hello Swiper</Text>
         </View>
         <View style={styles.slide2}>
           <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
+        </View> */}
+        {/* <View style={styles.slide3}> */}
+          {/* <Text style={styles.text}>And simple</Text>
           <View style={{alignSelf:'flex-end'}}>
-          <View style={{paddingBottom:'12%'}}>
+          <View style={{paddingBottom:'12%'}}> */}
           <Button style={{backgroundColor:'red'}} onPress={()=>{
               navigation.navigate('Login')
               alert("HELLO WORLD!")
           }} >
               <Text style={{textAlign:'center'}}>NEXT</Text>
           </Button>
+          {/* </View>
           </View>
-          </View>
-        </View>
-      </Swiper>
+        </View> */}
+      </View>
     )
   }
 }

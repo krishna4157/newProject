@@ -12,7 +12,7 @@ var tl = 'en';
 var s = '';
 var languageStatus = true;
 var temp = Object.keys(TextData);
-
+var i=0;
 export default t = (name) => {
 
   var selectedLanguage = tl;
@@ -37,10 +37,27 @@ export const setLanguage = (language) => {
       new Promise((resolve,reject)=>{
       request.translate(name, { to: language }, function(err, res) {
                 // alert(res.text);
+                try{
+                if(res.text!=undefined){
                 resolve(res.text);
+                }
+              } catch(err){
+                if(i==0){
+                alert('No internet!');
+              i++;  
+              } else {
+                console.log('No internet for translating Language!!')
+              }
+
+              }
             })
             }).then((res)=>{
-              TextData[name]=res;
+              try{
+                TextData[name]=res;
+              } catch(error) {
+                alert('No Internet!')
+              }
+              
               // alert(res);
               // s= res;
 

@@ -13,5 +13,6 @@ export default TextData = {
     'Support Us': 'Support Us',
     'Feeds': 'Feeds',
     'Relations':'Relations',
-    'More': 'More'
+    'More': 'More',
+    'Others':'Others'
 }

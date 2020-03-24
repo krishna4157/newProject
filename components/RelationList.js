@@ -5,12 +5,13 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Signt from 'react-native-vector-icons/FontAwesome5';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCoffee,faUser,faFax,faUserSecret,faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import t from '../constants/TextTranslate';
 
 var j = 0;
 var storedNavigations = [];
 var completed = 0;
 var k = 0;
-var chapters=['Family','Friends','Others ']
+var chapters=['Family','Friends','Others']
 export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => {
 
     var redirectIcons = [];
@@ -29,14 +30,14 @@ export default ({navigationPage,handleHeaderMenuDialoge,visible,hideDialog}) => 
             var chapterTitles = redirectIcons.map((chapter, index) => {
                 return (
                     
-                    <ListItem style={{width:'100%',justifyContent:'space-between'}} noBorder={index >= redirectIcons.length - 1 ? true : false} 
+                    <ListItem style={{width:'110%',justifyContent:'space-between'}} noBorder={index >= redirectIcons.length - 1 ? true : false} 
                      onPress={() => { 
                         hideDialog();
                          setTimeout(()=>{handleHeaderMenuDialoge(visible,navigations[index]) }),1000}} 
                     >
                     <FontAwesomeIcon
   icon={arr[index]} color='black' size={20} /> 
-                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{chapter}</Text>
+                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{t(chapter)}</Text>
                     </ListItem>
                 )
             })

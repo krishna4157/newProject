@@ -138,11 +138,11 @@ componentWillUpdate(){
         backgroundColor:'white'
       },
       fontStyle:{
-          color: 'black',
+          color: 'white',
           fontSize:30,
       },
       subtitleStyle: {
-        color: 'black',
+        color: 'white',
       },
       loginBackground:{
         flex:1,
@@ -161,7 +161,7 @@ componentWillUpdate(){
         shadowRadius: 10,
         elevation: 20,
         borderRadius:20,
-        backgroundColor: 'white',
+        backgroundColor: '#4885ed',
         marginTop:10
       }, 
       HeaderStyle:{
@@ -259,18 +259,18 @@ componentWillUpdate(){
       cardStyle:{
         borderRadius:30,
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: 'grey',
         borderBottomWidth: 0,
-        shadowColor: 'white',
+        shadowColor: 'grey',
         shadowOffset: { width: 10, height: 20 },
         shadowOpacity: 10,
         shadowRadius: 2,
         elevation: 10,borderRadius:20,
-        backgroundColor: 'grey',
+        backgroundColor: 'black',
         marginTop:10
       },
       HeaderStyle:{
-        backgroundColor:'grey',
+        backgroundColor:'black',
       }
       ,scrollView: {
         height:'100%',
@@ -322,8 +322,9 @@ componentWillUpdate(){
     var Relations = [{
       
       'name'    : 'Family1',
-      'subtitle': 'Family',
+      'city': 'Kakinada',
       'url'     : 'https://en.bcdn.biz/Images/2016/11/15/a9b9a282-948d-4073-ae1a-853ec3c41614.jpg',
+      'phoneNumber': 9912342530,
       'location' :  [{
         latitude: 37.78825,
         longitude: -122.4324,
@@ -332,7 +333,9 @@ componentWillUpdate(){
       }]
     },{
       'name': 'Family2',
+      'city': 'Kakinada',
       'url': 'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg',
+      'phoneNumber': 8309677743,
       'location' : [{
         latitude: 37.771707,
         longitude: -122.4053769,
@@ -342,8 +345,9 @@ componentWillUpdate(){
     },
     {
       'name': 'Friend1',
-      'subtitle': 'Friend',
+      'city': 'Kakinada',
       'url': 'https://en.bcdn.biz/Images/2016/11/15/776342f0-86f5-4522-84c9-a02d6b11c766.jpg',
+      'phoneNumber': 8375899945,
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
@@ -353,8 +357,9 @@ componentWillUpdate(){
     },
     {
       'name': 'Friend2',
-      'subtitle': 'Friend',
+      'city': 'Kakinada',
       'url': 'https://en.bcdn.biz/Images/2016/11/15/365d6610-08ca-40d7-a599-4b352cbd894e.jpg',
+      'phoneNumber': 8332991805,
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
@@ -364,8 +369,9 @@ componentWillUpdate(){
     },
     {
       'name': 'Other1',
-      'subtitle': 'Other',
+      'city': 'Kakinada',
       'url': 'https://en.bcdn.biz/Images/2016/11/15/1268e0a8-b737-444d-a64d-977ee30db531.jpg',
+      'phoneNumber': 8332992805,
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,
@@ -374,8 +380,9 @@ componentWillUpdate(){
       }]
     },{
       'name': 'Other2',
-      'subtitle': 'Other',
+      'city': 'Kakinada',
       'url': 'https://en.bcdn.biz/Images/2016/11/15/3bb528e4-b1d3-4d04-a2c4-302d632e096b.jpg',
+      'phoneNumber': 96181443245,
       'location' :  [{
         latitude: 37.3317876,
         longitude: -122.0054812,

@@ -26,7 +26,8 @@ import ThemesPage from './ThemesPage';
 import DetailsPage from './DetailsPage';
 import SwiperPage from './SwiperPage';
 import t from '../constants/TextTranslate';
-
+import UserDetailsPage from './UserDetailsPage';
+import UserInfoPage from './UserInfoPage';
 // import {
 //     Menu,
 //     MenuProvider,
@@ -74,7 +75,7 @@ const RelationNavigator = createStackNavigator({
             inactiveColor: 'black',  
             tabBarLabel : 
             <Text style={{marginBottom:10,color:'white',fontFamily:'Raleway'}}>{t('Feeds')}</Text>,
-            barStyle: {backgroundColor:'#95AAC0'}
+            barStyle: {backgroundColor:theme.name=='default'? '#1da1f2': 'black'}
         }
     },
 
@@ -83,7 +84,7 @@ const RelationNavigator = createStackNavigator({
             backgroundColor: 'blue',
             activeColor: '#f60c0d',  
             inactiveColor: '#f65a22',  
-            barStyle: {backgroundColor:'green'},
+            barStyle: {backgroundColor:'#29b6f6'},
                 
             tabBarLabel :            
             <Text style={{marginBottom:10,color:'white'}}>{t('Relations')}</Text>,            
@@ -94,7 +95,7 @@ const RelationNavigator = createStackNavigator({
         navigationOptions:{
             tabBarLabel :
             <Text style={{marginBottom:10,color:'white'}}>{t('More')}</Text>,
-            barStyle: {backgroundColor:'grey'}
+            barStyle: {backgroundColor:'black'}
             
         }},
     // AskQuestions: AskQuestions,
@@ -109,16 +110,16 @@ const RelationNavigator = createStackNavigator({
                     if (routeName === 'More') {
                         return focused ?
                         <FontAwesomeIcon
-                        icon={faFax} size={20} color='red' /> : <FontAwesomeIcon color='black' size={20}
+                        icon={faFax} size={20} color='red' /> : <FontAwesomeIcon color='white' size={20}
                         icon={faFax} />;
                     } else if (routeName === 'Relations') {
-                        return focused ? <FontAwesomeIcon color='blue' size={30}
-                        icon={faUsers} /> : <FontAwesomeIcon color='black' size={30}
+                        return focused ? <FontAwesomeIcon color='#80d8ff' size={30}
+                        icon={faUsers} /> : <FontAwesomeIcon color='white' size={30}
                         icon={faUsers} />;
                     } else if (routeName === 'Feed') {
                         return focused ? <FontAwesomeIcon
                         icon={faCoffee} size={25} color='orange' /> : <FontAwesomeIcon
-                        icon={faCoffee} size={25} color='black' />              ;
+                        icon={faCoffee} size={25} color='white' />              ;
                     }
                 },
             }),
@@ -146,6 +147,12 @@ jumpToIndex(scene.index);
   
 // const {locale}=this.props;
 const AppNavigator = createStackNavigator({
+    UserInfo:{
+        screen: UserInfoPage
+    },
+    UserDetails:{
+        screen: UserDetailsPage
+    },
     Swiper:{
         screen:SwiperPage
     },

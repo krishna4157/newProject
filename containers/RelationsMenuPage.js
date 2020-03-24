@@ -149,35 +149,35 @@ class RelationsMenuPage extends Component {
             // i=0;
               }}
           /> 
-                <FlashMessage position='top'/>
+                {/* <FlashMessage position='top'/> */}
             <DialogPopUp navigationPage={this.props.navigation.routeName} hideDialog={this.hideDialog} visible={visible} onClickOutSide={this.onClickOutSide} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>    
-            <AppContainer visible ={visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/>
+            {/* <AppContainer visible ={visible} handleHeaderMenuDialoge={this.handleHeaderMenuDialoge}/> */}
             </View>
         );
     }
 }
 
-const AppNavigator = createStackNavigator({
-  UserDetails :{
-    screen: UserDetailsPage
-  },
- Feed :{
-     screen: FeedPage 
-},Family: {
-    screen: FamilyPage
-  },
-  Friends: {
-    screen: FriendsPage
-  },
-  Others: {
-      screen: OthersPage
-  }
-},{
-  headerMode:'none',
-   initialRouteName: routeName
-});
+// const AppNavigator = createStackNavigator({
+//   UserDetails :{
+//     screen: UserDetailsPage
+//   },
+//  Feed :{
+//      screen: FeedPage 
+// },Family: {
+//     screen: FamilyPage
+//   },
+//   Friends: {
+//     screen: FriendsPage
+//   },
+//   Others: {
+//       screen: OthersPage
+//   }
+// },{
+//   headerMode:'none',
+//    initialRouteName: routeName
+// });
 
-const AppContainer = createAppContainer(AppNavigator);
+// const AppContainer = createAppContainer(AppNavigator);
 
 
 

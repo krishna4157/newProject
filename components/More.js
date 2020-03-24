@@ -26,12 +26,15 @@ import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import { faCog,faUser,faFax,faLanguage,faSignLanguage, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { SpringScrollView } from "@youngtailors/react-native-spring-scrollview";
+import { NavigationEvents } from 'react-navigation';
+import theme from 'react-native-theme';
 
 var arr = [faLanguage,faCog, faUser, faFax,faCoffee];
 var MoreItems = ['Language','Settings','Logout','Themes','Support Us'];
 var navigationIndex = ['Language','Settings','Login','Themes','Support']
 class More extends Component {
     state={
+      time: 2
     };
 
     render() {
@@ -39,13 +42,23 @@ class More extends Component {
     //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
             <View>
+              <NavigationEvents
+              onDidFocus={()=>{
+                this.setState({
+                  time:1
+                })
+              }}
+              />
             <SpringScrollView
-              style={styles.scrollView}>
+              style={{backgroundColor: theme.name=='default' ? 'white':'black',
+              height:'100%',
+              padding:5}}>
                 {MoreItems.map((name,index)=>{
                 return (
                 
                 
                 <ListItem onPress={()=>{
+                <Text style={{fontSize:1}}>{this.state.time}</Text>
                   // alert('HELLO WORLD!');
                   navigation.navigate(navigationIndex[index])
                   }}
@@ -53,8 +66,8 @@ class More extends Component {
                   
                     >
                     <FontAwesomeIcon
-  icon={arr[index]} color='black' size={25} style={{padding:10}} /> 
-                        <Text style={{ paddingLeft:15,color: 'black', fontSize:20 }}>{t(name)}</Text>
+  icon={arr[index]} color={theme.name=='default'?'black':'white'} size={25} style={{padding:10}} /> 
+                        <Text style={{ paddingLeft:15,color: theme.name=='default'?'black':'white', fontSize:20 }}>{t(name)}</Text>
                     </ListItem>
                     )})}
             </SpringScrollView>
@@ -64,9 +77,7 @@ class More extends Component {
     }
     const styles = StyleSheet.create({
         scrollView: {
-          backgroundColor: Colors.lighter,
-          height:'100%',
-          padding:5
+          
         },
         engine: {
           position: 'absolute',

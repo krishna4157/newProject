@@ -6,11 +6,12 @@ import { BackHandler, Alert,View } from 'react-native';
 import { MenuProvider } from "react-native-popup-menu";
 import Feed from "../components/Feed";
 import UserDetails from "../components/UserDetails";
+import UserInfo from "../components/UserInfo";
 // import { getDeviceToken } from '../utils/pushNotification/configurePushNotification';
 // import { retrieveSubjectCompliance } from '../utils/homeUtils';
 // import { withNavigationFocus } from "react-navigation";
 // import {setCurrentScreen} from '../actions/storeAppStatus';
-class UserDetailsPage extends Component {
+class UserInfoPage extends Component {
     state={
         subjectCompliance: {
             dayCompliance: 0,
@@ -82,7 +83,7 @@ const{navigation}=this.props;
 const userdata = navigation.getParam('userdata');
         return (
           <MenuProvider>
-            <UserDetails
+            <UserInfo
             userdata={userdata}
              navigation={navigation}
             // loading={loading}
@@ -108,5 +109,5 @@ const userdata = navigation.getParam('userdata');
 //     },
 //     dispatch,
 //   );
-export default UserDetailsPage
+export default UserInfoPage
 // export default connect(mapStateToProps, mapDispatchToProps)(withNavigationFocus(HomeScreen));

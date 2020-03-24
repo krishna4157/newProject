@@ -47,11 +47,9 @@ class Language extends Component {
       var language;
         setLanguage(LanguageItems[index]);
         language = LanguageItems[index];
-      // alert(s);
-
-    
-        await AsyncStorage.setItem('Locale',language);
-      s = await AsyncStorage.getItem('Locale')
+      // alert(s);    
+        // await AsyncStorage.setItem('Locale',language);
+      // s = await AsyncStorage.getItem('Locale')
         // alert("Set Language and Navigating to Login Page : "+s);
         navigation.navigate('Swiper')
        

@@ -29,11 +29,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import theme from 'react-native-theme';
 import { NavigationEvents } from 'react-navigation';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import {Linking} from 'react-native'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 var arr = [faLanguage,faCog, faUser, faFax];
 var MoreItems = ['Language','Settings','Logout'];
-class UserDetails extends Component {
+class UserInfo extends Component {
     state={
       t: 5
     };
@@ -55,55 +53,22 @@ class UserDetails extends Component {
         }
     }]
       
-    const { navigation } = this.props;
+    //   const { subjectCompliance, retrieveSubjectCompliance, screenProps: { t } } = this.props;
         return (
-            <View style={{flex:1,backgroundColor:theme.name=='default'?'white':'black'}}>
-           {/* <Text>{this.state.t}</Text> */}
-           <NavigationEvents 
-           onDidFocus={()=>{
-             this.setState({
-               t: t
-             })
-           }}
-           />
-          <View style={{flex:3,justifyContent:'center',paddingTop:10,padding:70}}>
-          <TouchableWithoutFeedback style={{height:'100%',zIndex:10}} onPress={()=>{
-            // alert('hello');
-            navigation.navigate('UserInfo',{'userdata':userdata})
-          }}>
-          <Image
-                    style={{paddingTop:10,flexWrap:'wrap',resizeMode:'cover',justifyContent:'center',width:'100%',height:'100%',borderRadius:900}}
-                     source={{ uri: userdata.url}}
-                    />
-                    </TouchableWithoutFeedback>
-            </View>
-            <View style={{flex:5,paddingTop:'6%',padding:20,flexDirection:'column'}}>
-            <View>
-            <Text style={{fontSize:25,fontWeight:'bold'}}>Name :
-                </Text>
-              <Text style={{fontSize:25}}>{userdata.name}
-                </Text>
-                </View>
-                <View>
-            <Text style={{fontSize:25,fontWeight:'bold'}}>Location :
-                </Text>
-              <Text style={{fontSize:25}}>{userdata.city}
-                </Text>
-                </View>
-                <View>
-            <Text style={{fontSize:25,fontWeight:'bold'}}>PhoneNumber :
-                </Text>
-                <TouchableWithoutFeedback onPress={()=>{
-                  // alert('Hello!');
-                  Linking.openURL(`tel:${userdata.phoneNumber}`)
-                }}>
-              <Text style={{fontSize:25,color:'#4885ed'}}>{userdata.phoneNumber}
-                </Text>
-                </TouchableWithoutFeedback>
-                </View>
-              </View>
-              
-          </View>
+            <View style={{flex:1,backgroundColor:'black'}}>
+            <Text>{this.state.t}</Text>
+            <NavigationEvents 
+            onDidFocus={()=>{
+              this.setState({
+                t: t
+              })
+            }}
+            />
+            {/* <Modal visible={true} transparent={true}> */}
+                 <ImageViewer imageUrls={images}/>
+             {/* </Modal> */}
+            <Text></Text>
+           </View>
         );
       }
     }
@@ -149,4 +114,4 @@ class UserDetails extends Component {
           textAlign: 'right',
         },
       });
-export default UserDetails;
+export default UserInfo;

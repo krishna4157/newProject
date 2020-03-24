@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {styles} from 'react-native-theme';
+import LinearGradient from 'react-native-linear-gradient';
 import {
   Container,
   Button,
@@ -20,13 +21,14 @@ import {
   View,
   Text,
   StatusBar,
-  Animated,
-  Image
+  Image,
+  Animated as NewAnimated
 } from "react-native";
 import {
   Card,
   CardTitle,
 } from "react-native-material-cards";
+import Animated, { Easing } from 'react-native-reanimated';
 import {
   LearnMoreLinks,
   DebugInstructions,
@@ -62,6 +64,7 @@ import MapView ,{PROVIDER_GOOGLE} from 'react-native-maps'
 import { NavigationEvents } from "react-navigation";
 import t from '../constants/TextTranslate';
 import theme from 'react-native-theme';
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 // import Translate from 'yandex-translate'
 // import { resolve } from "url";
 // import {Header} from 'react-native-elements';
@@ -75,93 +78,34 @@ var request = require('yandex-translate')(apikey);
 apiKey= 'trnsl.1.1.20200304T084451Z.88e3100b0e437a11.05e1eb13b2103bee9e17fc5b43ef04224d906108'
 
 class Feed extends Component {
-  state={
+  constructor(){
+    super();
+    this.animatedValue = new Animated.Value(0),
+    this.moveAnimation = new NewAnimated.ValueXY({ x: -180, y: 0 })
+    this.textAnimation = new NewAnimated.ValueXY({ x: 20, y: 0 })
+    this.state={
+    opacity: new NewAnimated.Value(0),
     products: '',
     time: Date.now(),
+    onTapUserName: '',
     text: 'FEED',
       }
 
+    }
 
+
+    onLoad = () =>{
+      NewAnimated.timing(this.state.opacity,{
+        toValue: 1,
+        // easing: Easing.back(),
+        duration:500,
+        useNativeDriver: true,
+      }).start();
+    }
       async componentDidUpdate(prevProps){
         // alert(JSON.stringify(prevProps));
       }
 
-
-//       t=(name)=>{
-//         // var s = '';  
-//         var t =new Promise(function(resolve, reject) { 
-//           request.translate(name, { to: 'hi' }, function(err, res) {
-//             // alert(res.text);
-//             if(err){
-//               reject();
-//               s= name;
-//                return s;
-//             } else{                
-//               s = res.text;
-//               console.log(res.text);
-//               resolve();
-//               return res.text;
-//             }
-//           })
-//         })
-//         setTimeout(()=>{
-//         t.then(function (s) { 
-//           alert(s);
-//          this.setState({
-//            text: s
-//          })
-
-//     }). 
-//     catch(function () { 
-//         this.setState({
-//           text:name
-//         })
-//       // console.log('Some error has occured'); 
-//     }
-//     );
-//     return this.state.text;
-//   },1000)
-// }
-
-      t=(name)=>{
-        const {locale}=this.props;
-        
- 
-          request.translate(name, { to: locale }, function(err, res) {
-            // alert(res.text);
-            if(err){
-              s = name;
-            } else {
-              s = res.text;
-              console.log(res.text);
-            }
-              return res.text;
-            
-          })
- 
-          setTimeout(()=>{
-            // alert(s);
-            this.setState({
-              text: s
-            })
-            return s;
-        },1000)
-        }
-
-
-        //   setTimeout(()=>{
-        //     // alert(s);
-        //     this.setState({
-        //       text: s
-        //     })
-            
-            
-        //       return s;
-           
-        // }); 
-        
-        // },2000)
-        // }
 
 
       async componentDidMount(){
@@ -172,7 +116,7 @@ class Feed extends Component {
         //   })
         //   },1000);
         // if(i==0){
-        this.t('FEED');
+        // this.t('FEED');
         this.onRefreshData();
         // request.translate('You can burn my house.', { to: 'hi' }, function(err, res) {
         //   alert(res.text);
@@ -265,7 +209,7 @@ class Feed extends Component {
   
 
   render() {
-     const {products}=this.state;
+     const {products,onTapUserName}=this.state;
      const {data1,navigation}=this.props;
     console.log('products'+products);
     return (
@@ -300,25 +244,43 @@ class Feed extends Component {
                  console.log("index :"+index);
                 //  console.log("Keys :"+data);
                 return (
-                  <Card  
-                  style={styles.cardStyle}>
-                    <View
+                  <TouchableWithoutFeedback style={{borderRadius:30}} onPress={()=>{
+                    if(userdata.name!=onTapUserName){
+                    this.setState({
+                      onTapUserName: userdata.name
+                    })} else{
+                      this.setState({
+                        onTapUserName: ''
+                      })
+                    }
+                    }}>
+                  <Animated.View 
+                  // style={{height:300,width:"150%",backgroundColor:'green',zIndex:1,borderBottomEndRadius:200,borderBottomStartRadius:200}} 
+                  style={styles.cardStyle}
+                  >
+                    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']}
                       style={{
                         flexDirection: "row",
                         alignItems: "center",
-                        padding: 10
+                        padding: 10,
+                        width:'100%',
+                        borderRadius:userdata.name==onTapUserName ? 20 :0,
+                        borderBottomRightRadius:0,
+                        borderBottomLeftRadius:0,
+
+
                       }}
                     >
                       <View style={{width:'90%'}}>
                       <Text style={styles.fontStyle} >{userdata.name}</Text>
-                    <Text style={styles.subtitleStyle}>{userdata.name}</Text>
+                    <Text style={styles.subtitleStyle}>{userdata.city}</Text>
                       </View>
                       <Menu>
                         <MenuTrigger>
                           <FontAwesomeIcon
                             size={25}
                             icon={faEllipsisV}
-                            color="#3498DB"
+                            color="white"
                           />
                         </MenuTrigger>
                         <MenuOptions>
@@ -332,7 +294,7 @@ class Feed extends Component {
                               // });
                             }}
                           >
-                            <Text style={{ fontSize: 20 }}>Add to Family</Text>
+                            <Text style={{ fontSize: 20 ,textAlign:'center'}}>Add to Family</Text>
                           </MenuOption>
                           <MenuOption
                             onSelect={() => {
@@ -340,7 +302,7 @@ class Feed extends Component {
                               // alert(`Added to Friends`)
                             }}
                           >
-                            <Text style={{ color: "red", fontSize: 20 }}>
+                            <Text style={{ fontSize: 20,textAlign:'center' }}>
                               Add to Friends
                             </Text>
                           </MenuOption>
@@ -349,12 +311,12 @@ class Feed extends Component {
                               this.setDataTo('Others',userdata,index);
                               // alert(`Added to Others`)
                               }}>
-                            <Text style={{ fontSize: 20 }}>Add to Others</Text>
+                            <Text style={{ fontSize: 20,textAlign:'center' }}>Add to Others</Text>
                           </MenuOption>
                         </MenuOptions>
                       </Menu>
                       {/* <AwesomeButton style={{height:5}} backgroundColor='red' textColor='white' >  X  </AwesomeButton> */}
-                    </View>
+                    </LinearGradient>
                    
                     {/* <CardImage
                       resizeMode='contain'
@@ -364,19 +326,33 @@ class Feed extends Component {
                           "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/05/22224952/beagle-puppy-in-large-cushion-chair.jpg"
                       }}
                     /> */}
-                     <View style={{height:200}}>
-                    <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
-                      alert('hello world');
-                     this.props.navigation.navigate('Details')
+                     <View  style={{height:userdata.name==onTapUserName ? 200: 0,borderRadius:100}}>
+                    {userdata.name==onTapUserName && <Button style={{backgroundColor:'white',width:'100%',height:'100%',borderRadius:20}} onPress={()=>{
+                      // alert('hello world');
+                      navigation.navigate('UserDetails',{'userdata':userdata})
+                    //  this.props.navigation.navigate('Details')
                     }}>
-                    <Image
-                    style={{flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderRadius:20}}
+                    <NewAnimated.Image  
+                    onLoad={this.onLoad} 
+                    {...this.props}
+                    style={{
+                      opacity: this.state.opacity,
+                      transform: [
+                        {
+                          scale : this.state.opacity.interpolate({
+                            inputRange: [0,1],
+                            outputRange:[0.85,1],
+                          })
+                        }
+                      ],
+                      flexWrap:'wrap',resizeMode:'cover',width:'100%',height:'110%',borderBottomLeftRadius:20,borderBottomRightRadius:20}}
                      source={{ uri: userdata.url}}
                     />
-                    </Button>
+                    </Button>}
                    
                     </View>
-                  </Card>
+                    </Animated.View>
+                  </TouchableWithoutFeedback>
                 );
               })}
            <View>
