@@ -1,2 +1,2 @@
 # newProject
-New Android Studio {Project with react-native app
+New Android Studio Project with react-native app
